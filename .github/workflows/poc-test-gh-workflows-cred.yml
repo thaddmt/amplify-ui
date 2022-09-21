@@ -112,7 +112,7 @@ jobs:
         id: set-value
         run: echo "set Value"
         env:
-          VALUE: ${{ true && 1 || 0 }}
+          VALUE: 'some value'
       - name: Get Value
         run: echo ${{ env.VALUE }}
       - name: Log failure data point to metric PublishLatestFailure
