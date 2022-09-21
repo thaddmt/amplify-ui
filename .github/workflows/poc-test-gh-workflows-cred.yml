@@ -11,28 +11,38 @@ permissions:
   contents: write # Used to push tags to GitHub
 
 jobs:
-  setup:
+  build:
     runs-on: ubuntu-latest
-    outputs:
-      has-changesets: ${{ steps.has-changesets.outputs.has-changesets }}
+    environment: ci
+    strategy:
+      fail-fast: false
+      matrix:
+        # Paths for each example app we want to test build on
+        path:
+          - angular/angularcli
+          - react/cra
+          - react/cra-ts
+          - react/next
+          - react/vite
+          - react/vite3
+          - vue/vite
+          - vue/vite3
+          - vue/vuecli
     steps:
-      - name: Checkout repo
+      - name: Checkout Amplify UI
         uses: actions/checkout@v3
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-      - name: Check if repo has unconsumed changesets
-        id: has-changesets
-        uses: ./.github/actions/has-changesets
-
-  build-test:
-    runs-on: ubuntu-latest
-    needs: setup
-    environment: ci
-    if: ${{ needs.setup.outputs.has-changesets != 'true' }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+          persist-credentials: false
+      - name: Setup Node.js LTS
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: 'yarn'
+      - name: Install canary package
+        uses: ./.github/actions/install-with-retries
+        with:
+          no-lockfile: true
+          working-directory: ./canary/apps/${{ matrix.path }}
       - name: Add Amplify CLI
         run: yarn global add @aws-amplify/cli
       - name: Get CLI versions
@@ -51,51 +61,52 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         working-directory: ./canary
-      - name: Setup canary apps against @next
-        run: yarn setup:next
-        working-directory: ./canary
-      - name: Run yarn install on each sample app
-        run: yarn install
-        working-directory: ./canary
-      - name: Run yarn build on each sample app
+      - name: Build example app
         run: yarn build
-        working-directory: ./canary
-
-  publish:
-    runs-on: ubuntu-latest
-    environment: deployment
-    needs: build-test
-    if: ${{ needs.setup.outputs.has-changesets != 'true' }}
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+        working-directory: ./canary/apps/${{ matrix.path }}
+      # This steps attempts to restore cypress runner. It will not create any new
+      # cache entries however, because cypress runner isn't available yet.
+      - name: Restore cypress runner from Cache
+        uses: actions/cache@v2
+        id: restore-cypress-cache
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
-          fetch-depth: 0
-      - name: Setup Node.js LTS
-        uses: actions/setup-node@v2
-        with:
-          node-version: lts/*
-          cache: 'yarn'
-      - name: Install packages
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-canary-cypress-${{ hashFiles('canary/e2e/yarn.lock') }}
+      - name: Install e2e packages
         uses: ./.github/actions/install-with-retries
         with:
-          skip-cypress-binary: true # publishing doesn't need cypress
-      - name: Build packages
-        run: yarn build
-      - name: Publish to @latest
-        uses: changesets/action@b98cec97583b917ff1dc6179dd4d230d3e439894
+          working-directory: ./canary/e2e
+          # If we got a cache hit on cypress runner, then we will skip cypress binary
+          # installation. Otherwise, it will install cypress binary.
+          skip-cypress-binary: ${{ steps.restore-cypress-cache.outputs.cache-hit }}
+      # If cypress cache was missed, then we need to create new cache entry and upload it.
+      # At this point, cypress runner should've been installed from the previous installation
+      # step, so we go ahead and update the cache entry.
+      - name: Cache cypress runner
+        if: steps.restore-cypress-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v2
         with:
-          publish: yarn publish:latest
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-canary-cypress-${{ hashFiles('canary/e2e/yarn.lock') }}
+      - name: Start ${{ matrix.example }} example
+        run: yarn start & npx wait-on -c waitOnConfig.json -t 20000 http-get://localhost:3000
+        working-directory: ./canary/apps/${{ matrix.path }}
+      - name: Run E2E tests against ${{ matrix.example }} example
+        run: yarn test
+        working-directory: ./canary
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Env values for testing flows
+          DOMAIN: ${{ secrets.DOMAIN }}
+          PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+          USERNAME: ${{ secrets.USERNAME }}
+          NEW_PASSWORD: ${{ secrets.NEW_PASSWORD }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
 
   log-metric:
-    # Send data point to metric PublishLatestFailure in github-workflows@ us-east-2
+    # Send data point to metricRunTimeTestsFailure in github-workflows@ us-east-2, if it's a failure
     runs-on: ubuntu-latest
     environment: ci
-    needs: publish
+    needs: build
     steps:
       - name: Log data point to metric PublishLatestFailure
         uses: aws-amplify/amplify-ui/.github/actions/log-metric@main
