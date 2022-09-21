@@ -109,7 +109,7 @@ jobs:
     needs: build
     steps:
       - name: Log data point to metric PublishLatestFailure
-        uses: aws-amplify/amplify-ui/.github/actions/log-metric@main
+        uses: aws-amplify/amplify-ui/.github/actions/log-metric@poc/gh-workflow/metric-logger-cred
         with:
           metric-name: PublishLatestFailure
           value: 0
