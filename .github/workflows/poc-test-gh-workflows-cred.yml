@@ -108,6 +108,11 @@ jobs:
     environment: ci
     needs: build
     steps:
+      - name: Set Value
+        id: set-value
+        run: echo "::set-output name=value::${{ failure() && 1 || 0 }}"
+      - name: Get Value
+        run: echo ${{ log-metric.set-value.outputs.value }}
       - name: Log failure data point to metric PublishLatestFailure
         if: ${{ failure() }}
         uses: aws-amplify/amplify-ui/.github/actions/log-metric@poc/gh-workflow/metric-logger-cred
