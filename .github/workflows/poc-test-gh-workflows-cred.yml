@@ -112,7 +112,7 @@ jobs:
         uses: aws-amplify/amplify-ui/.github/actions/log-metric@poc/gh-workflow/metric-logger-cred
         with:
           metric-name: PublishLatestFailure
-          value: 0
+          value: ${{ if(success()) && 0 || 1 }} # if failure, log 1; otherwise, log 0. ref: https://github.com/actions/runner/issues/409#issuecomment-727565588
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_METRIC_LOGGER }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_METRIC_LOGGER }}
           AWS_REGION: us-east-2
