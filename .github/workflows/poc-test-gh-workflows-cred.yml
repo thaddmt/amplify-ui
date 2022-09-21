@@ -39,12 +39,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: ci
     needs: build
+    env:
+      VALUE: ${{ failure() }}
     steps:
       - name: Set Value
         id: set-value
-        run: echo "set Value"
-        env:
-          VALUE: 'some value'
+        run: echo "set no Value"
       - name: Get Value
         run: echo ${{ env.VALUE }}
       - name: Log failure data point to metric PublishLatestFailure
