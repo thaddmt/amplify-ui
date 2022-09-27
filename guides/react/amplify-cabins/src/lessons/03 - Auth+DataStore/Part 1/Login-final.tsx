@@ -7,7 +7,7 @@ import {
   useAuthenticator,
 } from '@aws-amplify/ui-react';
 
-import Layout from '../components/Layout';
+import Layout from '../../../components/Layout';
 
 export default function Login() {
   const { route } = useAuthenticator((context) => [context.route]);

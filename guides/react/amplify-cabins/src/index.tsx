@@ -9,8 +9,7 @@ import './index.css';
 
 import { theme } from './theme';
 
-/** import aws_exports from './aws-exports.js'; */
-import aws_exports from '../../../../environments/auth-with-username/src/aws-exports.js';
+import aws_exports from './aws-exports';
 
 Amplify.configure(aws_exports);
 

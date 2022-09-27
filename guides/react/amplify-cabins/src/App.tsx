@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Properties from './routes/Properties';
-import Login from './routes/Login';
-import EditProperty from './routes/EditProperty';
+import Login from './lessons/03 - Auth+DataStore/Part 1/Login';
+import EditProperty from './lessons/03 - Auth+DataStore/Part 2/EditProperty';
+import Properties from './lessons/03 - Auth+DataStore/Part 3/Properties';
 import Theme from './routes/Theme';
 import { RequireAuth } from './RequireAuth';
 
