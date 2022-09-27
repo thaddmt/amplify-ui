@@ -12,7 +12,7 @@ name: POC / NPM / whoami
 
 on:
   push:
-    branches: [main]
+    branches: [npm-whoami]
 
 jobs:
   whoami:
