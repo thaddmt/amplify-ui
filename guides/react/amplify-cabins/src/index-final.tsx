@@ -1,15 +1,3 @@
-/*
- * 📕 Part 1 - SETUP THEME PROVIDER
- *
- * 👉 STEP 1
- *
- * Adding a theme provider attached to a theme
- *
- * 🔹 HINT
- *
- * The completed code is in the same directory!
- *
- */
 import { Authenticator, ThemeProvider } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import ReactDOM from 'react-dom/client';
@@ -27,13 +15,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <>
-    {/**
-     *  👉 STEP 1
-     *
-     */}
+  <ThemeProvider theme={theme}>
     <Authenticator.Provider>
       <App />
     </Authenticator.Provider>
-  </>
+  </ThemeProvider>
 );
