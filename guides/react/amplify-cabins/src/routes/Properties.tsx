@@ -1,7 +1,7 @@
 import { Collection } from '@aws-amplify/ui-react';
 
 import { properties } from '../data/properties';
-import PropertyCard from '../components/PropertyCard';
+import PropertyCard from '../lessons/01-Property-Card/PropertyCard';
 import Layout from '../components/Layout';
 
 export default function Properties() {
