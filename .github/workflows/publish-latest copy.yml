@@ -19,11 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: deployment
     steps:
-      - name: Setup Node.js LTS
-        uses: actions/setup-node@v2
-        with:
-          node-version: lts/*
-          cache: 'yarn'
       - name: Create .npmrc
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
         env:
