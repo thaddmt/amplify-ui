@@ -1,6 +1,8 @@
 /*
  * 📕 Part 1 - AUTHENTICATION
  *
+ * Prereqs: Please make sure to copy the aws-exports.js file to the src/ folder
+ * as described in the wiki https://w.amazon.com/bin/view/AWS/Mobile/Amplify/AmplifyUI/Workshops/WDC2022NY/
  *
  * 👉 STEP 1
  *
