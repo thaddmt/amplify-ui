@@ -1,0 +1,31 @@
+# Description: this workflow publishes UI packages to `latest` tag on NPM.
+#
+# Triggered by: whenever "Version Packages" is merged
+
+# If successful, we will publish all updated UI packages to
+#   - https://www.npmjs.com/package/@aws-amplify/ui
+#   - https://www.npmjs.com/package/@aws-amplify/ui-react
+#   - https://www.npmjs.com/package/@aws-amplify/ui-vue
+#   - https://www.npmjs.com/package/@aws-amplify/ui-angular
+
+name: POC / NPM / whoami
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    environment: deployment
+    steps:
+      - name: Setup Node.js LTS
+        uses: actions/setup-node@v2
+        with:
+          node-version: lts/*
+          cache: 'yarn'
+      - name: Create .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm whoami
