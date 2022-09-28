@@ -3,7 +3,7 @@
  *
  * 👉 STEP 1
  *
- * Adding a theme provider attached to a theme
+ * Use the ThemeProvider to pass our custom theme to the application.
  *
  * 🔹 HINT
  *

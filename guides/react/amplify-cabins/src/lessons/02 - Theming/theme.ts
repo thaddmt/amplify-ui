@@ -3,18 +3,38 @@
  *
  * 👉 STEP 1
  *
- * Change the default colors for green, teal, orange and red
+ * Change the provided base colors in the colors object of the theme:
+ *
+ * teal.80 = hsl(177, 26%, 37%)
+ *
+ * green.10 = hsl(107, 12%, 95%)
+ *
+ * orange.10 = hsl(177, 26%, 95%)
+ * orange.40 = hsl(177, 26%, 63%)
+ * orange.60 = hsl(177, 26%, 59%)
+ * orange.90 = hsl(177, 26%, 29%)
+ * orange.100 = hsl(177, 26%, 23%)
+ *
  *
  * 👉 STEP 2
  *
- * Make the heading 2 font weight to  bold and fontsize to medium
+ * Make the Heading level 2 font weight bold and change the fontsize to medium.
+ * (Hint: See the theming docs for Heading
+ *  https://ui.docs.amplify.aws/react/components/heading#theme )
  *
  * 👉 STEP 3
  *
- * Set the ratings filled color to Teal 80%
+ * Add rating: {} to our theme's components object
+ * - Set the filled color to teal.80
+ * - Set the empty color to green.10
+ * (Hint: See the theming docs for Rating
+ * https://ui.docs.amplify.aws/react/components/rating#theme )
  *
  * 👉 STEP 4
- * Set the background color, color and border color of the hover event of the button
+ * Add a _hover: {} theme to the Button component.
+ * - Set the hover backgroundColor to orange.10
+ * - Set the hover color to orange.100
+ * - Set the hover borderColor to orange.60
  *
  *
  * BONUS:
@@ -36,7 +56,9 @@ export const theme: Theme = {
        * 👉 STEP 1
        *
        * HINT: Use  this format:
-       * 10: { value: 'hsl(107, 12%, 95%)' },
+       * [colorName] : {
+       *    10: { value: 'hsl(107, 12%, 95%)' },
+       * }
        */
     },
     components: {
@@ -45,14 +67,11 @@ export const theme: Theme = {
          * 👉 STEP 2
          */
       },
-      rating: {
-        /**
-         * 👉 STEP 3
-         */
-        empty: {
-          color: { value: '{colors.green.10}' },
-        },
-      },
+
+      /**
+       * 👉 STEP 3
+       */
+
       fieldcontrol: {
         borderColor: { value: '{colors.orange.40}' },
         borderRadius: { value: '{radii.xl}' },
