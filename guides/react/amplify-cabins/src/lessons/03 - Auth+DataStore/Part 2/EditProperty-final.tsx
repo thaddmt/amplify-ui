@@ -94,8 +94,7 @@ export default function EditProperty() {
               ></TextField>
               <StepperField
                 max={5}
-                min={0}
-                step={1}
+                min={1}
                 width="33%"
                 onChange={(e) => setRating(+e.target.value)}
                 label="Number of Stars Rating"

@@ -6,13 +6,19 @@
  *
  * Add a field to capture a star rating 1 - 5
  *
+ * Make sure to pass in width="33%" and label="Number of Stars Rating"
+ *
+ * Take a look at the StepperField documentation https://ui.docs.amplify.aws/react/components/stepperfield
+ *
+ *
  * 👉 STEP 2
  *
  * Save the data into the Cabin model!
+ * Take a look at the documentation for the DataStore https://docs.amplify.aws/lib/datastore/data-access/q/platform/js/
  *
  * * 👉 STEP 3
  *
- * Transition to the the '/' route
+ * Transition to the '/' route
  *
  * ✨ BONUS 1
  *

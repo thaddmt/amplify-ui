@@ -23,7 +23,14 @@ export default function Login() {
     <Layout>
       <Flex direction="column" height="100%">
         <View margin="auto">
-          <Authenticator></Authenticator>
+          <Authenticator>
+            {({ signOut, user }) => (
+              <main>
+                <h1>Hello {user?.username}</h1>
+                <button onClick={signOut}>Sign out</button>
+              </main>
+            )}
+          </Authenticator>
         </View>
       </Flex>
     </Layout>
