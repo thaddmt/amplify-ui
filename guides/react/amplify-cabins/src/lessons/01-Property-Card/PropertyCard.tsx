@@ -5,6 +5,7 @@
  * 👉 STEP 1
  *
  * Add a thumbnail image for the property with a height of 300px and a width of 100%.
+ * (Hint: Look at the props available on PropertyCard to find a prop to use as the thumbnail src)
  * - To this image, add a borderRadius using a style prop with a 'medium' radius.
  * - Be sure to add alt text! (Hint: Look at the props available on PropertyCard).
  *
@@ -33,7 +34,7 @@
  * 👉 STEP 4
  *
  * Add an H2 heading with the properties name.
- * - Use the truncated prop to keep the name to one line.
+ * - Use the isTruncated prop to keep the name to one line.
  * Note: we'll adjust the font-size in the next lab!
  *
  * 👉 STEP 5
