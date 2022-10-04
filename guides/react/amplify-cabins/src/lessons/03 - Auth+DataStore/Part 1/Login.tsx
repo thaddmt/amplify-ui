@@ -17,6 +17,9 @@
  *
  * In this step you want to navigate to the /admin route after a user logs in, make sure
  * to use the route hook and navigate.
+ * (Hint: In the useEffect, check if the current route is 'authenticated'. If so,
+ * use 'navigate' to redirect the user to the '/admin' url. You can find a similar
+ * example on our docs: https://ui.docs.amplify.aws/react/guides/auth-protected#setting-up-the-authenticator)
  *
  * 🔹 HINT
  *
