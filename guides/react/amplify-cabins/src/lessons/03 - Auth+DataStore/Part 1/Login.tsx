@@ -3,11 +3,15 @@
  *
  * Prereqs: Please make sure to copy the aws-exports.js file to the src/ folder
  * (you can copy and paste it into a new file called src/aws-exports.js)
- * as described in the wiki https://w.amazon.com/bin/view/AWS/Mobile/Amplify/AmplifyUI/Workshops/WDC2022NY/
+ * as described in the wiki https://w.amazon.com/bin/view/AWS/Mobile/Amplify/AmplifyUI/Workshops/WDC2022NY#Haws-exports.js
  *
  * 👉 STEP 1
  *
- * Add the Authenticator and include a logout button!
+ * Add the Authenticator component.
+ * - After adding the Authenticator to the page,
+ *   you should be  able to view it at http://localhost:3000/login
+ * Add a "Sign out" button inside the Authenticator (use the Amplify UI Button component).
+ * (Hint: you can see a quick example of this on our docs https://ui.docs.amplify.aws/react/connected-components/authenticator#3-add-the-authenticator)
  *
  * 👉 STEP 2
  *
@@ -42,6 +46,7 @@ import {
   View,
   Authenticator,
   useAuthenticator,
+  Button,
 } from '@aws-amplify/ui-react';
 
 import Layout from '../../../components/Layout';

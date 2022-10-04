@@ -5,6 +5,7 @@ import {
   View,
   Authenticator,
   useAuthenticator,
+  Button,
 } from '@aws-amplify/ui-react';
 
 import Layout from '../../../components/Layout';
@@ -24,12 +25,7 @@ export default function Login() {
       <Flex direction="column" height="100%">
         <View margin="auto">
           <Authenticator>
-            {({ signOut, user }) => (
-              <main>
-                <h1>Hello {user?.username}</h1>
-                <button onClick={signOut}>Sign out</button>
-              </main>
-            )}
+            {({ signOut }) => <Button onClick={signOut}>Sign out</Button>}
           </Authenticator>
         </View>
       </Flex>
