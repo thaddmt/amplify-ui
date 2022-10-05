@@ -5,4 +5,8 @@
   // This only affects Webkit/Chromium-based browsers that implement
   // the property as inherited.
   user-select: text;
+  &[type='date'] {
+    // Setting a display value is needed to fix appearance of type="date" on Chrome and Safari.
+    display: inline-flex;
+  }
 }
