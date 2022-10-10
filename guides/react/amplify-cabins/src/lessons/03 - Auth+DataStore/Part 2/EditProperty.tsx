@@ -4,7 +4,7 @@
  *
  * 👉 STEP 1
  *
- * Add a field to capture a star rating 1 - 5
+ * Add a stepper field to capture a star rating 1 - 5
  *
  * Make sure to pass in width="33%" and label="Number of Stars Rating"
  *
@@ -18,7 +18,8 @@
  *
  * * 👉 STEP 3
  *
- * Transition to the '/' route
+ * Add a way to navigate to the '/' route after the post is saved.
+ *
  *
  * ✨ BONUS 1
  *

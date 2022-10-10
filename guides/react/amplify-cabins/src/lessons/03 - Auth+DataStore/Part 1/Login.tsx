@@ -9,14 +9,14 @@
  *
  * Add the Authenticator component.
  * - After adding the Authenticator to the page,
- *   you should be  able to view it at http://localhost:3000/login
+ *   you should be  able to view it at http://localhost:3000/login (run npm start first)
  * Add a "Sign out" button inside the Authenticator (use the Amplify UI Button component).
  * (Hint: you can see a quick example of this on our docs https://ui.docs.amplify.aws/react/connected-components/authenticator#3-add-the-authenticator)
  *
  * 👉 STEP 2
  *
  * In this step you want to navigate to the /admin route after a user logs in, make sure
- * to use the route hook and navigate.
+ * to use the route hook and use navigate.
  * (Hint: In the useEffect, check if the current route is 'authenticated'. If so,
  * use 'navigate' to redirect the user to the '/admin' url. You can find a similar
  * example on our docs: https://ui.docs.amplify.aws/react/guides/auth-protected#setting-up-the-authenticator)
@@ -39,6 +39,11 @@
  * npm start
  *
  * Then open localhost:3000/login and create a new account and log in!
+ * You can also use these credentials to log in
+ *
+ * email: test@example.com
+ * password: testuser1
+ *
  * It should redirect you to the Edit Property page
  *
  */

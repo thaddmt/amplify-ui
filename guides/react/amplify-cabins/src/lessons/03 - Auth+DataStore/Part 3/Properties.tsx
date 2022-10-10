@@ -8,7 +8,8 @@
  *
  * ✨ BONUS 1
  *
- * After loading the page and seeing the data, try again in offline mode
+ * After loading the page and seeing the data, try again in offline mode by
+ * turning off your wifi.
  *
  * * ✨ Test It Out!
  *
@@ -30,6 +31,8 @@
  *
  * Save and you should see a page displaying your cabin data!
  *
+ * Note: Other students might be saving data too, so you may see other
+ * data on this page!
  */
 import { Collection } from '@aws-amplify/ui-react';
 
