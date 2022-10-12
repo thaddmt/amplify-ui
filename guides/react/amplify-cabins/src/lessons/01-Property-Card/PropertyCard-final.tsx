@@ -45,7 +45,7 @@ export default function PropertyCard({
             ></Rating>
           </Flex>
           <Flex gap="xxxs" alignItems="center" color="neutral.80">
-            <Icon as={BiBed}></Icon> {beds} bed
+            <Icon as={BiBed} aria-hidden="true"></Icon> {beds} bed
           </Flex>
           <View>
             <Text as="span" fontWeight="bold">
