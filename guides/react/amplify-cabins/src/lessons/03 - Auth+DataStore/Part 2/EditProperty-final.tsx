@@ -96,7 +96,7 @@ export default function EditProperty() {
                 max={5}
                 min={1}
                 width="33%"
-                onStepChange={(e) => setRating(+e.target.value)}
+                onStepChange={(e) => setRating(e)}
                 label="Number of Stars Rating"
               />
             </Flex>
