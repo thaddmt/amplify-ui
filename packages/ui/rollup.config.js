@@ -12,7 +12,9 @@ const config = defineConfig([
       dir: 'dist',
       format: 'cjs',
       sourcemap: false,
+      entryFileNames: '[name].cjs',
     },
+
     plugins: [
       externals(),
       typescript({ declarationDir: 'dist/types', sourceMap: false }),
@@ -28,6 +30,7 @@ const config = defineConfig([
       preserveModules: true,
       preserveModulesRoot: 'src',
       sourcemap: false,
+      entryFileNames: '[name].mjs',
     },
     plugins: [
       externals(),
