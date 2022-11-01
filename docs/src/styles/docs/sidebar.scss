@@ -25,7 +25,8 @@
     display: none;
     @media (min-width: $breakpoint-large) {
       display: block;
-      .docs-home & {
+      .docs-home &,
+      [data-hide-nav] & {
         display: none;
       }
     }
@@ -41,7 +42,8 @@
     width: 20rem;
     position: relative;
 
-    .docs-home & {
+    .docs-home &,
+    [data-hide-nav] & {
       width: 0;
     }
   }
@@ -66,7 +68,8 @@
       display: none;
     }
 
-    .docs-home .expanded > & {
+    .docs-home .expanded > &,
+    [data-hide-nav] .expanded > & {
       display: block;
     }
   }
@@ -124,7 +127,8 @@
   @media (min-width: $breakpoint-large) {
     transform: translateX(0);
     width: var(--width);
-    .docs-home & {
+    .docs-home &,
+    [data-hide-nav] & {
       transform: translateX(-100%);
     }
 
@@ -176,7 +180,8 @@
     display: none;
   }
 
-  .docs-home & {
+  .docs-home &,
+  [data-hide-nav] & {
     display: inline-flex;
   }
 }

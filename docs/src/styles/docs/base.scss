@@ -310,3 +310,55 @@ h4:hover > a .icon-link {
     height: auto;
   }
 }
+
+
+.brand-color-picker {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  padding: var(--amplify-space-xxxs);
+  border: 2px solid var(--amplify-colors-border-secondary);
+  
+  &:hover {
+    border-color: var(--amplify-colors-border-active);
+  }
+  
+  &.selected {
+    border-color: var(--amplify-colors-border-active);
+    box-shadow: var(--amplify-shadows-medium);
+  }
+}
+
+.brand-color-picker > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.brand-color-square {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+
+
+.react-colorful {
+  gap: 20px;
+}
+
+.docs-themer {
+  --amplify-components-menu-max-width: none;
+  width:100%;
+  height: 100%;
+  
+  & [data-orientation="horizontal"]:not(.amplify-sliderfield__root) {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  & [data-orientation="horizontal"][data-state]:not(.amplify-sliderfield__root) {
+    overflow: scroll;
+  }
+}
