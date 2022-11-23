@@ -1,11 +1,13 @@
 import { useRef } from 'react';
 import classNames from 'classnames';
 import { MdOutlineAutoAwesome } from 'react-icons/md';
-import { Heading, View, Text, Flex } from '@aws-amplify/ui-react';
+import { Heading, View, Text, Flex, Link } from '@aws-amplify/ui-react';
 import { ThemeSwitcher } from '@/components/home/ThemeSwitcher';
 import { HomeCTA } from '@/components/home/HomeCTA';
 import { useIntersectionObserver } from '@/components/useIntersection';
 import { trackScroll } from '@/utils/track';
+import { FigmaLogoMono } from '@/components/Logo';
+import { FIGMA_PLUGIN } from '@/data/links';
 
 export const ThemingSection = ({ colorMode, platform }) => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -39,13 +41,20 @@ export const ThemingSection = ({ colorMode, platform }) => {
           UI uses design tokens and plain CSS so every detail can be customized.
           Dynamic theming for dark mode, responsive, and user preferences is
           easy with theme overrides.
+          <Link href={`/${platform}/theming`}>Learn more about theming </Link>
         </Text>
       </Flex>
       <ThemeSwitcher colorMode={colorMode} />
-      <HomeCTA href={`/${platform}/theming`}>
-        <span>Learn more about theming</span>
-        <MdOutlineAutoAwesome />
-      </HomeCTA>
+      <Flex direction="row" justifyContent="center">
+        <HomeCTA href={`/${platform}/theming`}>
+          <span>Learn more about theming</span>
+          <MdOutlineAutoAwesome />
+        </HomeCTA>
+        <HomeCTA href={FIGMA_PLUGIN}>
+          <span>Get the Figma theming plugin</span>
+          <FigmaLogoMono />
+        </HomeCTA>
+      </Flex>
     </View>
   );
 };

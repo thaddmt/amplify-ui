@@ -144,7 +144,7 @@ export const AuthenticationSection = ({ platform }) => {
       <Flex direction="column">
         <Flex direction="column" className="docs-home-subsection--thin">
           <Heading level={2}>
-            <strong>Authentication</strong> made easy
+            <strong>Cloud</strong> connected
           </Heading>
           <Text className="docs-home-text">
             Add authentication to your app in under 10 lines of code using the
@@ -155,7 +155,10 @@ export const AuthenticationSection = ({ platform }) => {
             to <strong>automatically</strong> work with your backend, no extra
             configuration needed! Customize every detail of the authentication
             flow with themes, overrides, or bring your own UI with a headless
-            mode.
+            mode.{' '}
+            <Link href={`/${platform}/connected-components/authenticator`}>
+              Learn more about the Authenticator
+            </Link>
           </Text>
         </Flex>
 
@@ -188,9 +191,6 @@ export const AuthenticationSection = ({ platform }) => {
             </HomeCode>
           ) : null}
         </Flex>
-        <HomeCTA href={`/${platform}/connected-components/authenticator`}>
-          Get started with the Authenticator
-        </HomeCTA>
       </Flex>
     </View>
   );

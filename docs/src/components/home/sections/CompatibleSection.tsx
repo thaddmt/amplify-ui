@@ -59,9 +59,9 @@ export const CompatibleSection = ({ platform }) => {
             with strongly typed interfaces and inline documentation.
           </HomeFeatureCard>
         </Flex>
-        <HomeCTA href={`/${platform}/getting-started/introduction`}>
+        {/* <HomeCTA href={`/${platform}/getting-started/introduction`}>
           Learn more about Amplify UI&lsquo;s design philosophy
-        </HomeCTA>
+        </HomeCTA> */}
       </Flex>
     </View>
   );

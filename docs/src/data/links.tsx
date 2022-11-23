@@ -566,3 +566,11 @@ export const JS_REFERENCE = 'https://aws-amplify.github.io/amplify-js/api/';
 
 export const GITHUB_REPO = `${GITHUB}/amplify-ui/`;
 export const GITHUB_REPO_FILE = `${GITHUB_REPO}/blob/main/`;
+
+export const FIGMA_FILE =
+  'https://www.figma.com/community/file/1047600760128127424';
+export const FIGMA_PLUGIN =
+  'https://www.figma.com/community/plugin/1040722185526429545/AWS-Amplify-Theme-Editor';
+
+export const STUDIO_INTRO_YOUTUBE = 'https://www.youtube.com/embed/KJSD6LFErgE';
+export const STUDIO_SANDBOX_UI = 'https://sandbox.amplifyapp.com/ui-library';

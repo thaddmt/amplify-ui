@@ -12,6 +12,9 @@ import {
   PrimitiveSection,
   ThemingSection,
 } from '@/components/home/sections';
+import { StudioSection } from '@/components/home/sections/StudioSection';
+import { HomeCTA } from '@/components/home/HomeCTA';
+import { LastSection } from '@/components/home/sections/LastSection';
 
 const ReactHomePage = ({ colorMode }) => {
   const {
@@ -25,14 +28,20 @@ const ReactHomePage = ({ colorMode }) => {
 
   return (
     <>
-      {showEditor ? <LiveSection platform={platform} /> : null}
-      <PrimitiveSection platform={platform} />
+      {/* <FigmaSection /> */}
+      <StudioSection />
       <AuthenticationSection platform={platform} />
+
+      <PrimitiveSection platform={platform} />
       <ThemingSection platform={platform} colorMode={colorMode} />
-      <FigmaSection />
+
       <AmplifySection platform={platform} />
       <A11ySection platform={platform} />
       <CompatibleSection platform={platform} />
+
+      {showEditor ? <LiveSection platform={platform} /> : null}
+
+      <LastSection platform={platform} />
     </>
   );
 };

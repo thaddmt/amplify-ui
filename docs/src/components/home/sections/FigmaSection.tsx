@@ -17,6 +17,8 @@ import { HomeCTA } from '@/components/home/HomeCTA';
 import { useIntersectionObserver } from '@/components/useIntersection';
 import { FigmaLogoMono } from '@/components/Logo';
 import { trackScroll } from '@/utils/track';
+import { Video } from '@/components/Video';
+import { STUDIO_INTRO_YOUTUBE } from '@/data/links';
 
 const StudioCard = () => {
   return (
@@ -83,7 +85,7 @@ export const FigmaSection = () => {
     >
       <Flex className="docs-home-subsection" direction="column" gap="large">
         <Heading level={2}>
-          Build UI <strong>visually</strong> in Figma
+          Build UI <strong>visually</strong>
         </Heading>
         <Flex
           direction={{
@@ -131,12 +133,34 @@ export const FigmaSection = () => {
             </View>
           </Flex>
         </Flex>
+        <Flex>
+          <Video>
+            <source src="/videos/studio.mp4" type="video/mp4" />
+          </Video>
+          <Video>
+            <source src="/videos/theme.mp4" type="video/mp4" />
+          </Video>
+          <Video>
+            <source src="/videos/uibuilder-data-model.mp4" type="video/mp4" />
+          </Video>
+        </Flex>
         <Flex className="docs-home-subsection--thin" direction="column">
-          <Card variation="elevated">
-            <video controls width="100%">
-              <source src="/studio-demo.mp4" type="video/mp4" />
-            </video>
-          </Card>
+          <iframe
+            className="video"
+            width="560"
+            height="315"
+            src={STUDIO_INTRO_YOUTUBE}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+          <Button
+            as="a"
+            href="https://sandbox.amplifyapp.com/ui-library/form/create"
+          >
+            Try out Forms
+          </Button>
           <HomeCTA href="/react/getting-started/figma">
             <span>Learn more about Figma integration</span>
             <FigmaLogoMono alt="" />

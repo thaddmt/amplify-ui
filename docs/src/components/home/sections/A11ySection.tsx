@@ -56,7 +56,10 @@ export const A11ySection = ({ platform }) => {
           <Link isExternal href="https://www.w3.org/WAI/ARIA/apg/">
             WAI-ARIA
           </Link>{' '}
-          best practices to ensure <em>all</em> users can use your application.
+          best practices to ensure <em>all</em> users can use your application.{' '}
+          <Link href={`/${platform}/getting-started/accessibility`}>
+            View the accessibility guidelines
+          </Link>
         </Text>
         <Flex
           direction={{
@@ -99,10 +102,10 @@ export const A11ySection = ({ platform }) => {
           </HomeFeatureCard>
         </Flex>
 
-        <HomeCTA href={`/${platform}/getting-started/accessibility`}>
+        {/* <HomeCTA href={`/${platform}/getting-started/accessibility`}>
           <span>View our accessibility guidelines</span>
           <MdAccessibilityNew />
-        </HomeCTA>
+        </HomeCTA> */}
       </Flex>
     </View>
   );
