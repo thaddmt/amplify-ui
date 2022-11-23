@@ -9,7 +9,7 @@
     "postflutter:build": "yarn flutter:copy",
     "flutter:clean": "rm -rf public/flutter/authenticator",
     "flutter:copy": "cp -r ./flutter/authenticator/build/web public/flutter/authenticator",
-    "build": "yarn build:props-tables && next build",
+    "build": "yarn build:props-tables && next build && next export",
     "build:props-tables": "node --require esbuild-register ./scripts/generate-props-tables-data.ts",
     "lint": "next lint",
     "postbuild": "yarn test && yarn postbuild:previews && yarn postbuild:sitemap",
