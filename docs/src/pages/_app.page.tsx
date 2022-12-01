@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
 
+import { Amplify } from 'aws-amplify';
 import { ThemeProvider, ColorMode, defaultTheme } from '@aws-amplify/ui-react';
 
 import { configure, trackPageVisit } from '@/utils/track';
@@ -25,6 +26,32 @@ import {
   RIGHT_NAV_LINKS,
   SOCIAL_LINKS,
 } from '@/data/globalnav';
+
+Amplify.configure({
+  aws_project_region: 'us-east-1',
+  aws_cognito_identity_pool_id:
+    'us-east-1:d3a6f808-d4e3-4fb5-b3dd-6e3223747470',
+  aws_cognito_region: 'us-east-1',
+  oauth: {},
+  aws_cognito_username_attributes: [],
+  aws_cognito_social_providers: [],
+  aws_cognito_signup_attributes: [],
+  aws_cognito_mfa_types: [],
+  aws_cognito_password_protection_settings: {
+    passwordPolicyCharacters: [],
+  },
+  aws_cognito_verification_mechanisms: [],
+  aws_mobile_analytics_app_id: '9e49fe1ad13c456fbe5cf0bd86199daf',
+  aws_mobile_analytics_app_region: 'us-east-1',
+  Notifications: {
+    InAppMessaging: {
+      AWSPinpoint: {
+        appId: '9e49fe1ad13c456fbe5cf0bd86199daf',
+        region: 'us-east-1',
+      },
+    },
+  },
+});
 
 if (typeof window === 'undefined') {
   // suppress useLayoutEffect warnings when running outside a browser

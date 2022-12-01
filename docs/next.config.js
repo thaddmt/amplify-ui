@@ -156,6 +156,17 @@ module.exports = withNextPluginPreval({
     includePaths: [path.join(__dirname, 'src/styles')],
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        // pathname: '/account123/**',
+      },
+    ],
+  },
+
   webpack(config) {
     const defaultRehypePlugins = [
       require('mdx-prism'),

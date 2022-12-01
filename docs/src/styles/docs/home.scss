@@ -389,6 +389,8 @@ pre.scrollable.prism-code {
 }
 
 .docs-home-browser {
+  z-index: 2;
+  
   &__nav-bar {
     display: none;
   }
@@ -460,4 +462,16 @@ pre.scrollable.prism-code {
     border-end-end-radius: var(--amplify-radii-small);
     background-color: var(--amplify-colors-background-secondary);
   }
+}
+
+.docs-cloud-code {
+  
+  &:hover {
+    z-index: 2;
+  }
+}
+
+
+.docs-home-cloud-tabs {
+  --amplify-components-tabs-item-font-size: var(--amplify-font-sizes-large);
 }

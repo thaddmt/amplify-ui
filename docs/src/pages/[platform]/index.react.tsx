@@ -15,6 +15,7 @@ import {
 import { StudioSection } from '@/components/home/sections/StudioSection';
 import { HomeCTA } from '@/components/home/HomeCTA';
 import { LastSection } from '@/components/home/sections/LastSection';
+import { CloudSection } from '@/components/home/sections/CloudSection';
 
 const ReactHomePage = ({ colorMode }) => {
   const {
@@ -30,6 +31,7 @@ const ReactHomePage = ({ colorMode }) => {
     <>
       {/* <FigmaSection /> */}
       <StudioSection />
+      <CloudSection platform={platform} />
       <AuthenticationSection platform={platform} />
 
       <PrimitiveSection platform={platform} />
