@@ -42,3 +42,42 @@ export const deleteUser = async () => {
     return Promise.reject(e);
   }
 };
+
+interface UpdateUserAttributes {
+  user: AmplifyUser;
+  attributes: Record<string, string>;
+}
+export const updateUserAttributes = async ({
+  user,
+  attributes,
+}: UpdateUserAttributes) => {
+  try {
+    logger.debug('calling Auth.updateUserAttributes');
+    await Auth.updateUserAttributes(user, attributes);
+    logger.debug('Auth.updateUserAttributes was successful');
+    return Promise.resolve();
+  } catch (e) {
+    logger.debug('Auth.updateUserAttributes failed with error', e);
+    return Promise.reject(e);
+  }
+};
+
+interface VerifyUserAttribute {
+  attribute: 'email' | 'phone_number';
+  code: string;
+}
+
+export const VerifyUserAttributeSubmit = async ({
+  attribute,
+  code,
+}: VerifyUserAttribute) => {
+  try {
+    logger.debug('calling Auth.verifyCurrentUserAttributeSubmit');
+    await Auth.verifyCurrentUserAttributeSubmit(attribute, code);
+    logger.debug('Auth.verifyCurrentUserAttributeSubmit was successful');
+    return Promise.resolve();
+  } catch (e) {
+    logger.debug('Auth.verifyCurrentUserAttributeSubmit failed with error', e);
+    return Promise.reject(e);
+  }
+};
