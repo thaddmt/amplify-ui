@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Logger } from 'aws-amplify';
 import { translate } from '@aws-amplify/ui';
+import { useChangePassword } from '@aws-amplify/ui-react-core';
 
 import { View, Flex } from '../../../primitives';
 import { ComponentClassName } from '../constants';
 import { ChangePasswordProps } from './types';
-import useChangePassword from './useChangePassword';
 import DEFAULTS from './defaults';
 
 const logger = new Logger('ChangePassword');

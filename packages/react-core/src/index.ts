@@ -1,4 +1,6 @@
 // features
+export { useChangePassword } from './AccountSettings';
+
 export {
   AuthenticatorComponentDefaults,
   AuthenticatorComponentDefaultProps,

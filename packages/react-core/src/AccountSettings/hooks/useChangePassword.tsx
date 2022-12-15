@@ -8,11 +8,16 @@ import {
   getDefaultConfirmPasswordValidators,
   AmplifyUser,
   changePassword,
+  InputEventType,
 } from '@aws-amplify/ui';
 
-import { FormValues, BlurredFields, ValidationError } from '../types';
-import { useAuth } from '../../../internal';
-import { ValidateParams } from './types';
+import { FormValues, BlurredFields, ValidationError } from './types';
+import useAuth from '../../hooks/useAuth';
+
+interface ValidateParams {
+  formValues: FormValues;
+  eventType: InputEventType;
+}
 
 interface UseChangePasswordInput {
   validators: ValidatorOptions[];
@@ -21,13 +26,13 @@ interface UseChangePasswordInput {
 }
 
 interface UseChangePasswordOutput {
-  errorMessage: string;
+  errorMessage: string | null | undefined;
   isDisabled: boolean;
   isLoading: boolean;
   runChangePassword: () => Promise<void>;
   updateFormBlur: ({ name }: { name: string }) => void;
   updateFormValues: ({ name, value }: { name: string; value: string }) => void;
-  user: AmplifyUser;
+  user: AmplifyUser | undefined;
   validationError: ValidationError;
 }
 
@@ -54,7 +59,7 @@ const useChangePassword = ({
   onSuccess,
   onError,
 }: UseChangePasswordInput): UseChangePasswordOutput => {
-  const [errorMessage, setErrorMessage] = useState<string>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [formValues, setFormValues] = useState<FormValues>({});
   const [validationError, setValidationError] = useState<ValidationError>({});
   const blurredFields = useRef<BlurredFields>([]);
@@ -137,10 +142,14 @@ const useChangePassword = ({
   };
 
   const runChangePassword = async () => {
+    if (!user) return;
+
     const { currentPassword, newPassword } = formValues;
+
     if (errorMessage) {
       setErrorMessage(null);
     }
+
     try {
       await changePassword({ user, currentPassword, newPassword });
 
