@@ -126,7 +126,7 @@ const useChangePassword = ({
     value: string;
   }) => {
     const newFormValues = { ...formValues, [name]: value };
-    runValidation({ formValues, eventType: 'change' });
+    runValidation({ formValues: newFormValues, eventType: 'change' });
     setFormValues(newFormValues);
   };
 
