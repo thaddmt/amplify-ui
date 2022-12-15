@@ -1,42 +1,15 @@
 import React from 'react';
-import isEqual from 'lodash/isEqual';
 
 import { Logger } from 'aws-amplify';
-import {
-  changePassword,
-  ValidatorOptions,
-  getDefaultConfirmPasswordValidators,
-  getDefaultPasswordValidators,
-  runFieldValidators,
-  translate,
-} from '@aws-amplify/ui';
+import { translate } from '@aws-amplify/ui';
 
-import { useAuth } from '../../../internal';
 import { View, Flex } from '../../../primitives';
 import { ComponentClassName } from '../constants';
-import { FormValues, BlurredFields, ValidationError } from '../types';
-import { ChangePasswordProps, ValidateParams } from './types';
+import { ChangePasswordProps } from './types';
+import useChangePassword from './useChangePassword';
 import DEFAULTS from './defaults';
 
 const logger = new Logger('ChangePassword');
-
-const getIsDisabled = (
-  formValues: FormValues,
-  validationError: ValidationError
-): boolean => {
-  const { currentPassword, newPassword, confirmPassword } = formValues;
-
-  const hasEmptyField = !currentPassword || !newPassword || !confirmPassword;
-  if (hasEmptyField) {
-    return true;
-  }
-
-  const arePasswordsInvalid =
-    validationError.newPassword?.length > 0 ||
-    validationError.confirmPassword?.length > 0;
-
-  return arePasswordsInvalid;
-};
 
 function ChangePassword({
   onSuccess,
@@ -44,74 +17,16 @@ function ChangePassword({
   validators,
   components,
 }: ChangePasswordProps): JSX.Element | null {
-  const [errorMessage, setErrorMessage] = React.useState<string>(null);
-  const [formValues, setFormValues] = React.useState<FormValues>({});
-  const [validationError, setValidationError] = React.useState<ValidationError>(
-    {}
-  );
-  const blurredFields = React.useRef<BlurredFields>([]);
-  const { user, isLoading } = useAuth();
-
-  const isDisabled = getIsDisabled(formValues, validationError);
-
-  const passwordValidators: ValidatorOptions[] = React.useMemo(() => {
-    return validators ?? getDefaultPasswordValidators();
-  }, [validators]);
-
-  /*
-   * Note that formValues and other states are passed in as props so that
-   * it does not depend on whether or not those states have been updated yet
-   */
-  const validateNewPassword = React.useCallback(
-    ({ formValues, eventType }: ValidateParams): string[] => {
-      const { newPassword } = formValues;
-      const hasBlurred = blurredFields.current.includes('newPassword');
-
-      return runFieldValidators({
-        value: newPassword,
-        validators: passwordValidators,
-        eventType,
-        hasBlurred,
-      });
-    },
-    [passwordValidators]
-  );
-
-  const validateConfirmPassword = React.useCallback(
-    ({ formValues, eventType }: ValidateParams): string[] => {
-      const { newPassword, confirmPassword } = formValues;
-      const hasBlurred = blurredFields.current.includes('confirmPassword');
-
-      const confirmPasswordValidators =
-        getDefaultConfirmPasswordValidators(newPassword);
-
-      return runFieldValidators({
-        value: confirmPassword,
-        validators: confirmPasswordValidators,
-        eventType,
-        hasBlurred,
-      });
-    },
-    []
-  );
-
-  const runValidation = React.useCallback(
-    (param: ValidateParams) => {
-      const passwordErrors = validateNewPassword(param);
-      const confirmPasswordErrors = validateConfirmPassword(param);
-
-      const newValidationError = {
-        newPassword: passwordErrors,
-        confirmPassword: confirmPasswordErrors,
-      };
-
-      // only re-render if errors have changed
-      if (!isEqual(validationError, newValidationError)) {
-        setValidationError(newValidationError);
-      }
-    },
-    [validateConfirmPassword, validateNewPassword, validationError]
-  );
+  const {
+    errorMessage,
+    isDisabled,
+    isLoading,
+    runChangePassword,
+    updateFormBlur,
+    updateFormValues,
+    user,
+    validationError,
+  } = useChangePassword({ validators, onSuccess, onError });
 
   /* Translations */
   // TODO: add AccountSettingsTextUtil to collect these strings
@@ -137,41 +52,19 @@ function ChangePassword({
     event.preventDefault();
 
     const { name, value } = event.target;
-
-    const newFormValues = { ...formValues, [name]: value };
-    runValidation({ formValues: newFormValues, eventType: 'change' });
-
-    setFormValues(newFormValues);
+    updateFormValues({ name, value });
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     event.preventDefault();
 
     const { name } = event.target;
-    // only update state and run validation if this is the first time blurring the field
-    if (!blurredFields.current.includes(name)) {
-      const newBlurredFields = [...blurredFields.current, name];
-      blurredFields.current = newBlurredFields;
-      runValidation({ formValues, eventType: 'blur' });
-    }
+    updateFormBlur({ name });
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { currentPassword, newPassword } = formValues;
-    if (errorMessage) {
-      setErrorMessage(null);
-    }
-    try {
-      await changePassword({ user, currentPassword, newPassword });
-
-      onSuccess?.(); // notify success to the parent
-    } catch (e) {
-      const error = e as Error;
-      if (error.message) setErrorMessage(error.message);
-
-      onError?.(error); // notify error to the parent
-    }
+    runChangePassword();
   };
 
   // Return null if Auth.getCurrentAuthenticatedUser is still in progress
