@@ -2,16 +2,16 @@
 #
 # Triggered by: merge to `rna/release` branch
 
-name: Publish / RNA
+name: Publish / Split Packages / Remove Geo
 
 on:
   push:
-    branches: [rna/release]
+    branches: [package-split/experiment/remove-geo]
 
 jobs:
   publish:
     uses: ./.github/workflows/reusable-tagged-publish.yml
     with:
-      dist-tag: rna
+      dist-tag: remove-geo
     secrets:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
