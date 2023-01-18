@@ -10,6 +10,7 @@ import {
 } from '@aws-amplify/ui-react';
 
 import { cats } from '@/data/cats';
+import { track } from '@/utils/track';
 
 const Custom404 = () => {
   const { tokens } = useTheme();
@@ -18,6 +19,12 @@ const Custom404 = () => {
 
   React.useEffect(() => {
     setHref(window.location.href);
+    track({
+      type: '404',
+      name: '404'
+    },{
+      url: window.location.href
+    });
     setCat(cats[Math.floor(Math.random() * cats.length)]);
   }, []);
 
