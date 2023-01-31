@@ -20,6 +20,7 @@
     "e2e": "yarn workspace e2e",
     "environments": "yarn workspace environments",
     "test": "yarn ui test && yarn react-core test && yarn react test && yarn react-native test && yarn e2e test",
+    "lint": "turbo run lint --include-dependencies --no-deps --scope=*@aws-amplify/*",
     "prepare": "husky install",
     "version:next": "yarn changeset version --snapshot next-$(git rev-parse --short=7 HEAD) && yarn generateVersions && yarn angular build",
     "publish:next": "yarn changeset publish --tag next",
