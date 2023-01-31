@@ -1,4 +1,4 @@
-declare module 'maplibre-gl-geocoder' {
+declare module '@maplibre/maplibre-gl-geocoder' {
   // `LocationSearchProps` is based upon the typing specified by maplibre-gl-geocoder:
   // https://github.com/maplibre/maplibre-gl-geocoder/blob/main/lib/index.js#L11-L66
   // TODO: formalize this type in the `maplibre-gl-geocoder` library

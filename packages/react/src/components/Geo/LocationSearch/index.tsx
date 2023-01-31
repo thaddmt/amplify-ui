@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import maplibregl from 'maplibre-gl';
-import { LocationSearchProps } from 'maplibre-gl-geocoder';
-import { createAmplifyGeocoder } from 'maplibre-gl-js-amplify';
+// import maplibregl from 'maplibre-gl';
+
+import AmplifyMapLibre from 'maplibre-gl-js-amplify'; // 173.8
+
+import { LocationSearchProps } from '@maplibre/maplibre-gl-geocoder'; // not a real package
 import { useControl, useMap } from 'react-map-gl';
 import type { IControl } from 'react-map-gl';
 
+import { useGeoContext } from '../GeoProvider';
+
 const LOCATION_SEARCH_OPTIONS = {
-  maplibregl,
+  // maplibregl, // do we need this?
   marker: { color: '#3FB1CE' },
   popup: true,
   showResultMarkers: { color: '#3FB1CE' },
@@ -19,10 +23,15 @@ type AmplifyLocationSearch = IControl & {
   addTo: (container: string) => void;
 };
 
+interface ExtendedLocationSearchProps extends LocationSearchProps {
+  amplifyMapLibre: typeof AmplifyMapLibre;
+}
+
 const LocationSearchControl = ({
+  amplifyMapLibre: { createAmplifyGeocoder },
   position = 'top-right',
   ...props
-}: LocationSearchProps) => {
+}: ExtendedLocationSearchProps) => {
   useControl(
     () => createAmplifyGeocoder(props) as unknown as AmplifyLocationSearch,
     {
@@ -33,7 +42,10 @@ const LocationSearchControl = ({
   return null;
 };
 
-const LocationSearchStandalone = (props: LocationSearchProps) => {
+const LocationSearchStandalone = ({
+  amplifyMapLibre: { createAmplifyGeocoder },
+  ...props
+}: ExtendedLocationSearchProps) => {
   const hasMounted = useRef(false);
 
   useEffect(() => {
@@ -44,7 +56,7 @@ const LocationSearchStandalone = (props: LocationSearchProps) => {
 
       hasMounted.current = true;
     }
-  }, [props]);
+  }, [createAmplifyGeocoder, props]);
 
   return <div id={LOCATION_SEARCH_CONTAINER} />;
 };
@@ -71,6 +83,7 @@ const LocationSearchStandalone = (props: LocationSearchProps) => {
  * }
  */
 export const LocationSearch = (props: LocationSearchProps): JSX.Element => {
+  const { modules } = useGeoContext();
   const { current: map } = useMap();
 
   /**
@@ -80,10 +93,22 @@ export const LocationSearch = (props: LocationSearchProps): JSX.Element => {
    * upon rendering inside the `LocationSearchStandalone`.
    */
   if (map) {
-    return <LocationSearchControl {...LOCATION_SEARCH_OPTIONS} {...props} />;
+    return (
+      <LocationSearchControl
+        {...LOCATION_SEARCH_OPTIONS}
+        {...modules}
+        {...props}
+      />
+    );
   }
 
-  return <LocationSearchStandalone {...LOCATION_SEARCH_OPTIONS} {...props} />;
+  return (
+    <LocationSearchStandalone
+      {...LOCATION_SEARCH_OPTIONS}
+      {...modules}
+      {...props}
+    />
+  );
 };
 
 export const Geocoder = LocationSearch;

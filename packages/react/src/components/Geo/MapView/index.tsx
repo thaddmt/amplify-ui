@@ -1,9 +1,12 @@
 import React, { forwardRef, useEffect, useMemo, useState } from 'react';
-import maplibregl from 'maplibre-gl';
-import { AmplifyMapLibreRequest } from 'maplibre-gl-js-amplify';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL from 'react-map-gl'; // 21.1
+
 import type { MapProps, MapRef, TransformRequestFunction } from 'react-map-gl';
+import * as MapLibreGl from 'maplibre-gl'; // 724.7
+
 import { Amplify, Auth } from 'aws-amplify';
+
+import { useGeoContext } from '../GeoProvider';
 
 // Utility types for missing AmplifyConfig type, only includes Geo related key/values.
 // Note: these types should not be be used outside this file
@@ -20,7 +23,7 @@ type AmplifyGeoConfig = {
 
 interface MapViewProps extends Omit<MapProps, 'mapLib' | 'transformRequest'> {
   // replace `any` typed MapProps.mapLib
-  mapLib?: typeof maplibregl;
+  mapLib?: typeof MapLibreGl;
 }
 
 /**
@@ -41,6 +44,13 @@ interface MapViewProps extends Omit<MapProps, 'mapLib' | 'transformRequest'> {
  */
 const MapView = forwardRef<MapRef, MapViewProps>(
   ({ mapLib, mapStyle, style, ...props }, ref) => {
+    const {
+      modules: {
+        amplifyMapLibre: { AmplifyMapLibreRequest },
+        mapLibreGl,
+      },
+    } = useGeoContext();
+
     const amplifyConfig = Amplify.configure() as AmplifyGeoConfig;
     const geoConfig = useMemo(
       () =>
@@ -79,7 +89,7 @@ const MapView = forwardRef<MapRef, MapViewProps>(
           setTransformRequest(() => amplifyTransformRequest);
         }
       })();
-    }, [geoConfig]);
+    }, [AmplifyMapLibreRequest, geoConfig]);
 
     /**
      * The mapLib property is used by react-map-gl@v7 to override the underlying map library. The default library is
@@ -91,7 +101,7 @@ const MapView = forwardRef<MapRef, MapViewProps>(
     return transformRequest ? (
       <ReactMapGL
         {...props}
-        mapLib={mapLib ?? maplibregl}
+        mapLib={mapLib ?? mapLibreGl}
         mapStyle={mapStyle ?? geoConfig.maps?.default}
         ref={ref}
         style={styleProps}

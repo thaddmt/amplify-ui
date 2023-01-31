@@ -7,6 +7,10 @@ import { Authenticator, AmplifyProvider } from '@aws-amplify/ui-react';
 import { useEffect } from 'react';
 import { MapProvider, useMap } from 'react-map-gl';
 
+import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
+import 'maplibre-gl-js-amplify/dist/public/amplify-geocoder.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
+
 if (typeof window !== 'undefined') {
   window['Amplify'] = Amplify;
   window['Hub'] = Hub;
