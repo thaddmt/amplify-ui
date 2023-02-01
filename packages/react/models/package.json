@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "name": "@aws-amplify/ui-react-models",
+  "main": "../dist/models.js",
+  "module": "../dist/esm/models.mjs",
+  "types": "../dist/types/models.d.ts"
+}
