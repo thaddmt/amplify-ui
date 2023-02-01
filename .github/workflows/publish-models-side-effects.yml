@@ -1,0 +1,17 @@
+# Description: This workflow runs unit + e2e tests
+#
+# Triggered by: merge to `rna/release` branch
+
+name: Publish / Models Side Effects
+
+on:
+  push:
+    branches: [poc/models-side-effects]
+
+jobs:
+  publish:
+    uses: ./.github/workflows/reusable-tagged-publish.yml
+    with:
+      dist-tag: models-side-effects
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

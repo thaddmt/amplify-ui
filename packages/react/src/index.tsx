@@ -1,5 +1,6 @@
 export * from './components';
 export * from './hooks';
+export * from './models';
 export * from './primitives';
 
 export * as components from './components';
