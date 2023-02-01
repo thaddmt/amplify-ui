@@ -13,11 +13,17 @@
       "import": "./dist/esm/internal.mjs",
       "require": "./dist/internal.js"
     },
+    "./geo": {
+      "import": "./dist/esm/geo.mjs",
+      "require": "./dist/geo.js"
+    },
+    "./geo.css": "./dist/geoStyles.css",
     "./styles.css": "./dist/styles.css",
     "./primitives.json": "./dist/primitives.json"
   },
   "browser": {
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./geo.css": "./dist/geoStyles.css"
   },
   "types": "dist/types/index.d.ts",
   "license": "Apache-2.0",
