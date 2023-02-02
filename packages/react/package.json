@@ -1,17 +1,18 @@
 {
   "name": "@aws-amplify/ui-react",
   "version": "4.3.4",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.mjs",
+  "main": "dist/index.cjs",
+  "module": "dist/esm/index.js",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.mjs",
-      "require": "./dist/index.js"
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.cjs"
     },
     "./internal": {
-      "import": "./dist/esm/internal.mjs",
-      "require": "./dist/internal.js"
+      "import": "./dist/esm/internal.js",
+      "require": "./dist/internal.cjs"
     },
     "./styles.css": "./dist/styles.css",
     "./primitives.json": "./dist/primitives.json"
@@ -45,7 +46,7 @@
     "test:watch": "yarn test:unit:watch",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
-    "ts": "node -r esbuild-register",
+    "ts": "node --loader esbuild-register/loader -r esbuild-register",
     "size": "yarn run size-limit"
   },
   "dependencies": {

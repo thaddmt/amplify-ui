@@ -12,6 +12,7 @@ const config = defineConfig([
     output: {
       dir: 'dist',
       format: 'cjs',
+      entryFileNames: '[name].cjs',
       sourcemap: false,
     },
     plugins: [
@@ -26,7 +27,6 @@ const config = defineConfig([
     output: {
       dir: 'dist/esm',
       format: 'es',
-      entryFileNames: '[name].mjs',
       preserveModules: true,
       preserveModulesRoot: 'src',
       sourcemap: false,
