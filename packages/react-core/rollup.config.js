@@ -2,7 +2,6 @@
 import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
 import externals from 'rollup-plugin-node-externals';
-import commonjs from '@rollup/plugin-commonjs';
 
 const config = defineConfig([
   // CJS config
@@ -14,7 +13,6 @@ const config = defineConfig([
       sourcemap: false,
     },
     plugins: [
-      commonjs(),
       externals({ include: /^@aws-amplify/ }),
       typescript({ declarationDir: 'dist/types', sourceMap: false }),
     ],
@@ -31,7 +29,6 @@ const config = defineConfig([
       sourcemap: false,
     },
     plugins: [
-      commonjs(),
       externals({ include: /^@aws-amplify/ }),
       typescript({ outDir: 'dist/esm', declaration: false, sourceMap: false }),
     ],

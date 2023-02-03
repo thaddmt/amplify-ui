@@ -4,7 +4,6 @@ import typescript from '@rollup/plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 import styles from 'rollup-plugin-styles';
 import externals from 'rollup-plugin-node-externals';
-import commonjs from '@rollup/plugin-commonjs';
 
 const config = defineConfig([
   // CJS config
@@ -16,7 +15,6 @@ const config = defineConfig([
       sourcemap: false,
     },
     plugins: [
-      commonjs(),
       externals({ include: /^@aws-amplify/ }),
       typescript({ declarationDir: 'dist/types', sourceMap: false }),
       terser(),
@@ -28,13 +26,11 @@ const config = defineConfig([
     output: {
       dir: 'dist/esm',
       format: 'es',
-      entryFileNames: '[name].mjs',
       preserveModules: true,
       preserveModulesRoot: 'src',
       sourcemap: false,
     },
     plugins: [
-      commonjs(),
       externals({ include: /^@aws-amplify/ }),
       typescript({ outDir: 'dist/esm', declaration: false, sourceMap: false }),
       terser(),
