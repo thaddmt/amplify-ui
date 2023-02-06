@@ -1,7 +1,0 @@
-{
-  "private": true,
-  "name": "@aws-amplify/ui-react-geo",
-  "main": "../dist/geo.js",
-  "module": "../dist/esm/geo.mjs",
-  "types": "../dist/types/geo.d.ts"
-}

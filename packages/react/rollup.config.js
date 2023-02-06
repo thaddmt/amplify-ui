@@ -5,12 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 import styles from 'rollup-plugin-styles';
 import externals from 'rollup-plugin-node-externals';
 
-const input = [
-  'src/index.tsx',
-  'src/internal.tsx',
-  'src/geo.ts',
-  'src/models.ts',
-];
+const input = ['src/index.tsx', 'src/internal.tsx'];
 
 const config = defineConfig([
   // CJS config
@@ -46,7 +41,7 @@ const config = defineConfig([
   },
   // CSS config
   {
-    input: ['src/styles.ts', 'src/geoStyles.ts'],
+    input: ['src/styles.ts'],
     output: {
       dir: 'dist',
       format: 'cjs',
