@@ -130,7 +130,9 @@
     "ts-morph": "^12.0.0"
   },
   "sideEffects": [
-    "dist/**/*.css"
+    "./dist/**/*.css",
+    "./dist/index.js",
+    "./dist/esm/models/index.mjs"
   ],
   "size-limit": [
     {
