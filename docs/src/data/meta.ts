@@ -26,6 +26,16 @@ export const META_INFO: MetaInfo = {
     },
     slug: '',
   },
+  '/[platform]/theming/editor': {
+    frontmatter: {
+      metaTitle: 'Amplify UI - Build UI fast with Amplify',
+      metaDescription:
+        'Amplify UI simplifies building accessible, performant, and beautiful applications with cloud-connected capabilities, building blocks, theming, and utilities.',
+      supportedFrameworks: 'all',
+      slug: '',
+    },
+    slug: '',
+  },
   '/[platform]': {
     frontmatter: {
       metaTitle: 'Amplify UI - Build UI fast with Amplify',
