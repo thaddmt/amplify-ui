@@ -22,6 +22,7 @@ import { AmplifySlotDirective } from '../../../../utilities/amplify-slot/amplify
 import { CustomComponentsService } from '../../../../services/custom-components.service';
 import { AuthenticatorService } from '../../../../services/authenticator.service';
 import { VERSION } from '../../../../../version';
+import { SignInProps } from '../../types';
 
 const { getSignInTabText, getSignUpTabText } = authenticatorTextUtil;
 
@@ -164,6 +165,33 @@ export class AuthenticatorComponent
   // context passed to "authenticated" slot
   public get context() {
     return this.authenticator.slotContext;
+  }
+
+  public get signInProps(): { $implicit: SignInProps } {
+    const {
+      error,
+      isPending,
+      updateBlur,
+      updateForm,
+      submitForm,
+      toFederatedSignIn,
+      toSignUp,
+      toResetPassword,
+    } = this.authenticator;
+
+    return {
+      $implicit: {
+        error,
+        hideSignUp: false,
+        isPending,
+        handleBlur: updateBlur,
+        handleChange: updateForm,
+        handleSubmit: submitForm,
+        toFederatedSignIn,
+        toSignUp,
+        toResetPassword,
+      },
+    };
   }
 
   public get route() {

@@ -9,7 +9,7 @@
       data-amplify-router
       [attr.data-amplify-router-content]="hasTabs() ? undefined : ''"
     >
-      <amplify-tabs
+      <!-- <amplify-tabs
         (tabChange)="onTabChange()"
         *ngIf="(route === 'signIn' || route === 'signUp') && !hideSignUp"
       >
@@ -18,13 +18,13 @@
           [active]="route === 'signIn'"
           data-amplify-router-content
         >
-          <!-- signIn component -->
+          signIn component
           <amplify-slot
             name="sign-in"
-            [context]="context"
+            [context]="signInProps"
             *ngIf="route === 'signIn'"
           >
-            <amplify-sign-in></amplify-sign-in>
+          <amplify-sign-in [ctx]="signInProps" [test]="123"></amplify-sign-in>
           </amplify-slot>
         </amplify-tab-item>
         <amplify-tab-item
@@ -32,7 +32,6 @@
           [active]="route === 'signUp'"
           data-amplify-router-content
         >
-          <!-- signUp component -->
           <amplify-slot
             name="sign-up"
             [context]="context"
@@ -41,14 +40,22 @@
             <amplify-sign-up></amplify-sign-up>
           </amplify-slot>
         </amplify-tab-item>
-      </amplify-tabs>
+      </amplify-tabs> -->
 
       <amplify-slot
         name="sign-in"
-        [context]="context"
-        *ngIf="route === 'signIn' && hideSignUp"
+        [context]="signInProps"
+        *ngIf="route === 'signIn'"
       >
-        <amplify-sign-in></amplify-sign-in>
+        <amplify-sign-in [ctx]="signInProps"></amplify-sign-in>
+      </amplify-slot>
+
+      <amplify-slot
+        name="sign-up"
+        [context]="context"
+        *ngIf="route === 'signUp'"
+      >
+        <amplify-sign-up></amplify-sign-up>
       </amplify-slot>
 
       <!-- confirmSignUp content -->

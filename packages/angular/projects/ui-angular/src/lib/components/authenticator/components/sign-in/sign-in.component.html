@@ -6,7 +6,7 @@
     class="amplify-flex amplify-authenticator__column"
     style="flex-direction: column"
     data-amplify-fieldset
-    [disabled]="authenticator.isPending"
+    [disabled]="ctx.isPending"
   >
     <legend class="amplify-visually-hidden">Sign in</legend>
     <amplify-base-form-fields route="signIn"></amplify-base-form-fields>
@@ -15,12 +15,12 @@
       variation="primary"
       fullWidth="true"
       type="submit"
-      [isDisabled]="authenticator.isPending"
+      [isDisabled]="ctx.isPending"
     >
       {{ signInButtonText }}
     </button>
 
-    <amplify-error *ngIf="authenticator.error">
+    <amplify-error *ngIf="ctx.error">
       {{ authenticator.error }}
     </amplify-error>
   </fieldset>
@@ -34,9 +34,20 @@
       size="small"
       variation="link"
       fullWidth="true"
-      (click)="authenticator.toResetPassword()"
+      (click)="ctx.toResetPassword()"
     >
       {{ forgotPasswordText }}
+    </button>
+    <button
+      amplify-button
+      fontWeight="normal"
+      size="small"
+      variation="link"
+      fullWidth="true"
+      (click)="ctx.toSignUp()"
+      *ngIf="!ctx.hideSignUp"
+    >
+      Sign up
     </button>
   </div>
 </amplify-slot>

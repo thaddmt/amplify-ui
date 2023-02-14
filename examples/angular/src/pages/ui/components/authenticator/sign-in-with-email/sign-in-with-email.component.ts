@@ -11,6 +11,10 @@ export class SignInWithEmailComponent {
     Amplify.configure(awsExports);
   }
 
+  public getSignInProps<T>(ctx: T): T {
+    return { ...ctx, hideSignUp: false };
+  }
+
   public formFields = {
     confirmVerifyUser: {
       confirmation_code: {

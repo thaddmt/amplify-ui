@@ -73,8 +73,9 @@ import { AmplifySlotDirective } from '../../utilities/amplify-slot/amplify-slot.
     AmplifySlotDirective,
     AuthenticatorComponent,
     CheckboxComponent,
-    SignUpFormFieldsComponent,
     ForceNewPasswordFormFieldsComponent,
+    SignInComponent,
+    SignUpFormFieldsComponent,
     TextFieldComponent,
   ],
 })
