@@ -35,7 +35,7 @@ export default function FileUploaderEmail() {
       accessLevel="public"
       hasMultipleFiles={true}
       maxSize={100000000}
-      maxFiles={3}
+      maxFileCount={3}
       isResumable={true}
     />
     {/* <img src={image} alt="" /> */}
