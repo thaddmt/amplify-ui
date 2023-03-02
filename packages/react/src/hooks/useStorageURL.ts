@@ -15,19 +15,18 @@ export interface UseStorageURLResult {
 export const useStorageURL = (
   key: string,
   options?: S3ProviderGetConfig
-): UseStorageURLResult & { fetch: () => () => void } => {
+): UseStorageURLResult => {
   const [result, setResult] = React.useState<UseStorageURLResult>({
     isLoading: true,
   });
-
-  // Used to prevent an infinite loop on useEffect, because `options`
-  // will have a different reference on every render
-  const serializedOptions = JSON.stringify(options);
+  
+  // memoize options object to prevent infinite loop
+  const _options = React.useMemo(() => (options), []);
 
   const fetch = () => {
     setResult({ isLoading: true });
 
-    const promise = Storage.get(key, options);
+    const promise = Storage.get(key, _options);
 
     // Attempt to fetch storage object url
     promise
@@ -38,7 +37,7 @@ export const useStorageURL = (
     return () => Storage.cancel(promise);
   };
 
-  React.useEffect(fetch, [key, options, serializedOptions]);
+  React.useEffect(fetch, [key, _options]);
 
-  return { ...result, fetch };
+  return { ...result };
 };
