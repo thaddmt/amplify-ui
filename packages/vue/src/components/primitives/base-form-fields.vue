@@ -9,7 +9,7 @@ import {
 import { useAuth } from '../../composables/useAuth';
 import BaseFormField from './base-form-field.vue';
 
-interface BaseFormFields {
+export interface BaseFormFields {
   route: FormFieldComponents;
 }
 const props = defineProps<BaseFormFields>();

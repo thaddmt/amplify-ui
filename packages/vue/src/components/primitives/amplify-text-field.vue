@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { toRefs } from 'vue';
-interface textFields {
+export interface TextFields {
   label: string;
   id: string;
   autocomplete: string;
@@ -11,7 +11,7 @@ interface textFields {
   type: string;
   hideLabel?: boolean;
 }
-const props = withDefaults(defineProps<textFields>(), {
+const props = withDefaults(defineProps<TextFields>(), {
   label: '',
   id: '',
   autocomplete: '',

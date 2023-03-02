@@ -1,33 +1,25 @@
 {
+  "extends": "../configs/ts/base.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
+    // "allowJs": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "declaration": false, // this is overriden in the vite.config.ts typescript2 settings
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "resolveJsonModule": true,
-    "types": ["webpack-env", "vite/client", "@types/jest"],
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "target": "esnext",
+    "types": [
+      // "webpack-env",
+      // "vite/client",
+      // "@types/jest"
+    ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.vue"
+    // "tests/**/*.ts",
+    // "tests/**/*.tsx"
+    // "**/*.ts",
+    // "**/*.tsx"
   ],
-  "exclude": ["node_modules"]
+  // "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/__tests__"]
 }

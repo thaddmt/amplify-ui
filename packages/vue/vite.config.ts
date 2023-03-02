@@ -24,21 +24,12 @@ export default defineConfig({
       tsconfigOverride: {
         compilerOptions: {
           sourceMap: true,
-          declaration: true,
           declarationMap: true,
         },
         exclude: ['vite.config.ts', '__tests__'],
       },
     }),
   ],
-  resolve: {
-    alias: [
-      {
-        find: './runtimeConfig',
-        replacement: './runtimeConfig.browser',
-      },
-    ],
-  },
   build: {
     cssCodeSplit: false,
     lib: {

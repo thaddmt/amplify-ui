@@ -18,11 +18,15 @@ module.exports = {
     'vue/setup-compiler-macros': true,
   },
 
-  ignorePatterns: ['useUtils.ts'],
+  ignorePatterns: ['dist'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '_', varsIgnorePattern: '_' },
+    ],
     'vue/script-setup-uses-vars': 'error',
   },
   overrides: [

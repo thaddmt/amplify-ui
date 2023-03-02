@@ -46,7 +46,6 @@ const onInput = (e: Event): void => {
   const { name, value } = e.target as HTMLInputElement;
   send({
     type: 'CHANGE',
-    //@ts-ignore
     data: { name, value },
   });
 };

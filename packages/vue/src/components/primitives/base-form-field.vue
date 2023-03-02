@@ -8,7 +8,7 @@ import { useAuthenticator } from '../../composables/useAuth';
 import PasswordControl from '../password-control.vue';
 import AliasControl from '../alias-control.vue';
 
-interface BaseFormField {
+export interface BaseFormField {
   name: string;
   formField: FormFieldOptions;
 }

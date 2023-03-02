@@ -2,7 +2,7 @@ import { useActor } from '@xstate/vue';
 import { ref, reactive, Ref, watchEffect } from 'vue';
 import { getServiceFacade } from '@aws-amplify/ui';
 import { facade } from './useUtils';
-import { InterpretService } from '@/components';
+import { InterpretService } from '../components';
 
 const service = ref() as Ref<InterpretService>;
 const useAuthenticatorValue = reactive({
