@@ -10,14 +10,28 @@ import {
   translate,
 } from '@aws-amplify/ui';
 
-import FederatedSignIn from './federated-sign-in.vue';
-
-// @xstate
 import { useAuth, useAuthenticator } from '../composables/useAuth';
+import FederatedSignIn from './federated-sign-in.vue';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
+export interface SignInProps {
+  error?: string;
+  isPending?: boolean;
+  handleBlur?: (data: Record<string, string>) => void;
+  handleChange?: (data: Record<string, string>) => void;
+  handleSubmit?: (data: Record<string, string>) => void;
+  hideSignUp?: boolean;
+  toFederatedSignIn?: () => void;
+  toResetPassword?: () => void;
+  toSignUp?: () => void;
+}
+
+const props = defineProps<SignInProps>();
+
+console.error(props);
+
 const useAuthShared = createSharedComposable(useAuthenticator);
-const props = useAuthShared();
+const { submitForm } = useAuthShared();
 
 const attrs = useAttrs();
 const emit = defineEmits([
@@ -60,7 +74,7 @@ const onSignInSubmit = (e: Event): void => {
 };
 
 const submit = (e: Event): void => {
-  props.submitForm(getFormDataFromEvent(e));
+  submitForm(getFormDataFromEvent(e));
 };
 
 const onForgotPasswordClicked = (): void => {
@@ -73,6 +87,7 @@ const onForgotPasswordClicked = (): void => {
 </script>
 
 <template>
+  {{ props.error }}
   <slot v-bind="$attrs" name="signInSlotI">
     <slot name="header"></slot>
 

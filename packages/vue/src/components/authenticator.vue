@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useAuth } from '../composables/useAuth';
+import { useAuth, useAuthenticator } from '../composables/useAuth';
+import { createSharedComposable } from '@vueuse/core';
 import {
   ref,
   toRefs,
@@ -86,7 +87,34 @@ let unsubscribeMachine: () => void;
 const { state, send } = useActor(service);
 useAuth(service);
 
+const useAuthShared = createSharedComposable(useAuthenticator);
+const facade = useAuthShared();
+
 const hasInitialized = ref(false);
+
+const signInProps = computed(() => {
+  const {
+    error,
+    isPending,
+    updateBlur,
+    updateForm,
+    submitForm,
+    toFederatedSignIn,
+    toSignUp,
+    toResetPassword,
+  } = facade;
+
+  return {
+    error,
+    isPending,
+    updateBlur,
+    updateForm,
+    submitForm,
+    toFederatedSignIn,
+    toSignUp,
+    toResetPassword,
+  };
+});
 
 /**
  * Subscribes to state machine changes and sends INIT event
@@ -260,9 +288,13 @@ const hasRouteComponent = computed(() => {
     actorState.value?.matches('autoSignIn')
   );
 });
+
+const logValidationError = () => console.log(signInProps.value);
 </script>
 
 <template>
+  {{ facade.error }}
+  <button @click="logValidationError">asdfasdf</button>
   <div
     v-bind="$attrs"
     data-amplify-authenticator
@@ -294,6 +326,7 @@ const hasRouteComponent = computed(() => {
             v-if="actorState?.matches('signIn')"
             @sign-in-submit="onSignInSubmitI"
             ref="signInComponent"
+            v-bind="signInProps"
           >
             <template #signInSlotI>
               <slot name="sign-in"></slot>
