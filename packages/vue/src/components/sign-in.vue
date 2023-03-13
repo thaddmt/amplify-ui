@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, ComputedRef, useAttrs } from 'vue';
-import { createSharedComposable } from '@vueuse/core';
+import { computed, ComputedRef, toRefs, useAttrs } from 'vue';
 
 import {
   authenticatorTextUtil,
@@ -10,28 +9,23 @@ import {
   translate,
 } from '@aws-amplify/ui';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import { useAuth } from '../composables/useAuth';
 import FederatedSignIn from './federated-sign-in.vue';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
 export interface SignInProps {
   error?: string;
-  isPending?: boolean;
-  handleBlur?: (data: Record<string, string>) => void;
-  handleChange?: (data: Record<string, string>) => void;
-  handleSubmit?: (data: Record<string, string>) => void;
-  hideSignUp?: boolean;
-  toFederatedSignIn?: () => void;
-  toResetPassword?: () => void;
-  toSignUp?: () => void;
+  isPending: boolean;
+  handleBlur: (data: Record<string, string>) => void;
+  handleChange: (data: Record<string, string>) => void;
+  handleSubmit: (data: Record<string, string>) => void;
+  hideSignUp: boolean;
+  toFederatedSignIn: () => void;
+  toResetPassword: () => void;
+  toSignUp: () => void;
 }
 
-const props = defineProps<SignInProps>();
-
-console.error(props);
-
-const useAuthShared = createSharedComposable(useAuthenticator);
-const { submitForm } = useAuthShared();
+const { handleChange, handleSubmit } = defineProps<SignInProps>();
 
 const attrs = useAttrs();
 const emit = defineEmits([
@@ -58,11 +52,8 @@ const actorState = computed(() =>
 
 const onInput = (e: Event): void => {
   const { name, value } = e.target as HTMLInputElement;
-  send({
-    type: 'CHANGE',
-    //@ts-ignore
-    data: { name, value },
-  });
+  console.log(handleChange);
+  handleChange({ name, value });
 };
 
 const onSignInSubmit = (e: Event): void => {
@@ -74,7 +65,7 @@ const onSignInSubmit = (e: Event): void => {
 };
 
 const submit = (e: Event): void => {
-  submitForm(getFormDataFromEvent(e));
+  handleSubmit(getFormDataFromEvent(e) as Record<string, string>);
 };
 
 const onForgotPasswordClicked = (): void => {
@@ -87,7 +78,6 @@ const onForgotPasswordClicked = (): void => {
 </script>
 
 <template>
-  {{ props.error }}
   <slot v-bind="$attrs" name="signInSlotI">
     <slot name="header"></slot>
 

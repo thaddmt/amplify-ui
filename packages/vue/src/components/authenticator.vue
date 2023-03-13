@@ -25,7 +25,7 @@ import {
   configureComponent,
 } from '@aws-amplify/ui';
 
-import SignIn from './sign-in.vue';
+import SignIn, { SignInProps } from './sign-in.vue';
 import SignUp from './sign-up.vue';
 import ConfirmSignUp from './confirm-sign-up.vue';
 import ConfirmSignIn from './confirm-sign-in.vue';
@@ -107,13 +107,13 @@ const signInProps = computed(() => {
   return {
     error,
     isPending,
-    updateBlur,
-    updateForm,
-    submitForm,
+    handleBlur: updateBlur,
+    handleChange: updateForm,
+    handleSubmit: submitForm,
     toFederatedSignIn,
     toSignUp,
     toResetPassword,
-  };
+  } as unknown as SignInProps;
 });
 
 /**
@@ -290,10 +290,10 @@ const hasRouteComponent = computed(() => {
 });
 
 const logValidationError = () => console.log(signInProps.value);
+const log = console.log;
 </script>
 
 <template>
-  {{ facade.error }}
   <button @click="logValidationError">asdfasdf</button>
   <div
     v-bind="$attrs"
@@ -329,7 +329,7 @@ const logValidationError = () => console.log(signInProps.value);
             v-bind="signInProps"
           >
             <template #signInSlotI>
-              <slot name="sign-in"></slot>
+              <slot name="sign-in" :signInProps="signInProps"></slot>
             </template>
 
             <template

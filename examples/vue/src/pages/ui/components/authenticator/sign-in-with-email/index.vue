@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Amplify, Auth } from 'aws-amplify';
-import { Authenticator } from '@aws-amplify/ui-vue';
+import { Amplify } from 'aws-amplify';
+import { Authenticator, SignIn } from '@aws-amplify/ui-vue';
 import '@aws-amplify/ui-vue/styles.css';
 import aws_exports from './aws-exports';
 
@@ -14,6 +14,7 @@ const formFields = {
     },
   },
 };
+const log = console.log;
 </script>
 
 <template>
@@ -23,30 +24,12 @@ const formFields = {
       <button @click="signOut">Sign Out</button>
     </template>
 
-    <template v-slot:verify-user-header>
-      <h3
-        class="amplify-heading"
-        style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
-      >
-        Enter Information:
-      </h3>
-    </template>
-
-    <template v-slot:verify-user-footer>
-      <div>Footer Information</div>
-    </template>
-
-    <template v-slot:confirm-verify-user-header>
-      <h3
-        class="amplify-heading"
-        style="padding: var(--amplify-space-xl) 0 0 var(--amplify-space-xl)"
-      >
-        Enter Information:
-      </h3>
-    </template>
-
-    <template v-slot:confirm-verify-user-footer>
-      <div>Footer Information</div>
+    <template v-slot:sign-in="{ signInProps }">
+      <button class="amplify-button" @click="() => log(signInProps)">
+        Log SignInProps
+      </button>
+      <br />
+      <sign-in v-bind="signInProps" />
     </template>
   </authenticator>
 </template>
