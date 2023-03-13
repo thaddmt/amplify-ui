@@ -1,0 +1,6 @@
+{
+  "name": "build-system-tests",
+  "version": "0.0.1",
+  "description": "Test Amplify UI libraries across different build systems",
+  "license": "MIT"
+}
