@@ -1,41 +1,25 @@
-import React, { useEffect } from 'react';
-import { Amplify, Notifications } from 'aws-amplify';
-import {
-  Authenticator,
-  FileUploader,
-  MapView,
-  Text,
-  InAppMessagingProvider,
-  InAppMessageDisplay,
-} from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import awsconfig from '../../../environments/src/aws-exports.js';
-Amplify.configure(awsconfig);
+import logo from './logo.svg';
+import './App.css';
 
-const { InAppMessaging } = Notifications;
-
-export default function Home() {
-  useEffect(() => {
-    // sync remote in-app messages
-    InAppMessaging.syncMessages();
-  }, []);
-
+function App() {
   return (
-    <>
-      <InAppMessagingProvider>
-        <InAppMessageDisplay />
-        <Text>In-App Messaging Example</Text>
-      </InAppMessagingProvider>
-      <FileUploader acceptedFileTypes={['image/*']} accessLevel="public" />
-      <Authenticator>
-        {({ signOut, user }) => (
-          <main>
-            <h1>Hello {user.username}</h1>
-            <button onClick={signOut}>Sign out</button>
-          </main>
-        )}
-      </Authenticator>
-      <MapView />
-    </>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
+
+export default App;
