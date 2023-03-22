@@ -1,2 +1,2 @@
 export { FileUploader } from './FileUploader';
-export { StorageManager } from './StorageManager';
+export { StorageManager, useStorageManager } from './StorageManager';

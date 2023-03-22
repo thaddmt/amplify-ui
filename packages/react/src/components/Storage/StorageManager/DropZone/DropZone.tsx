@@ -9,7 +9,9 @@ export const useDropZoneProps = ({
   onDrop: _onDrop,
 }: {
   isLoading?: boolean;
-  onDrop: (event: any) => void;
+  onDrop: (
+    event: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>
+  ) => void;
 }): {
   inDropZone: boolean;
   onDragStart: (event: any) => void;

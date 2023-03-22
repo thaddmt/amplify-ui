@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classNames from 'classnames';
 
 import { uploadFile } from '@aws-amplify/ui';
 
@@ -14,17 +15,20 @@ import { classNameModifier } from '../../../../primitives/shared/utils';
 
 import { DropZone, useDropZoneProps } from '../DropZone';
 import { defaultStorageManagerDisplayText } from '../displayText';
-import { FileList } from '../FileList/FileList';
-import { FileState } from '../types';
+import { FileState, StorageFile } from '../types';
 import { StorageManagerProps } from './types';
 import { useStorageManager } from '../hooks/useStorageManager';
 import { checkMaxFileSize } from '../utils/checkMaxFileSize';
 import { filterAllowedFiles } from '../utils/filterAllowedFiles';
-import { FileListContainer } from '../FileListContainer';
 import { FileListHeader } from '../FileListHeader';
 import { FileListFooter } from '../FileListFooter';
+import { FileControl, getFileControlMessageProps } from '../FileList';
 
 import { Container } from './Container';
+
+const FileList = ({ children }: { children: React.ReactNode }) => (
+  <View className={'amplify-filemanager--filelist'}>{children}</View>
+);
 
 function StorageManager({
   acceptedFileTypes, // passed directly to file input && to limit uploads
@@ -221,6 +225,48 @@ function StorageManager({
 
   const hiddenInput = React.useRef<HTMLInputElement>(null);
 
+  const renderFileControl = (storageFile: StorageFile) => {
+    const { file, status, progress, error, name, isImage, id } = storageFile;
+
+    const thumbnailUrl = file && isImage ? URL.createObjectURL(file) : '';
+
+    const loaderIsDeterminate = isResumable ? progress > 0 : true;
+
+    const onRemove = () => {
+      if (status === FileState.READY) {
+        onRemoveUpload(id);
+      }
+      if (status === FileState.UPLOADED) {
+        // handle DELETE existing file here
+      }
+    };
+
+    return (
+      <FileControl
+        displayName={name}
+        isImage={isImage}
+        key={id}
+        loaderIsDeterminate={loaderIsDeterminate}
+        onRemove={onRemove}
+        onStartEdit={() => console.log(`onStartEdit ${name}`)}
+        progress={progress}
+        showThumbnails={showThumbnails}
+        size={file.size}
+        status={status}
+        thumbnailUrl={thumbnailUrl}
+      >
+        <Text
+          {...getFileControlMessageProps({
+            displayText,
+            fileState: status,
+            errorMessage: error,
+            percentage: progress,
+          })}
+        />
+      </FileControl>
+    );
+  };
+
   return (
     <Container
       className={hasFiles ? ComponentClassNames.StorageManagerPreviewer : ''}
@@ -269,9 +315,7 @@ function StorageManager({
           </VisuallyHidden>
         </View>
       </DropZone>
-      <FileListContainer
-        className={ComponentClassNames.StorageManagerPreviewerBody}
-      >
+      <View className={ComponentClassNames.StorageManagerPreviewerBody}>
         {hasFiles ? (
           <FileListHeader
             fileCount={files.length}
@@ -280,32 +324,8 @@ function StorageManager({
             allUploadsSuccessful={allUploadsSuccessful}
           />
         ) : null}
-        <View style={{ display: 'flex' }}>
-          <Button
-            className={ComponentClassNames.StorageManagerDropZoneButton}
-            // isDisabled={isLoading}
-            onClick={() => {
-              if (hiddenInput.current) {
-                hiddenInput.current.click();
-                hiddenInput.current.value = '';
-              }
-            }}
-            size="small"
-          >
-            {browseFilesText}
-          </Button>
-          <VisuallyHidden>
-            <input
-              type="file"
-              tabIndex={-1}
-              ref={hiddenInput}
-              onChange={onDropZoneChange}
-              // multiple={allowMultipleFiles}
-              accept={acceptedFileTypes.join(',')}
-            />
-          </VisuallyHidden>
-        </View>
-      </FileListContainer>
+        <FileList>{files.map(renderFileControl)}</FileList>
+      </View>
       {hasFiles ? (
         <FileListFooter
           allUploadsPercentage={allUploadsPercentage}
@@ -326,6 +346,7 @@ function StorageManager({
 
 StorageManager.Container = Container;
 StorageManager.DropZone = DropZone;
+StorageManager.FileControl = FileControl;
 StorageManager.FileList = FileList;
 
 export { StorageManager };

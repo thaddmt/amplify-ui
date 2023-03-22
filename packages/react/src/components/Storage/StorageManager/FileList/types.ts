@@ -26,7 +26,6 @@ interface FileListFooter {
 export interface FileControlProps {
   children: React.ReactNode;
   displayName: string;
-  errorMessage: string;
   isImage: boolean;
   loaderIsDeterminate: boolean;
   // onCancelEdit?: () => void;
