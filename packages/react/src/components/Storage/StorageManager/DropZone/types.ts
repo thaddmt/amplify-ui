@@ -1,11 +1,9 @@
-import { StorageManagerDisplayText } from '../displayText';
-
 export interface DropZoneProps {
-  acceptedFileTypes: string[];
+  onDragStart: (event: any) => void;
+  onDragEnter: (event: any) => void;
+  onDragLeave: (event: any) => void;
+  onDrop: (event: any) => void;
+  onDragOver: (event: any) => void;
   children?: React.ReactNode;
-  displayText: StorageManagerDisplayText;
-  isLoading?: boolean;
-  onChange: (
-    event: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  className?: string;
 }

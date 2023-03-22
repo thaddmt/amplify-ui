@@ -2,8 +2,17 @@ import * as React from 'react';
 
 import { uploadFile } from '@aws-amplify/ui';
 
-import { Container } from './Container';
-import { DropZone } from '../DropZone';
+import {
+  Button,
+  ComponentClassNames,
+  Text,
+  VisuallyHidden,
+  View,
+} from '../../../../primitives';
+import { IconUpload } from '../../../../primitives/Icon/internal';
+import { classNameModifier } from '../../../../primitives/shared/utils';
+
+import { DropZone, useDropZoneProps } from '../DropZone';
 import { defaultStorageManagerDisplayText } from '../displayText';
 import { FileList } from '../FileList/FileList';
 import { FileState } from '../types';
@@ -12,9 +21,10 @@ import { useStorageManager } from '../hooks/useStorageManager';
 import { checkMaxFileSize } from '../utils/checkMaxFileSize';
 import { filterAllowedFiles } from '../utils/filterAllowedFiles';
 import { FileListContainer } from '../FileListContainer';
-import { ComponentClassNames } from '../../../../primitives';
 import { FileListHeader } from '../FileListHeader';
 import { FileListFooter } from '../FileListFooter';
+
+import { Container } from './Container';
 
 function StorageManager({
   acceptedFileTypes, // passed directly to file input && to limit uploads
@@ -27,6 +37,7 @@ function StorageManager({
   onUploadSuccess, // customer handler to fire on success
   shouldAutoUpload = false, // used on upload
   showThumbnails = true, //
+  components: { UploadButton = Button } = {},
 }: StorageManagerProps): JSX.Element {
   const {
     files,
@@ -43,7 +54,7 @@ function StorageManager({
         (file) => file.status === FileState.READY
       );
       for (const { file, name, id } of filesReadyToUpload) {
-        // I don't think onComplete even runs?
+        // I don't think onComplete even runs? LOL
         const onComplete: (event: { key: string }) => void = (event) => {
           console.log('done!');
           onUploadSuccess?.(event);
@@ -103,6 +114,7 @@ function StorageManager({
     shouldAutoUpload,
     onUploadError,
     onUploadSuccess,
+    setUploadSuccess,
   ]);
 
   const displayText = {
@@ -110,7 +122,7 @@ function StorageManager({
     ...overrideDisplayText,
   };
 
-  const { getFileSizeErrorText } = displayText;
+  const { getFileSizeErrorText, dropFilesText, browseFilesText } = displayText;
 
   const getMaxFileSizeErrorMessage = (file: File): string => {
     return checkMaxFileSize({
@@ -201,15 +213,62 @@ function StorageManager({
 
   const hasFiles = files.length > 0;
 
+  const { inDropZone, ...handlers } = useDropZoneProps({
+    // this is never being updated in current version
+    isLoading: false,
+    onDrop: onDropZoneChange,
+  });
+
+  const hiddenInput = React.useRef<HTMLInputElement>(null);
+
   return (
     <Container
       className={hasFiles ? ComponentClassNames.StorageManagerPreviewer : ''}
     >
       <DropZone
-        displayText={displayText}
-        onChange={onDropZoneChange}
-        acceptedFileTypes={acceptedFileTypes}
-      />
+        {...handlers}
+        className={classNames(
+          inDropZone &&
+            classNameModifier(
+              ComponentClassNames.StorageManagerDropZone,
+              'active'
+            ),
+          ComponentClassNames.StorageManagerDropZone
+        )}
+      >
+        <IconUpload
+          aria-hidden
+          className={ComponentClassNames.StorageManagerDropZoneIcon}
+        />
+        <Text className={ComponentClassNames.StorageManagerDropZoneText}>
+          {dropFilesText}
+        </Text>
+        <View style={{ display: 'flex' }}>
+          <UploadButton
+            className={ComponentClassNames.StorageManagerDropZoneButton}
+            // isDisabled={isLoading}
+            onClick={() => {
+              if (hiddenInput.current) {
+                hiddenInput.current.click();
+                hiddenInput.current.value = '';
+              }
+            }}
+            size="small"
+          >
+            {browseFilesText}
+          </UploadButton>
+          <VisuallyHidden>
+            <input
+              type="file"
+              tabIndex={-1}
+              ref={hiddenInput}
+              onChange={onDropZoneChange}
+              // multiple={allowMultipleFiles}
+              accept={acceptedFileTypes.join(',')}
+            />
+          </VisuallyHidden>
+        </View>
+      </DropZone>
       <FileListContainer
         className={ComponentClassNames.StorageManagerPreviewerBody}
       >
@@ -221,13 +280,31 @@ function StorageManager({
             allUploadsSuccessful={allUploadsSuccessful}
           />
         ) : null}
-        <FileList
-          displayText={displayText}
-          files={files}
-          isResumable={isResumable}
-          showThumbnails={showThumbnails}
-          onRemoveUpload={onRemoveUpload}
-        />
+        <View style={{ display: 'flex' }}>
+          <Button
+            className={ComponentClassNames.StorageManagerDropZoneButton}
+            // isDisabled={isLoading}
+            onClick={() => {
+              if (hiddenInput.current) {
+                hiddenInput.current.click();
+                hiddenInput.current.value = '';
+              }
+            }}
+            size="small"
+          >
+            {browseFilesText}
+          </Button>
+          <VisuallyHidden>
+            <input
+              type="file"
+              tabIndex={-1}
+              ref={hiddenInput}
+              onChange={onDropZoneChange}
+              // multiple={allowMultipleFiles}
+              accept={acceptedFileTypes.join(',')}
+            />
+          </VisuallyHidden>
+        </View>
       </FileListContainer>
       {hasFiles ? (
         <FileListFooter

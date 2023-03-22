@@ -7,14 +7,14 @@ import {
   View,
   VisuallyHidden,
 } from '../../../../primitives';
-import { humanFileSize } from '@aws-amplify/ui';
+
 import { UploadDetailsProps } from './types';
 
 export const UploadDetails = ({
+  children,
   displayName,
   fileSize,
   onClick,
-  showEditButton,
 }: UploadDetailsProps): JSX.Element => {
   return (
     <>
@@ -23,14 +23,14 @@ export const UploadDetails = ({
           {displayName}
         </Text>
       </View>
-      {showEditButton ? (
+      {onClick ? (
         <Button onClick={onClick} size="small" variation="link">
           <VisuallyHidden>Edit file name {displayName}</VisuallyHidden>
           <IconEdit aria-hidden fontSize="medium" />
         </Button>
       ) : null}
       <Text as="span" className={ComponentClassNames.StorageManagerFileSize}>
-        {humanFileSize(fileSize, true)}
+        {children}
       </Text>
     </>
   );

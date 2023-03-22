@@ -1,9 +1,9 @@
 import React from 'react';
+import { humanFileSize } from '@aws-amplify/ui';
 
 import { View, Loader, ComponentClassNames } from '../../../../primitives';
 
 import { FileState } from '../types';
-import { FileStatusMessage } from './FileStatusMessage';
 import { FileRemoveButton } from './FileRemoveButton';
 import { UploadDetails } from './FileDetails';
 import { FileThumbnail } from './FileThumbnail';
@@ -14,8 +14,8 @@ export function FileControl({
   // onPause,
   // onResume,
   // onSaveEdit,
+  children,
   displayName,
-  errorMessage,
   // extensionNotAllowedText,
   isImage,
   loaderIsDeterminate,
@@ -27,12 +27,10 @@ export function FileControl({
   showThumbnails = true,
   size,
   status,
-  displayText,
   thumbnailUrl,
 }: FileControlProps): JSX.Element {
   // @TODO add back edit capabilities
   const showEditButton = false;
-  const { getPausedText, getUploadingText, uploadSuccessfulText } = displayText;
   return (
     <View className={ComponentClassNames.StorageManagerFile}>
       <View className={ComponentClassNames.StorageManagerFileWrapper}>
@@ -45,11 +43,11 @@ export function FileControl({
         ) : null}
 
         <UploadDetails
-          showEditButton={showEditButton}
           displayName={displayName}
-          onClick={onStartEdit}
-          fileSize={size}
-        />
+          onClick={showEditButton ? onStartEdit : undefined}
+        >
+          {humanFileSize(size)}
+        </UploadDetails>
 
         {status === FileState.LOADING ? (
           <Loader
@@ -67,14 +65,7 @@ export function FileControl({
           />
         ) : null}
       </View>
-      <FileStatusMessage
-        uploadSuccessfulText={uploadSuccessfulText}
-        getUploadingText={getUploadingText}
-        getPausedText={getPausedText}
-        status={status}
-        errorMessage={errorMessage}
-        percentage={progress}
-      />
+      {children}
     </View>
   );
 }

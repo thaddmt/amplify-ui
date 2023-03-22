@@ -24,7 +24,7 @@ interface FileListFooter {
 }
 
 export interface FileControlProps {
-  displayText: StorageManagerDisplayText;
+  children: React.ReactNode;
   displayName: string;
   errorMessage: string;
   isImage: boolean;
@@ -42,21 +42,10 @@ export interface FileControlProps {
   thumbnailUrl: string;
 }
 
-export interface FileStatusMessageProps
-  extends Pick<
-    StorageManagerDisplayText,
-    'getUploadingText' | 'getPausedText' | 'uploadSuccessfulText'
-  > {
-  status: FileState;
-  errorMessage: string;
-  percentage: number;
-}
-
 export interface UploadDetailsProps {
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  children: React.ReactNode;
   displayName: string;
-  showEditButton: boolean;
-  fileSize: number;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface FileThumbnailProps {

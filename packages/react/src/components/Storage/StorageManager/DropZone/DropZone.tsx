@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
-import classNames from 'classnames';
 
-import { View, ComponentClassNames, Text } from '../../../../primitives';
-import { classNameModifier } from '../../../../primitives/shared/utils';
-import { IconUpload } from '../../../../primitives/Icon/internal';
+import { View } from '../../../../primitives';
+
 import { DropZoneProps } from './types';
-import { FilePicker } from './FilePicker';
 
-export function DropZone({
-  onChange,
-  isLoading = false,
-  displayText,
-  acceptedFileTypes,
-}: DropZoneProps): JSX.Element {
+export const useDropZoneProps = ({
+  isLoading,
+  onDrop: _onDrop,
+}: {
+  isLoading?: boolean;
+  onDrop: (event: any) => void;
+}): {
+  inDropZone: boolean;
+  onDragStart: (event: any) => void;
+  onDragEnter: (event: any) => void;
+  onDragLeave: (event: any) => void;
+  onDrop: (
+    event: React.DragEvent<HTMLDivElement> | React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  onDragOver: (event: any) => void;
+} => {
   const [inDropZone, setInDropZone] = useState(false);
-  const { dropFilesText, browseFilesText } = displayText;
+
   const onDragStart = (event: React.DragEvent<HTMLDivElement>) => {
     event.dataTransfer.clearData();
   };
@@ -46,37 +53,19 @@ export function DropZone({
     event.stopPropagation();
     if (isLoading) return false;
     setInDropZone(false);
-    onChange(event);
+    _onDrop(event);
   };
 
-  return (
-    <View
-      className={classNames(
-        inDropZone &&
-          classNameModifier(
-            ComponentClassNames.StorageManagerDropZone,
-            'active'
-          ),
-        ComponentClassNames.StorageManagerDropZone
-      )}
-      onDragStart={onDragStart}
-      onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      onDragOver={onDragOver}
-    >
-      <IconUpload
-        aria-hidden
-        className={ComponentClassNames.StorageManagerDropZoneIcon}
-      />
-      <Text className={ComponentClassNames.StorageManagerDropZoneText}>
-        {dropFilesText}
-      </Text>
-      <FilePicker
-        onFileChange={onChange}
-        browseFilesText={browseFilesText}
-        acceptedFileTypes={acceptedFileTypes}
-      />
-    </View>
-  );
+  return {
+    inDropZone,
+    onDragStart,
+    onDragEnter,
+    onDragLeave,
+    onDragOver,
+    onDrop,
+  };
+};
+
+export function DropZone({ children, ...rest }: DropZoneProps): JSX.Element {
+  return <View {...rest}>{children}</View>;
 }
