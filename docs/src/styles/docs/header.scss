@@ -90,6 +90,7 @@
 .docs-logo-svg {
   height: var(--amplify-font-sizes-large);
   display: inline-block;
+  display: none;
   vertical-align: middle;
   position: relative;
   // because the logo is text in the SVG with descenders (p,y),
@@ -98,11 +99,11 @@
 }
 
 .docs-logo-link:hover {
-  --amplify-colors-font-primary: var(--amplify-colors-brand-primary-60);
+  --amplify-colors-font-primary: var(--amplify-colors-font-interactive);
 }
 
 .docs-logo-link:active {
-  --amplify-colors-font-primary: var(--amplify-colors-brand-primary-80);
+  --amplify-colors-font-primary: var(--amplify-colors-font-active);
 }
 
 .docs-logo-link path {

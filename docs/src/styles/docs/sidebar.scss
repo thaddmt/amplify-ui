@@ -111,8 +111,8 @@
   left: 0;
   padding: var(--amplify-space-medium) var(--amplify-space-large);
   border-right: var(--amplify-border-widths-small) solid
-    var(--amplify-colors-border-primary);
-  box-shadow: var(--amplify-shadows-medium);
+    var(--amplify-colors-border-secondary);
+  // box-shadow: var(--amplify-shadows-medium);
   background-color: var(--amplify-colors-background-primary);
   z-index: 99999;
   transform: translateX(calc(-1 * var(--width)));

@@ -57,3 +57,23 @@
 
 /* Connected Component override styles for docs examples */
 @import './components/authenticatorStyles.scss';
+
+.amplify-alert {
+  border-radius: var(--amplify-radii-small);
+  border-width: var(--amplify-border-widths-small);
+  border-style: solid;
+  border-color: var(--amplify-colors-border-secondary);
+  
+  &--success {
+    border-color: var(--amplify-colors-green-20);
+  }
+  &--info {
+    border-color: var(--amplify-colors-blue-20);
+  }
+  &--warning {
+    border-color: var(--amplify-colors-orange-20);
+  }
+  &--error {
+    border-color: var(--amplify-colors-red-20);
+  }
+}

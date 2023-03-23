@@ -29,7 +29,7 @@ import {
   VisuallyHidden,
 } from '@aws-amplify/ui-react';
 
-import { CgTerminal, CgLinear, CgCopyright } from 'react-icons/cg';
+import { CgTerminal, CgLinear, CgCopyright, CgAbstract } from 'react-icons/cg';
 
 import themePreval from './themes/index.preval';
 import { HomeCode } from '@/components/home/HomeCode';
@@ -242,6 +242,10 @@ export const ThemeSwitcher = ({ colorMode }) => {
             ]}
           />
           {isMobile ? <VisuallyHidden>Default</VisuallyHidden> : 'Default'}
+        </ToggleButton>
+        <ToggleButton value="neutral" gap="xs">
+          <Icon ariaLabel="" as={CgLinear} />
+          {isMobile ? <VisuallyHidden>Neutral</VisuallyHidden> : 'Neutral'}
         </ToggleButton>
         <ToggleButton value="terminal" gap="xs">
           <Icon ariaLabel="" as={CgTerminal} />

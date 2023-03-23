@@ -202,7 +202,7 @@ export const PrimitiveSection = ({ platform, ...rest }) => {
         'fade-in',
         isVisible && 'shown'
       )}
-      backgroundColor="background.secondary"
+      // backgroundColor="background.secondary"
       ref={ref}
     >
       <Flex direction="column" gap="large" className="docs-home-subsection">

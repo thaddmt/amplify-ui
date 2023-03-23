@@ -228,7 +228,7 @@ export const Sidebar = ({ expanded, setExpanded, platform }) => {
             alignItems="center"
             justifyContent="space-between"
           >
-            <LogoLink platform={platform} onClick={onClick} />
+            {/* <LogoLink platform={platform} onClick={onClick} /> */}
             <MenuButton expanded={expanded} setExpanded={setExpanded} />
           </Flex>
           <FrameworkChooser onClick={onClick} />

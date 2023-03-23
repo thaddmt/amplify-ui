@@ -113,7 +113,7 @@
             bottom: calc(-1 * var(--amplify-space-xs)); left: 0; right: 0;
             height: var(--amplify-space-xs);
             background-color: var(--amplify-colors-brand-secondary-60);
-            background-image: linear-gradient(90deg, var(--amplify-colors-brand-secondary-40) 0%, var(--amplify-colors-brand-primary-40) 100%);
+            background-image: linear-gradient(90deg, #36C2D2 0%, var(--amplify-colors-brand-primary-40) 100%);
             transform: skewX(-15deg);
           }
         }
@@ -127,10 +127,10 @@
 }
 
 .docs-hero {
-  background-image: url('/svg/grid.svg'),
-    linear-gradient(0deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%),
-    linear-gradient(180deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%);
-  background-color: var(--docs-callout-bg);
+  background-image: 
+    radial-gradient(50% 50% at 25% 50%, hsla(176deg, 68%, 41%, 0.15), transparent),
+    radial-gradient(25% 50% at 100% 50%, hsla(124deg, 62%, 42%, 0.15), transparent),
+    radial-gradient(25% 25% at 60% 60%, hsla(207deg, 100%, 50%, 0.15), transparent);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -147,9 +147,13 @@
 }
 
 .docs-grid-bg {
-  background-image: url('/svg/grid.svg'),
-    linear-gradient(0deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%),
-    linear-gradient(180deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%);
+  // background-image: url('/svg/grid.svg'),
+  //   linear-gradient(0deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%),
+  //   linear-gradient(180deg, hsla(var(--docs-gradient-color-hsl), 1) 0%, hsla(var(--docs-gradient-color-hsl), 0) 35%);
+  background-image: 
+  radial-gradient(50% 50% at 25% 50%, hsla(176deg, 68%, 41%, 0.15), transparent),
+  radial-gradient(25% 50% at 100% 50%, hsla(124deg, 62%, 42%, 0.15), transparent),
+  radial-gradient(25% 25% at 60% 60%, hsla(207deg, 100%, 50%, 0.15), transparent);
 }
 
 .docs-gradient-bg {

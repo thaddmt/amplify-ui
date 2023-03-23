@@ -14,7 +14,8 @@
 }
 
 .docs-content-body {
-  padding: var(--docs-horizontal-padding);
+  padding-inline: var(--docs-horizontal-padding);
+  padding-block: 0;
 
   & > * + * {
     margin-top: var(--amplify-space-medium);
