@@ -25,7 +25,8 @@ export interface SignInProps {
   toSignUp: () => void;
 }
 
-const { handleChange, handleSubmit } = defineProps<SignInProps>();
+const props = defineProps<SignInProps>();
+const { handleChange, handleSubmit, hideSignUp } = toRefs(props);
 
 const attrs = useAttrs();
 const emit = defineEmits([
@@ -52,8 +53,7 @@ const actorState = computed(() =>
 
 const onInput = (e: Event): void => {
   const { name, value } = e.target as HTMLInputElement;
-  console.log(handleChange);
-  handleChange({ name, value });
+  handleChange.value({ name, value });
 };
 
 const onSignInSubmit = (e: Event): void => {
@@ -65,7 +65,7 @@ const onSignInSubmit = (e: Event): void => {
 };
 
 const submit = (e: Event): void => {
-  handleSubmit(getFormDataFromEvent(e) as Record<string, string>);
+  handleSubmit.value(getFormDataFromEvent(e) as Record<string, string>);
 };
 
 const onForgotPasswordClicked = (): void => {
@@ -134,17 +134,31 @@ const onForgotPasswordClicked = (): void => {
     <base-footer>
       <slot name="footer">
         <div data-amplify-footer>
-          <amplify-button
-            @click="onForgotPasswordClicked"
-            class="amplify-field-group__control amplify-authenticator__font"
-            :variation="'link'"
-            :fullwidth="true"
-            :size="'small'"
-            style="font-weight: normal"
-            type="button"
-          >
-            {{ forgotYourPasswordLink }}
-          </amplify-button>
+          <base-wrapper class="amplify-flex amplify-authenticator__column">
+            <amplify-button
+              @click="onForgotPasswordClicked"
+              class="amplify-field-group__control amplify-authenticator__font"
+              :variation="'link'"
+              :fullwidth="true"
+              :size="'small'"
+              style="font-weight: normal"
+              type="button"
+            >
+              {{ forgotYourPasswordLink }}
+            </amplify-button>
+            <amplify-button
+              @click="toSignUp"
+              v-if="!hideSignUp"
+              class="amplify-field-group__control amplify-authenticator__font"
+              :variation="'link'"
+              :fullwidth="true"
+              :size="'small'"
+              style="font-weight: normal"
+              type="button"
+            >
+              Sign Up
+            </amplify-button>
+          </base-wrapper>
         </div>
       </slot>
     </base-footer>

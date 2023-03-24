@@ -62,8 +62,8 @@ const {
   services,
   signUpAttributes,
   socialProviders,
-  hideSignUp,
   formFields,
+  hideSignUp,
 } = toRefs(props);
 
 const emit = defineEmits([
@@ -113,6 +113,7 @@ const signInProps = computed(() => {
     toFederatedSignIn,
     toSignUp,
     toResetPassword,
+    hideSignUp: hideSignUp?.value,
   } as unknown as SignInProps;
 });
 
@@ -307,71 +308,17 @@ const log = console.log;
         data-amplify-router
         :data-amplify-router-content="hasTabs ? undefined : ''"
       >
-        <base-two-tabs v-if="hasTabs && !hideSignUp">
-          <base-two-tab-item
-            :active="actorState?.matches('signIn')"
-            :id="44472"
-            :label="signInLabel"
-            @click="send('SIGN_IN')"
-          />
-          <base-two-tab-item
-            :active="actorState?.matches('signUp')"
-            :id="44471"
-            :label="createAccountLabel"
-            @click="send('SIGN_UP')"
-          />
-        </base-two-tabs>
-        <div v-if="hasTabs" data-amplify-router-content>
-          <sign-in
-            v-if="actorState?.matches('signIn')"
-            @sign-in-submit="onSignInSubmitI"
-            ref="signInComponent"
-            v-bind="signInProps"
-          >
-            <template #signInSlotI>
-              <slot name="sign-in" :signInProps="signInProps"></slot>
-            </template>
-
-            <template
-              #form="{ info, onSignInSubmit, onForgotPasswordClicked, onInput }"
-            >
-              <slot
-                name="sign-in-form"
-                :info="info"
-                :onInput="onInput"
-                :onSignInSubmit="onSignInSubmit"
-                :onForgotPasswordClicked="onForgotPasswordClicked"
-              ></slot>
-            </template>
-
-            <template #header>
-              <slot name="sign-in-header"></slot>
-            </template>
-
-            <template #footer>
-              <slot name="sign-in-footer"> </slot>
-            </template>
-          </sign-in>
-          <sign-up
-            v-if="actorState?.matches('signUp') && !hideSignUp"
-            @sign-up-submit="onSignUpSubmitI"
-            ref="signUpComponent"
-          >
-            <template #signUpSlotI>
-              <slot name="sign-up"></slot>
-            </template>
-            <template #header>
-              <slot name="sign-up-header"></slot>
-            </template>
-            <template #signup-fields="{ info }">
-              <slot name="sign-up-fields" :info="info"></slot>
-            </template>
-
-            <template #footer>
-              <slot name="sign-up-footer"> </slot>
-            </template>
-          </sign-up>
-        </div>
+        <slot
+          v-if="actorState?.matches('signIn')"
+          name="sign-in"
+          :signInProps="signInProps"
+        >
+          HIHIHIHI
+          <sign-in v-bind="signInProps"></sign-in>
+        </slot>
+        <slot v-if="actorState?.matches('signUp')" name="sign-up">
+          <sign-up />
+        </slot>
 
         <confirm-sign-up
           v-if="actorState?.matches('confirmSignUp')"

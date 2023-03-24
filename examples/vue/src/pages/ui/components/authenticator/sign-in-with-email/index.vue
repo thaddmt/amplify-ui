@@ -25,11 +25,11 @@ const log = console.log;
     </template>
 
     <template v-slot:sign-in="{ signInProps }">
-      <button class="amplify-button" @click="() => log(signInProps)">
+      <!-- <button class="amplify-button" @click="() => log(signInProps)">
         Log SignInProps
       </button>
-      <br />
-      <sign-in v-bind="signInProps" />
+      <br /> -->
+      <sign-in v-bind="{ ...signInProps, hideSignUp: false }" />
     </template>
   </authenticator>
 </template>
