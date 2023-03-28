@@ -8,18 +8,20 @@ import { Sender } from 'xstate';
 
 import {
   ActorContextWithForms,
+  AmplifyUser,
   AuthEvent,
   AuthEventData,
   AuthEventTypes,
   AuthMachineState,
   CodeDeliveryDetails,
-  AmplifyUser,
-  ValidationError,
+  NavigableRoute,
   SocialProvider,
   UnverifiedContactMethods,
+  ValidationError,
 } from '../../types';
 
 import { getActorContext, getActorState } from './actor';
+import { NAVIGABLE_ROUTE_EVENTS } from './constants';
 
 export type AuthenticatorRoute =
   | 'authenticated'
@@ -71,7 +73,7 @@ type SendEventAlias =
 type AuthenticatorSendEventAliases = Record<
   SendEventAlias,
   (data?: AuthEventData) => void
->;
+> & { setNavigableRoute: (route: NavigableRoute) => void };
 
 export interface AuthenticatorServiceFacade
   extends AuthenticatorSendEventAliases,
@@ -88,6 +90,7 @@ export interface AuthenticatorServiceFacade
  * submit({ username, password})
  * ```
  */
+
 export const getSendEventAliases = (
   send: Sender<AuthEvent>
 ): AuthenticatorSendEventAliases => {
@@ -108,11 +111,16 @@ export const getSendEventAliases = (
     // Actions that don't immediately invoke a service but instead transition to a screen
     // are prefixed with `to*`
 
+    // @todo replace tih signInWithSocialProvider?
     toFederatedSignIn: sendToMachine('FEDERATED_SIGN_IN'),
     toResetPassword: sendToMachine('RESET_PASSWORD'),
     toSignIn: sendToMachine('SIGN_IN'),
     toSignUp: sendToMachine('SIGN_UP'),
     skipVerification: sendToMachine('SKIP'),
+
+    // manual "route" navigation
+    setNavigableRoute: (route: NavigableRoute) =>
+      send({ type: NAVIGABLE_ROUTE_EVENTS[route] }),
   };
 };
 

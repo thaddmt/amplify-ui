@@ -46,5 +46,6 @@ export {
 } from './InAppMessaging';
 
 // components/hooks/utils
+export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue } from './hooks';
 export { templateJoin } from './utils';

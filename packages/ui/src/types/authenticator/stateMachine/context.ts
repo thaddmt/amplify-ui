@@ -23,6 +23,11 @@ export interface ActorDoneData {
 }
 
 /**
+ * represents the routes that the Authenticator can be initialized to/navigated to manually by end user
+ */
+export type NavigableRoute = 'signIn' | 'signUp' | 'resetPassword';
+
+/**
  * Context interface for the top-level machine
  */
 export interface AuthContext {
@@ -33,13 +38,11 @@ export interface AuthContext {
     signUpAttributes?: SignUpAttribute[];
     socialProviders?: SocialProvider[];
     formFields?: AuthFormFields;
-    initialState?: 'signIn' | 'signUp' | 'resetPassword';
+    initialState?: NavigableRoute;
     passwordSettings?: PasswordSettings;
   };
   services?: Partial<typeof defaultServices>;
   user?: AmplifyUser;
-  username?: string;
-  password?: string;
   code?: string;
   mfaType?: 'SMS_MFA' | 'SOFTWARE_TOKEN_MFA';
   actorDoneData?: Omit<ActorDoneData, 'user'>; // data returned from actors when they finish and reach their final state
