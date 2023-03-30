@@ -24,6 +24,8 @@ interface optionalPhoneNumberFieldProps
    */
   dialCodeList?: Array<string>;
 
+  DialCodeSelect?: React.ComponentType<DialCodeSelectProps>;
+
   /**
    * @description
    * Handles change events for the dial code selector

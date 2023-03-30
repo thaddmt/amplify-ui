@@ -1,16 +1,24 @@
-import React, { isValidElement } from 'react';
+import React, { createContext, isValidElement } from 'react';
 import {
   useForm,
   UseFormProps,
   useFormContext,
   UseFormHandleSubmit,
+  UseFormRegisterReturn,
+  UseFormGetFieldState,
   FormProvider,
+  // UseFormRegister,
+  // UseFormReturn,
 } from 'react-hook-form';
 
 import { Button, Flex } from '@aws-amplify/ui-react';
 
 function mergeRefs<T = unknown>(
-  refs: (React.MutableRefObject<T> | React.LegacyRef<T>)[]
+  refs: (
+    | React.MutableRefObject<T>
+    | React.LegacyRef<T>
+    | React.RefCallback<T>
+  )[]
 ): React.RefCallback<T> {
   return (value) => {
     refs.forEach((ref) => {
@@ -70,12 +78,14 @@ type FieldControlChildProps<
   type: Type;
 };
 
-type Values = Record<string, string>;
+type FieldValues = Record<string, string>;
 
-type HandleSubmit<T extends Values> = Parameters<UseFormHandleSubmit<T>>[0];
-type InitialValues<T extends Values> = UseFormProps<T>['defaultValues'];
+type HandleSubmit<T extends FieldValues> = Parameters<
+  UseFormHandleSubmit<T>
+>[0];
+type InitialValues<T extends FieldValues> = UseFormProps<T>['defaultValues'];
 
-export type FormProps<T extends Values> = {
+export type FormProps<T extends FieldValues> = {
   onReset?: (values: T) => void;
   onSubmit?: HandleSubmit<T>;
   children: React.ReactNode;
@@ -114,6 +124,51 @@ interface ButtonControlProps {
   children?: React.ReactNode;
   isDisabled?: boolean;
   type: 'button' | 'reset' | 'submit';
+}
+
+export type FieldControlContextType<Values extends FieldValues = FieldValues> =
+  UseFormRegisterReturn & ReturnType<UseFormGetFieldState<Values>>;
+
+const FieldControlContext = createContext<FieldControlContextType | null>(null);
+
+export function useFieldControl(): FieldControlContextType {
+  const context = React.useContext(FieldControlContext);
+
+  if (!context) {
+    // @todo maybe this is just a silent failure?
+    // eslint-disable-next-line no-console
+    throw new Error('No context access here :(');
+  }
+  return context;
+}
+
+export function FieldControlProvider({
+  children,
+  name,
+  // setValueAs,
+  validate,
+}: {
+  children: React.ReactNode;
+  name: string;
+  // setValueAs?: (value: string) => string;
+  validate?: Validator | Record<string, Validator>;
+}): JSX.Element {
+  const { formState, getFieldState, register } = useFormContext();
+  // @todo explain destructure
+  const { error, isDirty, isTouched, invalid } = getFieldState(name, formState);
+
+  // @todo explain this
+  const valueRef = React.useRef(register(name, { validate }));
+  const value = React.useMemo(
+    () => ({ ...valueRef.current, error, invalid, isDirty, isTouched }),
+    [error, invalid, isDirty, isTouched]
+  );
+
+  return (
+    <FieldControlContext.Provider value={value}>
+      {children}
+    </FieldControlContext.Provider>
+  );
 }
 
 // @todo wrap with forwardRef, merge refs?
@@ -173,7 +228,7 @@ const FieldControl = React.forwardRef<HTMLInputElement, FieldControlProps>(
             // in components that do not have an HTML element equivalent such as radio groups,
             // a standard practice is to pass a string value as the event param of onChange, which
             // conflicts with the shape of the event required by react-hook-form. In order to
-            // achieve the correct behavior for validation and change events, wrap....
+            // achieve the correct behavior for validation and change events, wrap...
             const changeEvent =
               typeof e === 'string' ? { target: { value: e } } : e;
 
@@ -240,26 +295,29 @@ const FieldControl = React.forwardRef<HTMLInputElement, FieldControlProps>(
 );
 
 type FormComponent = React.ForwardRefExoticComponent<
-  FormProps<Values> & React.RefAttributes<FormHandle>
+  FormProps<FieldValues> & React.RefAttributes<FormHandle>
 > & {
   ButtonControl: typeof ButtonControl;
   FieldControl: typeof FieldControl;
+  FieldControlProvider: typeof FieldControlProvider;
 };
 
 // ignore missing control elements assigned below declaration
 // @ts-expect-error
-const Form: FormComponent = React.forwardRef(function Form<Init extends Values>(
+const Form: FormComponent = React.forwardRef(function Form<
+  Init extends FieldValues
+>(
   {
     children,
-    initialValues,
+    initialValues: defaultValues,
     // onReset,
     onSubmit,
   }: FormProps<Init>,
   ref: React.ForwardedRef<FormHandle>
 ): JSX.Element | null {
   const formProviderProps = useForm<Init>({
-    defaultValues: initialValues,
-    mode: 'onTouched',
+    defaultValues,
+    mode: 'all',
   });
 
   const { reset } = formProviderProps;
@@ -285,6 +343,7 @@ const Form: FormComponent = React.forwardRef(function Form<Init extends Values>(
 });
 
 Form.FieldControl = FieldControl;
+Form.FieldControlProvider = FieldControlProvider;
 Form.ButtonControl = ButtonControl;
 
 export default Form;

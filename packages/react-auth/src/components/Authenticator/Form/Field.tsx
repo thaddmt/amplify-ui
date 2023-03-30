@@ -9,7 +9,7 @@ import {
   SelectField,
   TextField,
 } from '@aws-amplify/ui-react';
-import { FieldControlType } from './Form';
+import { default as Form, FieldControlType, useFieldControl } from './Form';
 
 type BaseFieldOptions<Type extends FieldControlType> = {
   label: string;
@@ -74,6 +74,24 @@ const isPhoneNumberFieldOptions = (
 ): props is PhoneNumberFieldOptions =>
   (props as PhoneNumberFieldOptions).type === 'tel';
 
+type DialCodeSelectProps = Parameters<
+  typeof PhoneNumberField.DialCodeSelect
+>[0];
+
+const DialCodeSelect = (props: DialCodeSelectProps) => {
+  const { name, onBlur, onChange, ref } = useFieldControl();
+
+  // @todo combine handlers, merge ref?
+  const combinedProps = { ...props, name, onBlur, onChange, ref };
+  return <PhoneNumberField.DialCodeSelect {...combinedProps} />;
+};
+
+const ComposedDialCodeSelect = (props: DialCodeSelectProps) => (
+  <Form.FieldControlProvider name="dial_code">
+    <DialCodeSelect {...props} />
+  </Form.FieldControlProvider>
+);
+
 // type FieldElementType<Type extends FieldControlType> = Type extends
 //   | 'tel'
 //   | 'text'
@@ -90,24 +108,45 @@ const isPhoneNumberFieldOptions = (
 //   : never;
 // type FieldPropsRef<Type extends FieldControlType> = UnwrapRef<FieldProps<Type>['ref']>;
 
-const Field = React.forwardRef(function Field<Type extends FieldControlType>(
-  props: FieldProps<Type>,
-  ref: React.ForwardedRef<any>
+// const Field = React.forwardRef(function Field<Type extends FieldControlType>(
+function Field<Type extends FieldControlType>(
+  props: FieldProps<Type>
+  // @todo mergeRefs?
+  // ref: React.ForwardedRef<any>
 ): JSX.Element | null {
-  return isSelectFieldOptions(props) ? (
-    <SelectField {...props} ref={ref} />
-  ) : isTextFieldOptions(props) ? (
-    <TextField {...props} ref={ref} />
-  ) : isPasswordFieldOptions(props) ? (
-    <PasswordField {...props} ref={ref} />
-  ) : isCheckboxFieldOptions(props) ? (
-    <CheckboxField {...props} ref={ref} />
-  ) : isPhoneNumberFieldOptions(props) ? (
-    <PhoneNumberField {...props} outerStartComponent={null} ref={ref} />
-  ) : isRadioGroupFieldOptions(props) ? (
-    <RadioGroupField {...props} ref={ref}>
+  const { error, name, onBlur, onChange, ref } = useFieldControl();
+  const errorMessage = (error as { message?: string })?.message;
+
+  const hasError = !!errorMessage;
+
+  // @todo combine handlers, add util
+  const combinedProps = {
+    ...props,
+    name,
+    onBlur,
+    onChange,
+    ref,
+    errorMessage,
+    hasError,
+  };
+
+  return isSelectFieldOptions(combinedProps) ? (
+    <SelectField {...combinedProps} />
+  ) : isTextFieldOptions(combinedProps) ? (
+    <TextField {...combinedProps} />
+  ) : isPasswordFieldOptions(combinedProps) ? (
+    <PasswordField {...combinedProps} />
+  ) : isCheckboxFieldOptions(combinedProps) ? (
+    <CheckboxField {...combinedProps} />
+  ) : isPhoneNumberFieldOptions(combinedProps) ? (
+    <PhoneNumberField
+      {...combinedProps}
+      DialCodeSelect={ComposedDialCodeSelect}
+    />
+  ) : isRadioGroupFieldOptions(combinedProps) ? (
+    <RadioGroupField {...combinedProps}>
       {/* eslint-disable-next-line react/destructuring-assignment */}
-      {props.options.map((option) => (
+      {combinedProps.options.map((option) => (
         // @todo do Radio options also need the ref?
         <Radio key={option} value={option}>
           {option}
@@ -115,6 +154,6 @@ const Field = React.forwardRef(function Field<Type extends FieldControlType>(
       ))}
     </RadioGroupField>
   ) : null;
-});
-
+}
+// });
 export default Field;

@@ -67,15 +67,12 @@ export const PRIMARY_ALIAS: Record<LoginMechanism, FieldOptions> = {
   username: USERNAME_TEXT,
 };
 
-// label: 'Confirm Password',
-//     placeholder: 'Please confirm your Password',
-//     type: 'password',
-//     autocomplete: 'new-password',
-//     isRequired: true,
 export const CONFIRM_PASSWORD: FieldOptions = {
+  autoComplete: 'new-password',
   label: 'Confirm Password',
+  isRequired: true,
   name: 'confirmPassword',
-  placeholder: 'Confirm password',
+  placeholder: 'Please confirm your Password',
   type: 'password',
   // validate: {
   //   confirm: (value, values) => {

@@ -7,7 +7,12 @@ import { PhoneNumberFieldProps, Primitive } from '../types';
 import { ComponentText } from '../shared/constants';
 import { TextField } from '../TextField';
 
-const PhoneNumberFieldPrimitive: Primitive<PhoneNumberFieldProps, 'input'> = (
+type PhoneNumberFieldPrimitive = Primitive<PhoneNumberFieldProps, 'input'>;
+type PhoneNumberField = PhoneNumberFieldPrimitive & {
+  DialCodeSelect: typeof CountryCodeSelect;
+};
+
+const PhoneNumberFieldPrimitive: PhoneNumberFieldPrimitive = (
   {
     autoComplete = 'tel-national',
     className,
@@ -20,6 +25,7 @@ const PhoneNumberFieldPrimitive: Primitive<PhoneNumberFieldProps, 'input'> = (
     dialCodeList,
     dialCodeName,
     dialCodeRef,
+    DialCodeSelect = CountryCodeSelect,
     hasError,
     isDisabled,
     isReadOnly,
@@ -42,7 +48,7 @@ const PhoneNumberFieldPrimitive: Primitive<PhoneNumberFieldProps, 'input'> = (
   return (
     <TextField
       outerStartComponent={
-        <CountryCodeSelect
+        <DialCodeSelect
           defaultValue={defaultCode}
           dialCodeList={dialCodeList}
           className={className}
@@ -75,6 +81,11 @@ const PhoneNumberFieldPrimitive: Primitive<PhoneNumberFieldProps, 'input'> = (
 /**
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/phonenumberfield)
  */
-export const PhoneNumberField = React.forwardRef(PhoneNumberFieldPrimitive);
+// @ts-expect-error
+// TS errors as DialCodeSelect is not included in declaration
+export const PhoneNumberField: PhoneNumberField = React.forwardRef(
+  PhoneNumberFieldPrimitive
+);
 
 PhoneNumberField.displayName = 'PhoneNumberField';
+PhoneNumberField.DialCodeSelect = CountryCodeSelect;

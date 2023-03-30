@@ -1,10 +1,38 @@
 import React from 'react';
+// import {
+//   // useForm,
+//   // UseFormProps,
+//   useFormContext,
+//   // UseFormHandleSubmit,
+//   // UseFormRegisterReturn,
+//   // FormProvider,
+//   // UseFormRegister,
+//   // UseFormReturn,
+// } from 'react-hook-form';
 
 import { Button, Flex } from '@aws-amplify/ui-react';
 
 import { default as Form, FieldControlProps, FormProps } from './Form';
 import { default as Field, FieldOptions } from './Field';
-import { AuthenticatorRoute } from '@aws-amplify/ui';
+// import { AuthenticatorRoute } from '@aws-amplify/ui';
+
+// function mergeRefs<T = unknown>(
+//   refs: (
+//     | React.MutableRefObject<T>
+//     | React.LegacyRef<T>
+//     | React.RefCallback<T>
+//   )[]
+// ): React.RefCallback<T> {
+//   return (value) => {
+//     refs.forEach((ref) => {
+//       if (typeof ref === 'function') {
+//         ref(value);
+//       } else if (ref !== null) {
+//         (ref as React.MutableRefObject<T | null>).current = value;
+//       }
+//     });
+//   };
+// }
 
 export interface AuthenticatorFormProps {
   // only for customer use, @todo remove this comment
@@ -25,7 +53,7 @@ export interface AuthenticatorFormProps {
 
   isPending: boolean;
   onSubmit: FormProps<Record<string, string>>['onSubmit'];
-  route: AuthenticatorRoute;
+  // route: AuthenticatorRoute;
   SubmitButton?: SubmitButtonComponent;
   submitButtonText: React.ReactNode;
 }
@@ -51,9 +79,12 @@ export default function AuthenticatorForm({
 }: AuthenticatorFormProps): JSX.Element {
   const formRef = React.useRef<React.ElementRef<typeof Form>>(null);
 
-  // clear `Form` on initial mount
+  // @todo clear `Form` on initial mount or unmount
+  // @todo prevemt reset on submit events
   React.useEffect(() => {
-    formRef.current?.reset();
+    // return () => {
+    // formRef.current?.reset();
+    // };
   });
 
   return (
@@ -64,17 +95,18 @@ export default function AuthenticatorForm({
       ) : (
         <Flex data-amplify-container="" direction="column">
           <Header />
-          {fields?.map(({ validate, ...field }) => {
+          {fields?.map(({ validate: _, ...field }) => {
             return (
-              <Form.FieldControl
+              <Form.FieldControlProvider
                 key={field.name}
-                type={field.type}
-                validate={validate}
+                name={field.name}
+                validate={(v) => (v ? undefined : 'Missing')}
               >
                 <Field {...field} />
-              </Form.FieldControl>
+              </Form.FieldControlProvider>
             );
           })}
+
           <Form.ButtonControl type="submit">
             <SubmitButton isDisabled={isPending}>
               {submitButtonText}

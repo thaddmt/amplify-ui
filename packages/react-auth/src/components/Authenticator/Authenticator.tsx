@@ -60,12 +60,10 @@ type SignInDisplayText = DisplayText<{
   linkSignUpText?: string;
 }> &
   CommmonDisplayText;
-
 type ResetPasswordDisplayText = DisplayText<{
   linkSignInText?: string;
 }> &
   CommmonDisplayText;
-
 type SignUpDisplayText = DisplayText<{
   linkSignInText?: string;
 }> &
@@ -272,12 +270,13 @@ export function AuthenticatorInternal({
       data-variation={variation}
       style={{ justifyContent: 'center' }}
     >
+      {/* <CustomHeaderProp /> */}
       <Form
         fields={fields}
         Footer={() => <LinkButtons buttons={buttons} />}
         Header={() => <Heading level={3}>{headingText}</Heading>}
         isPending={isPending}
-        route={route}
+        // route={route}
         onSubmit={(data) => {
           // eslint-disable-next-line no-console
           console.log('Sbbbbbbbbmit', data);

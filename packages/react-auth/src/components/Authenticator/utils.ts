@@ -10,6 +10,7 @@ import {
   USERNAME_PHONE,
   PRIMARY_ALIAS,
   CONFIRM_PASSWORD,
+  // radioOptions,
 } from './constants';
 
 export const isSignInOrSignUpRoute = (route: string): boolean =>
