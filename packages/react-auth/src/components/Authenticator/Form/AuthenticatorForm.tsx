@@ -1,38 +1,9 @@
 import React from 'react';
-// import {
-//   // useForm,
-//   // UseFormProps,
-//   useFormContext,
-//   // UseFormHandleSubmit,
-//   // UseFormRegisterReturn,
-//   // FormProvider,
-//   // UseFormRegister,
-//   // UseFormReturn,
-// } from 'react-hook-form';
 
 import { Button, Flex } from '@aws-amplify/ui-react';
 
 import { default as Form, FieldControlProps, FormProps } from './Form';
 import { default as Field, FieldOptions } from './Field';
-// import { AuthenticatorRoute } from '@aws-amplify/ui';
-
-// function mergeRefs<T = unknown>(
-//   refs: (
-//     | React.MutableRefObject<T>
-//     | React.LegacyRef<T>
-//     | React.RefCallback<T>
-//   )[]
-// ): React.RefCallback<T> {
-//   return (value) => {
-//     refs.forEach((ref) => {
-//       if (typeof ref === 'function') {
-//         ref(value);
-//       } else if (ref !== null) {
-//         (ref as React.MutableRefObject<T | null>).current = value;
-//       }
-//     });
-//   };
-// }
 
 export interface AuthenticatorFormProps {
   // only for customer use, @todo remove this comment
@@ -77,6 +48,8 @@ export default function AuthenticatorForm({
   submitButtonText,
   SubmitButton = DefaultSubmitButton,
 }: AuthenticatorFormProps): JSX.Element {
+  // @todo ref needs to handle custom form components in
+  // case user defines an override that does not have the reset API
   const formRef = React.useRef<React.ElementRef<typeof Form>>(null);
 
   // @todo clear `Form` on initial mount or unmount
@@ -95,18 +68,17 @@ export default function AuthenticatorForm({
       ) : (
         <Flex data-amplify-container="" direction="column">
           <Header />
-          {fields?.map(({ validate: _, ...field }) => {
+          {fields?.map(({ validate, ...field }) => {
             return (
               <Form.FieldControlProvider
                 key={field.name}
                 name={field.name}
-                validate={(v) => (v ? undefined : 'Missing')}
+                validate={validate}
               >
                 <Field {...field} />
               </Form.FieldControlProvider>
             );
           })}
-
           <Form.ButtonControl type="submit">
             <SubmitButton isDisabled={isPending}>
               {submitButtonText}

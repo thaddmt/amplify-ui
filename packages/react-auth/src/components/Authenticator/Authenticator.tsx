@@ -5,6 +5,7 @@ import {
   AmplifyUser,
   configureComponent,
   isFunction,
+  RequiredDeep,
 } from '@aws-amplify/ui';
 
 import {
@@ -26,10 +27,9 @@ import {
   AuthenticatorFormProps,
   FieldOptions,
 } from './Form';
+import { ErrorView } from './ErrorView';
 import { LinkButtons, LinkButtonsProps } from './LinkButtons';
 import { getDefaultFields } from './utils';
-
-type RequiredDeep<T> = { [K in keyof T]: RequiredDeep<T[K]> } & Required<T>;
 
 // @todo Should be: fields?: (FieldOptions & Omit<FieldControlProps, 'children'>)[];
 // below is missing validate prop
@@ -81,7 +81,7 @@ type DefaultAuthenticatorDisplayText = RequiredDeep<AuthenticatorDisplayText>;
 export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
   resetPassword: {
     headingText: 'Reset Password',
-    linkSignInText: 'Back to Sign In',
+    linkSignInText: 'Sign In',
     submitButtonText: 'Send Code',
   },
   signIn: {
@@ -92,7 +92,7 @@ export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
   },
   signUp: {
     headingText: 'Create Account',
-    linkSignInText: 'Back to Sign In',
+    linkSignInText: 'Sign In',
     submitButtonText: 'Create Account',
   },
 };
@@ -207,8 +207,9 @@ export function AuthenticatorInternal({
   socialProviders,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
-  const { route, signOut, submitForm, user } = useAuthenticator(
-    ({ route, signOut, user }) => [route, signOut, user]
+  // @todo rename error to submitError (or similar)?
+  const { error, route, signOut, submitForm, user } = useAuthenticator(
+    ({ error, route, signOut, user }) => [error, route, signOut, user]
   );
   useAuthenticatorInitMachine({
     initialState,
@@ -285,6 +286,7 @@ export function AuthenticatorInternal({
         }}
         submitButtonText={submitButtonText}
       />
+      {error ? <ErrorView>{error}</ErrorView> : null}
     </View>
   );
 }
