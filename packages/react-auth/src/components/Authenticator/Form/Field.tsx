@@ -1,4 +1,5 @@
 import React from 'react';
+import { Prettify } from '@aws-amplify/ui';
 
 import {
   CheckboxField,
@@ -17,23 +18,30 @@ type BaseFieldOptions<Type extends FieldControlType> = {
   type: Type;
 };
 
-export type PhoneNumberFieldOptions = Parameters<typeof PhoneNumberField>[0] &
-  BaseFieldOptions<'tel'>;
+export type PhoneNumberFieldOptions = Prettify<
+  Parameters<typeof PhoneNumberField>[0] & BaseFieldOptions<'tel'>
+>;
 
-export type CheckboxFieldOptions = Parameters<typeof CheckboxField>[0] &
-  BaseFieldOptions<'checkbox'>;
+export type CheckboxFieldOptions = Prettify<
+  Parameters<typeof CheckboxField>[0] & BaseFieldOptions<'checkbox'>
+>;
 
-export type TextFieldOptions = Parameters<typeof TextField>[0] &
-  BaseFieldOptions<'text' | 'email'>;
+export type TextFieldOptions = Prettify<
+  Parameters<typeof TextField>[0] & BaseFieldOptions<'text' | 'email'>
+>;
 
-export type PasswordFieldOptions = Parameters<typeof PasswordField>[0] &
-  BaseFieldOptions<'password'>;
+export type PasswordFieldOptions = Prettify<
+  Parameters<typeof PasswordField>[0] & BaseFieldOptions<'password'>
+>;
 
-export type SelectFieldOptions = Parameters<typeof SelectField>[0] &
-  BaseFieldOptions<'select'>;
+export type SelectFieldOptions = Prettify<
+  Parameters<typeof SelectField>[0] & BaseFieldOptions<'select'>
+>;
 
-export type RadioGroupFieldOptions = Parameters<typeof RadioGroupField>[0] &
-  BaseFieldOptions<'radio'> & { options: string[] };
+export type RadioGroupFieldOptions = Prettify<
+  Parameters<typeof RadioGroupField>[0] &
+    BaseFieldOptions<'radio'> & { options: string[] }
+>;
 
 export type FieldOptions =
   | TextFieldOptions
@@ -92,6 +100,21 @@ const ComposedDialCodeSelect = (props: DialCodeSelectProps) => (
   </Form.FieldControlProvider>
 );
 
+const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupFieldOptions>(
+  function RadioGroup({ options, ...props }, ref) {
+    return (
+      <RadioGroupField {...props} ref={ref}>
+        {options.map((option) => (
+          // @todo do Radio options also need the ref?
+          <Radio key={option} value={option}>
+            {option}
+          </Radio>
+        ))}
+      </RadioGroupField>
+    );
+  }
+);
+
 // type FieldElementType<Type extends FieldControlType> = Type extends
 //   | 'tel'
 //   | 'text'
@@ -109,6 +132,7 @@ const ComposedDialCodeSelect = (props: DialCodeSelectProps) => (
 // type FieldPropsRef<Type extends FieldControlType> = UnwrapRef<FieldProps<Type>['ref']>;
 
 // const Field = React.forwardRef(function Field<Type extends FieldControlType>(
+
 function Field<Type extends FieldControlType>(
   props: FieldProps<Type>
   // @todo mergeRefs?
@@ -144,15 +168,7 @@ function Field<Type extends FieldControlType>(
       DialCodeSelect={ComposedDialCodeSelect}
     />
   ) : isRadioGroupFieldOptions(combinedProps) ? (
-    <RadioGroupField {...combinedProps}>
-      {/* eslint-disable-next-line react/destructuring-assignment */}
-      {combinedProps.options.map((option) => (
-        // @todo do Radio options also need the ref?
-        <Radio key={option} value={option}>
-          {option}
-        </Radio>
-      ))}
-    </RadioGroupField>
+    <RadioGroup {...combinedProps} />
   ) : null;
 }
 // });

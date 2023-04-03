@@ -120,7 +120,7 @@ export interface FieldControlProps {
   type: FieldControlType;
 }
 
-interface ButtonControlProps {
+export interface ButtonControlProps {
   children?: React.ReactNode;
   isDisabled?: boolean;
   type: 'button' | 'reset' | 'submit';
@@ -135,13 +135,13 @@ export function useFieldControl(): FieldControlContextType {
   const context = React.useContext(FieldControlContext);
 
   if (!context) {
-    // @todo maybe this is just a silent failure?
-    // eslint-disable-next-line no-console
+    // @todo add better error message
     throw new Error('No context access here :(');
   }
   return context;
 }
 
+// @todo Control prop?
 export function FieldControlProvider({
   children,
   name,
@@ -294,16 +294,11 @@ const FieldControl = React.forwardRef<HTMLInputElement, FieldControlProps>(
   }
 );
 
-type FormComponent = React.ForwardRefExoticComponent<
+export type FormComponent = React.ForwardRefExoticComponent<
   FormProps<FieldValues> & React.RefAttributes<FormHandle>
-> & {
-  ButtonControl: typeof ButtonControl;
-  FieldControl: typeof FieldControl;
-  FieldControlProvider: typeof FieldControlProvider;
-};
+>;
 
 // ignore missing control elements assigned below declaration
-// @ts-expect-error
 const Form: FormComponent = React.forwardRef(function Form<
   Init extends FieldValues
 >(
@@ -342,8 +337,12 @@ const Form: FormComponent = React.forwardRef(function Form<
   );
 });
 
-Form.FieldControl = FieldControl;
-Form.FieldControlProvider = FieldControlProvider;
-Form.ButtonControl = ButtonControl;
+// Form.FieldControl = FieldControl;
+// Form.FieldControlProvider = FieldControlProvider;
+// Form.ButtonControl = ButtonControl;
 
-export default Form;
+export default Object.assign(Form, {
+  FieldControl,
+  FieldControlProvider,
+  ButtonControl,
+});

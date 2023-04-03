@@ -18,16 +18,19 @@ import {
   AuthenticatorRouteComponentKey,
 } from '@aws-amplify/ui-react-core-auth';
 
-import { Heading, View } from '@aws-amplify/ui-react';
+import { Heading, Flex, View } from '@aws-amplify/ui-react';
 
 import { VERSION } from '../../version';
 
 import {
-  AuthenticatorForm as DefaultAuthenticatorForm,
-  AuthenticatorFormProps,
   FieldOptions,
+  Fields as DefaultFields,
+  Form as DefaultForm,
+  FormComponent,
+  SubmitButton as DefaultSubmitButton,
+  SubmitButtonComponent,
 } from './Form';
-import { ErrorView } from './ErrorView';
+import { ErrorView as DefaultErrorView, ErrorViewComponent } from './ErrorView';
 import { LinkButtons, LinkButtonsProps } from './LinkButtons';
 import { getDefaultFields } from './utils';
 
@@ -104,7 +107,9 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
     | ((props: { signOut?: SignOut; user?: AmplifyUser }) => JSX.Element);
   displayText?: AuthenticatorDisplayText;
   // fields?: Fields;
-  Form?: React.ComponentType<AuthenticatorFormProps>;
+  Form?: FormComponent;
+  ErrorView?: ErrorViewComponent;
+  SubmitButton?: SubmitButtonComponent;
   variation?: 'default' | 'modal';
 };
 
@@ -197,7 +202,8 @@ function getProps<Route extends AuthenticatorRoute>({
 export function AuthenticatorInternal({
   children,
   displayText: overrideDisplayText,
-  Form = DefaultAuthenticatorForm,
+  ErrorView = DefaultErrorView,
+  Form = DefaultForm,
   formFields,
   // hideSignUp,
   initialState,
@@ -205,6 +211,7 @@ export function AuthenticatorInternal({
   signUpAttributes,
   services,
   socialProviders,
+  SubmitButton = DefaultSubmitButton,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
   // @todo rename error to submitError (or similar)?
@@ -238,6 +245,16 @@ export function AuthenticatorInternal({
     [displayText, props, route]
   );
 
+  const formRef = React.useRef<React.ElementRef<typeof DefaultForm>>(null);
+
+  // @todo clear `Form` on initial mount or unmount
+  // @todo prevemt reset on submit events
+  React.useEffect(() => {
+    // return () => {
+    // formRef.current?.reset();
+    // };
+  });
+
   // const Override = components?.[route];
   // if (Override) {
   //   return <Override {...props} />;
@@ -253,7 +270,8 @@ export function AuthenticatorInternal({
     return (
       <>
         {isFunction(children)
-          ? children({ signOut, user }) // children is a render prop
+          ? // @todo remove render props
+            children({ signOut, user }) // children is a render prop
           : children}
       </>
     );
@@ -273,20 +291,26 @@ export function AuthenticatorInternal({
     >
       {/* <CustomHeaderProp /> */}
       <Form
-        fields={fields}
-        Footer={() => <LinkButtons buttons={buttons} />}
-        Header={() => <Heading level={3}>{headingText}</Heading>}
-        isPending={isPending}
-        // route={route}
         onSubmit={(data) => {
           // eslint-disable-next-line no-console
           console.log('Sbbbbbbbbmit', data);
 
           submitForm(data);
         }}
-        submitButtonText={submitButtonText}
-      />
-      {error ? <ErrorView>{error}</ErrorView> : null}
+        ref={formRef}
+      >
+        <Flex data-amplify-container="" direction="column">
+          <Heading level={3}>{headingText}</Heading>
+          <DefaultFields fields={fields} />
+          <DefaultForm.ButtonControl type="submit">
+            <SubmitButton isDisabled={isPending}>
+              {submitButtonText}
+            </SubmitButton>
+          </DefaultForm.ButtonControl>
+          <LinkButtons buttons={buttons} />
+          {error ? <ErrorView>{error}</ErrorView> : null}
+        </Flex>
+      </Form>
     </View>
   );
 }
@@ -310,12 +334,14 @@ export function Authenticator(props: AuthenticatorProps): JSX.Element {
 }
 
 Authenticator.Provider = Provider;
-Authenticator.Form = DefaultAuthenticatorForm;
+Authenticator.Form = DefaultForm;
+Authenticator.ErrorView = DefaultErrorView;
+Authenticator.SubmitButton = DefaultSubmitButton;
 
-// Authenticator.SetupTotp = ...;
+// @todo maybe QRCodeView?
+// Authenticator.SetupTotp= ...;
 // Authenticator.Container = ...;
 
 // should these take children?
 // Authenticator.SocialProviders = ...;
 // Authenticator.Field = ...;
-// Authenticator.SubmitButton = ...;
