@@ -47,5 +47,5 @@ export {
 
 // components/hooks/utils
 export { RenderNothing } from './components';
-export { useHasValueUpdated, usePreviousValue } from './hooks';
+export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
 export { templateJoin } from './utils';

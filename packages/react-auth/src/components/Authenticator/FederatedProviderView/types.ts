@@ -1,7 +1,7 @@
 import {
   FederatedIdentityProviders,
   Prettify,
-  SocialProvider,
+  FederatedProvider,
 } from '@aws-amplify/ui';
 import { Button, Flex } from '@aws-amplify/ui-react';
 
@@ -12,17 +12,17 @@ export type ProviderIconComponents = Record<
   IconComponent
 >;
 
-export type SocialProviderButtonProps = Prettify<
+export type FederatedProviderButtonProps = Prettify<
   Parameters<typeof Button>[0]
 > & {
   Icon?: IconComponent;
 };
 
-type SocialProviderViewProps = Prettify<Parameters<typeof Flex>[0]> & {
-  providers?: SocialProvider[];
+type FederatedProviderViewProps = Prettify<Parameters<typeof Flex>[0]> & {
+  providers?: FederatedProvider[];
   providerButtonText?: string | ((provider: string) => string);
 };
 
-export type SocialProviderViewComponent<P = {}> = React.ComponentType<
-  SocialProviderViewProps & P
+export type FederatedProviderViewComponent<P = {}> = React.ComponentType<
+  FederatedProviderViewProps & P
 >;

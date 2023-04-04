@@ -5,6 +5,7 @@ import {
   AmplifyUser,
   configureComponent,
   isFunction,
+  Prettify,
   RequiredDeep,
 } from '@aws-amplify/ui';
 
@@ -12,6 +13,7 @@ import {
   AuthenticatorProvider as Provider,
   useAuthenticator,
   UseAuthenticator,
+  isAuthenticatorComponentRouteKey,
   // useAuthenticatorProps,
   // UseAuthenticatorProps,
   useAuthenticatorInitMachine,
@@ -37,9 +39,13 @@ import {
   LinkViewComponent,
 } from './LinkView';
 import {
-  SocialProviderView as DefaultSocialProviderView,
-  SocialProviderViewComponent,
-} from './SocialProviderView';
+  FederatedProviderView as DefaultFederatedProviderView,
+  FederatedProviderViewComponent,
+} from './FederatedProviderView';
+import {
+  QRCodeView as DefaultQRCodeView,
+  QRCodeViewComponent,
+} from './QRCodeView';
 import { getDefaultFields } from './utils';
 
 // @todo Should be: fields?: (FieldOptions & Omit<FieldControlProps, 'children'>)[];
@@ -54,7 +60,8 @@ export type Fields = Partial<
 type GetDisplayTextKey = `get${string}Text`;
 type DisplayTextKey = `${string}Text`;
 
-type DisplayText<T extends Record<GetDisplayTextKey | DisplayTextKey, any>> = {
+type DisplayTextTemplate = Record<GetDisplayTextKey | DisplayTextKey, any>;
+type DisplayText<T extends DisplayTextTemplate = DisplayTextTemplate> = {
   [K in keyof T]: K extends GetDisplayTextKey
     ? (value: Parameters<T[K]>[0]) => string
     : K extends DisplayTextKey
@@ -62,40 +69,81 @@ type DisplayText<T extends Record<GetDisplayTextKey | DisplayTextKey, any>> = {
     : never;
 };
 
-type CommmonDisplayText = {
+interface CommmonDisplayText {
   headingText?: string;
   submitButtonText?: string;
-};
-type SignInDisplayText = DisplayText<{
+}
+
+type WithCommonDisplayText<
+  T extends DisplayTextTemplate = DisplayTextTemplate
+> = Prettify<CommmonDisplayText & DisplayText<T>>;
+
+type SignInDisplayText = WithCommonDisplayText<{
   getSocialProviderButtonText?: (provider: string) => string;
   linkResetPasswordText?: string;
   linkSignUpText?: string;
-}> &
-  CommmonDisplayText;
-type ResetPasswordDisplayText = DisplayText<{
+}>;
+type ResetPasswordDisplayText = WithCommonDisplayText<{
   linkSignInText?: string;
-}> &
-  CommmonDisplayText;
-type SignUpDisplayText = DisplayText<{
+}>;
+type SignUpDisplayText = WithCommonDisplayText<{
   getSocialProviderButtonText?: (provider: string) => string;
   linkSignInText?: string;
-}> &
-  CommmonDisplayText;
+}>;
 
-// prop
-type AuthenticatorDisplayText = {
+type SetupTotpDisplayText = WithCommonDisplayText<{
+  getCopyTooltipText?: (hasCopied: boolean) => string;
+  linkSignInText?: string;
+}>;
+
+interface AuthenticatorDisplayText {
+  forceNewPassword?: WithCommonDisplayText;
+  confirmResetPassword?: WithCommonDisplayText;
+  confirmSignIn?: WithCommonDisplayText;
+  confirmSignUp?: WithCommonDisplayText;
+  confirmVerifyUser?: WithCommonDisplayText;
+  verifyUser?: WithCommonDisplayText;
+
   resetPassword?: ResetPasswordDisplayText;
+  setupTOTP?: SetupTotpDisplayText;
   signIn?: SignInDisplayText;
   signUp?: SignUpDisplayText;
-};
+}
 
 type DefaultAuthenticatorDisplayText = RequiredDeep<AuthenticatorDisplayText>;
 
 export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
+  confirmResetPassword: {
+    headingText: 'Force Reset Password',
+    submitButtonText: 'FIND MY VALUE',
+  },
+  confirmSignIn: {
+    headingText: 'Confirm Sign In',
+    submitButtonText: 'FIND MY VALUE',
+  },
+  confirmSignUp: {
+    headingText: 'Confirm Sign Up',
+    submitButtonText: 'FIND MY VALUE',
+  },
+  confirmVerifyUser: {
+    // @todo improve heading text
+    headingText: 'Confirm Verify User',
+    submitButtonText: 'FIND MY VALUE',
+  },
+  forceNewPassword: {
+    headingText: 'Force Reset Password',
+    submitButtonText: 'FIND MY VALUE',
+  },
   resetPassword: {
     headingText: 'Reset Password',
     linkSignInText: 'Sign In',
     submitButtonText: 'Send Code',
+  },
+  setupTOTP: {
+    getCopyTooltipText: (hasCopied) => (hasCopied ? 'Copied!' : 'Copy'),
+    headingText: 'Setup TOTP',
+    linkSignInText: 'Sign In',
+    submitButtonText: 'Confirm',
   },
   signIn: {
     getSocialProviderButtonText: (provider: string): string =>
@@ -112,6 +160,11 @@ export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
     linkSignInText: 'Sign In',
     submitButtonText: 'Create Account',
   },
+  verifyUser: {
+    // @todo improve heading text
+    headingText: 'Verify User',
+    submitButtonText: 'FIND MY VALUE',
+  },
 };
 
 export type SignOut = UseAuthenticator['signOut'];
@@ -121,11 +174,14 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
     | ((props: { signOut?: SignOut; user?: AmplifyUser }) => JSX.Element);
   displayText?: AuthenticatorDisplayText;
   // fields?: Fields;
+
   Form?: FormComponent;
   ErrorView?: ErrorViewComponent;
   LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
-  SocialProviderView?: SocialProviderViewComponent;
+  FederatedProviderView?: FederatedProviderViewComponent;
+  QRCodeView?: QRCodeViewComponent;
+
   variation?: 'default' | 'modal';
 };
 
@@ -146,6 +202,10 @@ function getLinks<Route extends AuthenticatorRoute>({
   route: Route;
   setNavigableRoute: UseAuthenticator['setNavigableRoute'];
 }): LinkButtonProps[] | undefined {
+  if (!isAuthenticatorComponentRouteKey(route)) {
+    return undefined;
+  }
+
   switch (route) {
     case 'resetPassword': {
       const { linkSignInText } = displayText.resetPassword;
@@ -178,6 +238,18 @@ function getLinks<Route extends AuthenticatorRoute>({
 
       return buttons;
     }
+    case 'setupTOTP': {
+      const { linkSignInText } = displayText.setupTOTP;
+      const buttons: LinkButtonProps[] = [
+        {
+          children: linkSignInText,
+          key: 'signIn',
+          onClick: () => setNavigableRoute('signIn'),
+        },
+      ];
+
+      return buttons;
+    }
     case 'signUp': {
       const { linkSignInText } = displayText.signUp;
 
@@ -192,7 +264,7 @@ function getLinks<Route extends AuthenticatorRoute>({
       return buttons;
     }
     default: {
-      return undefined;
+      return [];
     }
   }
 }
@@ -202,20 +274,21 @@ function getLinks<Route extends AuthenticatorRoute>({
 // Once the `Provider` is removed from the `Authenticator` component and exported as
 // `AuthenticatorProvider`, this component should be renamed to `Authenticator`.
 export function AuthenticatorInternal({
+  // hideSignUp,
   children,
   displayText: overrideDisplayText,
   ErrorView = DefaultErrorView,
+  FederatedProviderView = DefaultFederatedProviderView,
   Form = DefaultForm,
   formFields,
-  // hideSignUp,
   initialState,
   LinkView = DefaultLinkView,
   loginMechanisms,
-  signUpAttributes,
+  QRCodeView = DefaultQRCodeView,
   services,
+  signUpAttributes,
   socialProviders,
   SubmitButton = DefaultSubmitButton,
-  SocialProviderView = DefaultSocialProviderView,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
   // @todo rename error to submitError (or similar)?
@@ -234,6 +307,14 @@ export function AuthenticatorInternal({
     signOut,
     user,
   ]);
+
+  React.useEffect(() => {
+    configureComponent({
+      packageName: '@aws-amplify/ui-react',
+      version: VERSION,
+    });
+  }, []);
+
   useAuthenticatorInitMachine({
     initialState,
     // @todo how to surface this back to the UI for passing to getDefaultFields
@@ -266,11 +347,6 @@ export function AuthenticatorInternal({
     // };
   });
 
-  // const Override = components?.[route];
-  // if (Override) {
-  //   return <Override {...props} />;
-  // }
-
   const isAuthenticatedRoute = route === 'authenticated' || route === 'signOut';
 
   if (isAuthenticatedRoute) {
@@ -288,20 +364,19 @@ export function AuthenticatorInternal({
     );
   }
 
-  if (
-    !(route === 'signIn' || route === 'signUp' || route === 'resetPassword')
-  ) {
+  if (!isAuthenticatorComponentRouteKey(route)) {
     return null;
   }
 
-  const { headingText, submitButtonText } = displayText[route as 'signIn'];
+  // const Override = components?.[route];
+  // if (Override) {
+  //   return <Override {...props} />;
+  // }
 
+  const { headingText, submitButtonText } = displayText[route];
+
+  const renderQRCode = route === 'setupTOTP';
   const renderSocialProviders = route === 'signIn' || route === 'signUp';
-  const renderLinks =
-    route === 'signIn' ||
-    route === 'signUp' ||
-    route === 'resetPassword' ||
-    route === 'forceNewPassword';
 
   return (
     <View
@@ -322,26 +397,31 @@ export function AuthenticatorInternal({
         <Flex data-amplify-container="" direction="column">
           <Heading level={3}>{headingText}</Heading>
           {renderSocialProviders ? (
-            <SocialProviderView
+            <FederatedProviderView
               providerButtonText={
                 displayText[route].getSocialProviderButtonText
               }
               providers={['apple']}
             />
           ) : null}
-          {/* rendeer QRCode here */}
+          {renderQRCode ? (
+            <QRCodeView
+              copyTooltipText={displayText[route].getCopyTooltipText}
+              totpSecretCode="Secret!"
+              totpIssuer="AWSCognito"
+              totpUsername="username"
+            />
+          ) : null}
           <DefaultFields fields={fields} />
+          {error ? <ErrorView>{error}</ErrorView> : null}
           <DefaultForm.ButtonControl type="submit">
             <SubmitButton isDisabled={isPending}>
               {submitButtonText}
             </SubmitButton>
           </DefaultForm.ButtonControl>
-          {renderLinks ? (
-            <LinkView
-              links={getLinks({ displayText, route, setNavigableRoute })}
-            />
-          ) : null}
-          {error ? <ErrorView>{error}</ErrorView> : null}
+          <LinkView
+            links={getLinks({ displayText, route, setNavigableRoute })}
+          />
         </Flex>
       </Form>
     </View>
@@ -352,13 +432,6 @@ export function AuthenticatorInternal({
  * [📖 Docs](https://ui.docs.amplify.aws/react/connected-components/authenticator)
  */
 export function Authenticator(props: AuthenticatorProps): JSX.Element {
-  React.useEffect(() => {
-    configureComponent({
-      packageName: '@aws-amplify/ui-react',
-      version: VERSION,
-    });
-  }, []);
-
   return (
     <Provider>
       <AuthenticatorInternal {...props} />
@@ -370,11 +443,9 @@ Authenticator.Provider = Provider;
 Authenticator.Form = DefaultForm;
 Authenticator.ErrorView = DefaultErrorView;
 Authenticator.SubmitButton = DefaultSubmitButton;
+Authenticator.FederatedProviderView = DefaultFederatedProviderView;
 
-// @todo maybe QRCodeView?
-// Authenticator.SetupTotp= ...;
 // Authenticator.Container = ...;
 
 // should these take children?
-Authenticator.SocialProviderView = DefaultSocialProviderView;
 // Authenticator.Field = ...;

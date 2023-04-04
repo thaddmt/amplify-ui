@@ -7,13 +7,13 @@ import {
 } from '@aws-amplify/ui';
 import { Flex } from '@aws-amplify/ui-react';
 
-import SocialProviderButton from './SocialProviderButton';
+import FederatedProviderButton from './FederatedProviderButton';
 import ProviderIcons from './ProviderIcons';
-import { SocialProviderViewComponent } from './types';
+import { FederatedProviderViewComponent } from './types';
 
 const EMPTY_STRING = '';
 
-const SocialProviderView: SocialProviderViewComponent = ({
+const FederatedProviderView: FederatedProviderViewComponent = ({
   children,
   className = 'federated-sign-in-container',
   direction = 'column',
@@ -36,7 +36,7 @@ const SocialProviderView: SocialProviderViewComponent = ({
       {children
         ? children
         : providers?.map((provider) => (
-            <SocialProviderButton
+            <FederatedProviderButton
               key={provider}
               Icon={
                 ProviderIcons[FederatedIdentityProviders[capitalize(provider)]]
@@ -45,12 +45,12 @@ const SocialProviderView: SocialProviderViewComponent = ({
               {isFunction(providerButtonText)
                 ? providerButtonText(capitalize(provider))
                 : providerButtonText}
-            </SocialProviderButton>
+            </FederatedProviderButton>
           ))}
     </Flex>
   );
 };
 
-SocialProviderView.displayName = 'SocialProviderView';
+FederatedProviderView.displayName = 'FederatedProviderView';
 
-export default SocialProviderView;
+export default FederatedProviderView;

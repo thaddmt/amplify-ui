@@ -12,13 +12,11 @@ const ErrorView: ErrorViewComponent = ({
   children,
   variation = 'error',
   ...props
-}: ErrorViewProps): JSX.Element | null => {
-  return (
-    <Alert {...props} variation={variation}>
-      {children}
-    </Alert>
-  );
-};
+}: ErrorViewProps): JSX.Element | null => (
+  <Alert {...props} variation={variation}>
+    {children}
+  </Alert>
+);
 
 ErrorView.displayName = 'ErrorView';
 
