@@ -12,8 +12,8 @@ import {
   AuthenticatorProvider as Provider,
   useAuthenticator,
   UseAuthenticator,
-  useAuthenticatorProps,
-  UseAuthenticatorProps,
+  // useAuthenticatorProps,
+  // UseAuthenticatorProps,
   useAuthenticatorInitMachine,
   AuthenticatorRouteComponentKey,
 } from '@aws-amplify/ui-react-core-auth';
@@ -31,7 +31,15 @@ import {
   SubmitButtonComponent,
 } from './Form';
 import { ErrorView as DefaultErrorView, ErrorViewComponent } from './ErrorView';
-import { LinkButtons, LinkButtonsProps } from './LinkButtons';
+import {
+  LinkView as DefaultLinkView,
+  LinkButtonProps,
+  LinkViewComponent,
+} from './LinkView';
+import {
+  SocialProviderView as DefaultSocialProviderView,
+  SocialProviderViewComponent,
+} from './SocialProviderView';
 import { getDefaultFields } from './utils';
 
 // @todo Should be: fields?: (FieldOptions & Omit<FieldControlProps, 'children'>)[];
@@ -59,6 +67,7 @@ type CommmonDisplayText = {
   submitButtonText?: string;
 };
 type SignInDisplayText = DisplayText<{
+  getSocialProviderButtonText?: (provider: string) => string;
   linkResetPasswordText?: string;
   linkSignUpText?: string;
 }> &
@@ -68,6 +77,7 @@ type ResetPasswordDisplayText = DisplayText<{
 }> &
   CommmonDisplayText;
 type SignUpDisplayText = DisplayText<{
+  getSocialProviderButtonText?: (provider: string) => string;
   linkSignInText?: string;
 }> &
   CommmonDisplayText;
@@ -88,12 +98,16 @@ export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
     submitButtonText: 'Send Code',
   },
   signIn: {
+    getSocialProviderButtonText: (provider: string): string =>
+      `Sign In with ${provider}`,
     headingText: 'Sign In',
     linkResetPasswordText: 'Forgot Password',
     linkSignUpText: 'Create Account',
     submitButtonText: 'Sign In',
   },
   signUp: {
+    getSocialProviderButtonText: (provider: string): string =>
+      `Sign Up with ${provider}`,
     headingText: 'Create Account',
     linkSignInText: 'Sign In',
     submitButtonText: 'Create Account',
@@ -109,34 +123,34 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   // fields?: Fields;
   Form?: FormComponent;
   ErrorView?: ErrorViewComponent;
+  LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
+  SocialProviderView?: SocialProviderViewComponent;
   variation?: 'default' | 'modal';
 };
 
-interface UIProps {
-  buttons?: LinkButtonsProps['buttons'];
-  headingText?: string;
-  isPending: boolean;
-  submitButtonText: string;
-}
+// type RouteLinkButtonProps<Route extends AuthenticatorRoute> = Route extends
+//   | 'signIn'
+//   | 'signUp'
+//   | 'resetPassword'
+//   | 'forceNewPassword'
+//   ? LinkButtonProps[]
+//   : undefined;
 
-function getProps<Route extends AuthenticatorRoute>({
+function getLinks<Route extends AuthenticatorRoute>({
   displayText,
-  props,
   route,
+  setNavigableRoute,
 }: {
   displayText: DefaultAuthenticatorDisplayText;
-  props: UseAuthenticatorProps<Route>;
   route: Route;
-}): UIProps | null {
+  setNavigableRoute: UseAuthenticator['setNavigableRoute'];
+}): LinkButtonProps[] | undefined {
   switch (route) {
     case 'resetPassword': {
-      const { isPending, setNavigableRoute } =
-        props as UseAuthenticatorProps<'resetPassword'>;
-      const { headingText, linkSignInText, submitButtonText } =
-        displayText.resetPassword;
+      const { linkSignInText } = displayText.resetPassword;
 
-      const buttons: LinkButtonsProps['buttons'] = [
+      const buttons: LinkButtonProps[] = [
         {
           children: linkSignInText,
           key: 'signIn',
@@ -144,20 +158,12 @@ function getProps<Route extends AuthenticatorRoute>({
         },
       ];
 
-      return { headingText, isPending, buttons, submitButtonText };
+      return buttons;
     }
     case 'signIn': {
-      const { setNavigableRoute, isPending } =
-        props as UseAuthenticatorProps<'signIn'>;
+      const { linkResetPasswordText, linkSignUpText } = displayText.signIn;
 
-      const {
-        headingText,
-        linkResetPasswordText,
-        linkSignUpText,
-        submitButtonText,
-      } = displayText.signIn;
-
-      const buttons: LinkButtonsProps['buttons'] = [
+      const buttons: LinkButtonProps[] = [
         {
           children: linkResetPasswordText,
           key: 'resetPassword',
@@ -170,16 +176,12 @@ function getProps<Route extends AuthenticatorRoute>({
         },
       ];
 
-      return { buttons, headingText, isPending, submitButtonText };
+      return buttons;
     }
     case 'signUp': {
-      const { setNavigableRoute, isPending } =
-        props as UseAuthenticatorProps<'signUp'>;
+      const { linkSignInText } = displayText.signUp;
 
-      const { headingText, linkSignInText, submitButtonText } =
-        displayText.signUp;
-
-      const buttons = [
+      const buttons: LinkButtonProps[] = [
         {
           children: linkSignInText,
           key: 'signIn',
@@ -187,10 +189,10 @@ function getProps<Route extends AuthenticatorRoute>({
         },
       ];
 
-      return { buttons, headingText, isPending, submitButtonText };
+      return buttons;
     }
     default: {
-      return null;
+      return undefined;
     }
   }
 }
@@ -207,17 +209,31 @@ export function AuthenticatorInternal({
   formFields,
   // hideSignUp,
   initialState,
+  LinkView = DefaultLinkView,
   loginMechanisms,
   signUpAttributes,
   services,
   socialProviders,
   SubmitButton = DefaultSubmitButton,
+  SocialProviderView = DefaultSocialProviderView,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
   // @todo rename error to submitError (or similar)?
-  const { error, route, signOut, submitForm, user } = useAuthenticator(
-    ({ error, route, signOut, user }) => [error, route, signOut, user]
-  );
+  const {
+    error,
+    isPending,
+    route,
+    setNavigableRoute,
+    signOut,
+    submitForm,
+    user,
+  } = useAuthenticator(({ error, isPending, route, signOut, user }) => [
+    error,
+    isPending,
+    route,
+    signOut,
+    user,
+  ]);
   useAuthenticatorInitMachine({
     initialState,
     // @todo how to surface this back to the UI for passing to getDefaultFields
@@ -228,7 +244,7 @@ export function AuthenticatorInternal({
     formFields,
   });
 
-  const props = useAuthenticatorProps({ route });
+  // const props = useAuthenticatorProps({ route });
 
   const displayText = React.useMemo(
     () => ({ ...overrideDisplayText, ...defaultDisplayText }),
@@ -238,11 +254,6 @@ export function AuthenticatorInternal({
   const fields = React.useMemo(
     () => getDefaultFields({ route, loginMechanism: loginMechanisms?.[0] }),
     [route, loginMechanisms]
-  );
-
-  const uiProps = React.useMemo(
-    () => getProps({ displayText, props, route }),
-    [displayText, props, route]
   );
 
   const formRef = React.useRef<React.ElementRef<typeof DefaultForm>>(null);
@@ -277,11 +288,20 @@ export function AuthenticatorInternal({
     );
   }
 
-  if (!uiProps) {
+  if (
+    !(route === 'signIn' || route === 'signUp' || route === 'resetPassword')
+  ) {
     return null;
   }
 
-  const { buttons, headingText, isPending, submitButtonText } = uiProps;
+  const { headingText, submitButtonText } = displayText[route as 'signIn'];
+
+  const renderSocialProviders = route === 'signIn' || route === 'signUp';
+  const renderLinks =
+    route === 'signIn' ||
+    route === 'signUp' ||
+    route === 'resetPassword' ||
+    route === 'forceNewPassword';
 
   return (
     <View
@@ -301,13 +321,26 @@ export function AuthenticatorInternal({
       >
         <Flex data-amplify-container="" direction="column">
           <Heading level={3}>{headingText}</Heading>
+          {renderSocialProviders ? (
+            <SocialProviderView
+              providerButtonText={
+                displayText[route].getSocialProviderButtonText
+              }
+              providers={['apple']}
+            />
+          ) : null}
+          {/* rendeer QRCode here */}
           <DefaultFields fields={fields} />
           <DefaultForm.ButtonControl type="submit">
             <SubmitButton isDisabled={isPending}>
               {submitButtonText}
             </SubmitButton>
           </DefaultForm.ButtonControl>
-          <LinkButtons buttons={buttons} />
+          {renderLinks ? (
+            <LinkView
+              links={getLinks({ displayText, route, setNavigableRoute })}
+            />
+          ) : null}
           {error ? <ErrorView>{error}</ErrorView> : null}
         </Flex>
       </Form>
@@ -343,5 +376,5 @@ Authenticator.SubmitButton = DefaultSubmitButton;
 // Authenticator.Container = ...;
 
 // should these take children?
-// Authenticator.SocialProviders = ...;
+Authenticator.SocialProviderView = DefaultSocialProviderView;
 // Authenticator.Field = ...;
