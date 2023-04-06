@@ -8,7 +8,7 @@ Array [
   "handleMessageAction",
   "isAuthenticatorComponentRouteKey",
   "resolveAuthenticatorComponents",
-  "templateJoin",
+  "resolveChildrenOrCallback",
   "useAuthenticator",
   "useAuthenticatorInitMachine",
   "useAuthenticatorRoute",

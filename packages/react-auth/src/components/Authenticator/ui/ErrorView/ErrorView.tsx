@@ -2,7 +2,7 @@ import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 import { Alert } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 
 type ErrorViewProps = Prettify<Parameters<typeof Alert>[0]>;
 

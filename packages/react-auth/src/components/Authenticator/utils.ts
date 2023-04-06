@@ -3,7 +3,7 @@ import { AuthenticatorRoute, LoginMechanism } from '@aws-amplify/ui';
 import {
   FieldOptions,
   // FieldControlProps
-} from './Form';
+} from './ui';
 import {
   PASSWORD,
   USERNAME_EMAIL,

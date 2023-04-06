@@ -16,7 +16,6 @@ export type FederatedProviderButtonProps = Prettify<
 
 export interface FederatedProviderOptions
   extends Required<Pick<FederatedProviderButtonProps, 'children' | 'onClick'>> {
-  provider: FederatedProvider;
   Icon?: FederatedProviderIconComponent;
 }
 

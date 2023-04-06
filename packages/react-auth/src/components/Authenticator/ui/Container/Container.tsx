@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from '@aws-amplify/ui-react';
-import { createDisplayName } from '../utils/index';
+
+import { createDisplayName } from '../utils';
 
 type ContainerProps = Parameters<typeof View>[0] & {
   // @todo add full-screen maybe? Make modal cancelable?

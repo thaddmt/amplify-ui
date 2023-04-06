@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 import { FederatedProviderIconComponent } from './types';
 
 const Apple = (): JSX.Element => (

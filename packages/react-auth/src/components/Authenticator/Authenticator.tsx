@@ -24,8 +24,12 @@ import { Heading } from '@aws-amplify/ui-react';
 
 import { VERSION } from '../../version';
 
-import { Container as DefaultContainer, ContainerComponent } from './Container';
 import {
+  Container as DefaultContainer,
+  ContainerComponent,
+} from './ui/Container';
+import {
+  CopyButton,
   FieldOptions,
   Fields as DefaultFields,
   Field,
@@ -33,19 +37,17 @@ import {
   FormComponent,
   SubmitButton as DefaultSubmitButton,
   SubmitButtonComponent,
-} from './Form';
-import { ErrorView as DefaultErrorView, ErrorViewComponent } from './ErrorView';
-import {
+  ErrorView as DefaultErrorView,
+  ErrorViewComponent,
   LinkView as DefaultLinkView,
   LinkButtonProps,
   LinkViewComponent,
-} from './LinkView';
-import {
   getFederatedProviderOptions,
   FederatedProviderView as DefaultFederatedProviderView,
   FederatedProviderViewComponent,
-} from './FederatedProviderView';
-import { TOTPView as DefaultTOTPView, TOTPViewComponent } from './TOTPView';
+  TOTPView as DefaultTOTPView,
+  TOTPViewComponent,
+} from './ui';
 import { getDefaultFields } from './utils';
 
 export type Fields = Partial<
@@ -391,24 +393,27 @@ export function AuthenticatorInternal({
         <Heading level={3}>{headingText}</Heading>
         {renderFederatedProviders ? (
           <FederatedProviderView
-            providerOptions={getFederatedProviderOptions(
-              ['amazon'],
-              displayText[route].getFederatedProviderButtonText,
-              (provider) => {
-                // eslint-disable-next-line no-console
-                console.log('provider', provider);
-              }
-            )}
+          // providerOptions={getFederatedProviderOptions(
+          //   ['amazon', 'apple', 'facebook', 'google'],
+          //   displayText[route].getFederatedProviderButtonText,
+          //   (provider) => {
+          //     // eslint-disable-next-line no-console
+          //     console.log('provider', provider);
+          //   }
+          // )}
           />
         ) : null}
-        {renderQRCode ? (
-          <TOTPView
-            copyTooltipText={displayText[route].getCopyTooltipText}
-            totpSecretCode="Secret!"
-            totpIssuer="AWSCognito"
-            totpUsername="username"
-          />
-        ) : null}
+        {/* {renderQRCode ? ( */}
+        <TOTPView
+          totpSecretCode="Secret!"
+          totpIssuer="AWSCognito"
+          totpUsername="username"
+        >
+          <CopyButton target="secret code">
+            {displayText['setupTOTP'].getCopyTooltipText}
+          </CopyButton>
+        </TOTPView>
+        {/* ) : null} */}
         <DefaultFields fields={fields} />
         <ErrorView>{error}</ErrorView>
         <DefaultForm.ButtonControl type="submit">

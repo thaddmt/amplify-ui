@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Button } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 import { LinkButtonProps } from './types';
 
 const LinkButton = ({

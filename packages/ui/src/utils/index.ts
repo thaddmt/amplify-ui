@@ -1,3 +1,6 @@
+// export classname related utils
+export { classNameModifier, classNameModifierByFlag } from './classname';
+
 /**
  * Some libraries may not follow Node ES module spec and could be loaded as CommonJS modules,
  * To ensure the interoperability between ESM and CJS, modules from those libraries have to be loaded via namespace import
@@ -175,4 +178,31 @@ export function isFunction(value: unknown): value is Function {
   return typeof value === 'function';
 }
 
-export { classNameModifier, classNameModifierByFlag } from './classname';
+/**
+ * `isFunction` but returns a typed function based
+ * @param {unknown} value param to check
+ * @returns {boolean} whether `value` is a function
+ */
+export function isTypedFunction<T extends (...args: any[]) => any>(
+  value: unknown
+): value is T {
+  return isFunction(value);
+}
+
+/**
+ * Similar to `Array.join`, with an optional callback/template param
+ * for formatting returned string values
+ *
+ * @param {string[]} values string array
+ * @param {(value: string) => string} template callback format param
+ * @returns formatted string array
+ */
+export function templateJoin(
+  values: string[],
+  template: (value: string) => string
+): string {
+  return values.reduce(
+    (acc, curr) => `${acc}${isString(curr) ? template(curr) : ''}`,
+    ''
+  );
+}

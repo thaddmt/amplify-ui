@@ -1,5 +1,5 @@
 import { countryDialCodes, LoginMechanism } from '@aws-amplify/ui';
-import { FieldOptions } from './Form';
+import { FieldOptions } from './ui';
 
 const USERNAME_BASE = {
   isRequired: true,

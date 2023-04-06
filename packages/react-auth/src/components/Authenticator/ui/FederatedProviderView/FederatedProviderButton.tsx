@@ -4,7 +4,7 @@ import { isString } from '@aws-amplify/ui';
 import { Button, Text } from '@aws-amplify/ui-react';
 import { RenderNothing } from '@aws-amplify/ui-react-core';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 
 import { FederatedProviderButtonProps } from './types';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Flex } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 import LinkButton from './LinkButton';
 import { LinkViewComponent } from './types';
 

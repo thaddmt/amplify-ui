@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Flex } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils/index';
+import { createDisplayName } from '../utils';
 import FederatedProviderButton from './FederatedProviderButton';
 import { FederatedProviderViewComponent } from './types';
 

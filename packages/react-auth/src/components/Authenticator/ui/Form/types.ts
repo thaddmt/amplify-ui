@@ -52,6 +52,7 @@ type BaseFieldProps =
   | RadioGroupFieldOptions;
 
 export type BaseFieldComponent<P = {}> = React.ComponentType<
+  // @todo should these be the minimal needed props?
   BaseFieldProps & P
 >;
 

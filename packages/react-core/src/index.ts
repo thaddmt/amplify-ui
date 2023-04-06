@@ -48,4 +48,4 @@ export {
 // components/hooks/utils
 export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
-export { templateJoin } from './utils';
+export { resolveChildrenOrCallback } from './utils';

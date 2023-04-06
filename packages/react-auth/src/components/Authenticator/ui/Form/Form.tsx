@@ -158,11 +158,19 @@ export function FieldControlProvider({
   // @todo explain destructure
   const { error, isDirty, isTouched, invalid } = getFieldState(name, formState);
 
-  // @todo explain this
-  const valueRef = React.useRef(register(name, { validate }));
+  // @todo don't think the ref is needed but keeping the code in case it all falls apart again
+  // const valueRef = React.useRef(register(name, { validate }));
   const value = React.useMemo(
-    () => ({ ...valueRef.current, error, invalid, isDirty, isTouched }),
-    [error, invalid, isDirty, isTouched]
+    // () => ({ ...valueRef.current, error, invalid, isDirty, isTouched }),
+    () => ({
+      ...register(name, { validate }),
+      error,
+      invalid,
+      isDirty,
+      isTouched,
+    }),
+    // [error, invalid, isDirty, isTouched]
+    [error, invalid, isDirty, isTouched, name, register, validate]
   );
 
   return (

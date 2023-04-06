@@ -1,3 +1,3 @@
 export { default as FederatedProviderView } from './FederatedProviderView';
 export { FederatedProviderViewComponent } from './types';
-export { getFederatedProviderOptions } from './utils';
+export { default as getFederatedProviderOptions } from './getFederatedProviderOptions';
