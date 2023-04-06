@@ -20,13 +20,15 @@ import {
   AuthenticatorRouteComponentKey,
 } from '@aws-amplify/ui-react-core-auth';
 
-import { Heading, Flex, View } from '@aws-amplify/ui-react';
+import { Heading } from '@aws-amplify/ui-react';
 
 import { VERSION } from '../../version';
 
+import { Container as DefaultContainer, ContainerComponent } from './Container';
 import {
   FieldOptions,
   Fields as DefaultFields,
+  Field,
   Form as DefaultForm,
   FormComponent,
   SubmitButton as DefaultSubmitButton,
@@ -39,17 +41,13 @@ import {
   LinkViewComponent,
 } from './LinkView';
 import {
+  getFederatedProviderOptions,
   FederatedProviderView as DefaultFederatedProviderView,
   FederatedProviderViewComponent,
 } from './FederatedProviderView';
-import {
-  QRCodeView as DefaultQRCodeView,
-  QRCodeViewComponent,
-} from './QRCodeView';
+import { TOTPView as DefaultTOTPView, TOTPViewComponent } from './TOTPView';
 import { getDefaultFields } from './utils';
 
-// @todo Should be: fields?: (FieldOptions & Omit<FieldControlProps, 'children'>)[];
-// below is missing validate prop
 export type Fields = Partial<
   Record<
     AuthenticatorRouteComponentKey,
@@ -79,7 +77,7 @@ type WithCommonDisplayText<
 > = Prettify<CommmonDisplayText & DisplayText<T>>;
 
 type SignInDisplayText = WithCommonDisplayText<{
-  getSocialProviderButtonText?: (provider: string) => string;
+  getFederatedProviderButtonText?: (provider: string) => string;
   linkResetPasswordText?: string;
   linkSignUpText?: string;
 }>;
@@ -87,7 +85,7 @@ type ResetPasswordDisplayText = WithCommonDisplayText<{
   linkSignInText?: string;
 }>;
 type SignUpDisplayText = WithCommonDisplayText<{
-  getSocialProviderButtonText?: (provider: string) => string;
+  getFederatedProviderButtonText?: (provider: string) => string;
   linkSignInText?: string;
 }>;
 
@@ -146,7 +144,7 @@ export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
     submitButtonText: 'Confirm',
   },
   signIn: {
-    getSocialProviderButtonText: (provider: string): string =>
+    getFederatedProviderButtonText: (provider: string): string =>
       `Sign In with ${provider}`,
     headingText: 'Sign In',
     linkResetPasswordText: 'Forgot Password',
@@ -154,7 +152,7 @@ export const defaultDisplayText: DefaultAuthenticatorDisplayText = {
     submitButtonText: 'Sign In',
   },
   signUp: {
-    getSocialProviderButtonText: (provider: string): string =>
+    getFederatedProviderButtonText: (provider: string): string =>
       `Sign Up with ${provider}`,
     headingText: 'Create Account',
     linkSignInText: 'Sign In',
@@ -175,12 +173,13 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   displayText?: AuthenticatorDisplayText;
   // fields?: Fields;
 
+  Container?: ContainerComponent;
   Form?: FormComponent;
   ErrorView?: ErrorViewComponent;
   LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
   FederatedProviderView?: FederatedProviderViewComponent;
-  QRCodeView?: QRCodeViewComponent;
+  TOTPView?: TOTPViewComponent;
 
   variation?: 'default' | 'modal';
 };
@@ -277,6 +276,7 @@ export function AuthenticatorInternal({
   // hideSignUp,
   children,
   displayText: overrideDisplayText,
+  Container = DefaultContainer,
   ErrorView = DefaultErrorView,
   FederatedProviderView = DefaultFederatedProviderView,
   Form = DefaultForm,
@@ -284,7 +284,7 @@ export function AuthenticatorInternal({
   initialState,
   LinkView = DefaultLinkView,
   loginMechanisms,
-  QRCodeView = DefaultQRCodeView,
+  TOTPView = DefaultTOTPView,
   services,
   signUpAttributes,
   socialProviders,
@@ -376,55 +376,47 @@ export function AuthenticatorInternal({
   const { headingText, submitButtonText } = displayText[route];
 
   const renderQRCode = route === 'setupTOTP';
-  const renderSocialProviders = route === 'signIn' || route === 'signUp';
+  const renderFederatedProviders = route === 'signIn' || route === 'signUp';
+  const handleSubmit = (data: Record<string, string>) => {
+    // eslint-disable-next-line no-console
+    console.log('Sbbbbbbbbmit', data);
+
+    submitForm(data);
+  };
 
   return (
-    <View
-      data-amplify-authenticator=""
-      data-variation={variation}
-      style={{ justifyContent: 'center' }}
-    >
+    <Container variation={variation}>
       {/* <CustomHeaderProp /> */}
-      <Form
-        onSubmit={(data) => {
-          // eslint-disable-next-line no-console
-          console.log('Sbbbbbbbbmit', data);
-
-          submitForm(data);
-        }}
-        ref={formRef}
-      >
-        <Flex data-amplify-container="" direction="column">
-          <Heading level={3}>{headingText}</Heading>
-          {renderSocialProviders ? (
-            <FederatedProviderView
-              providerButtonText={
-                displayText[route].getSocialProviderButtonText
+      <Form onSubmit={handleSubmit} ref={formRef}>
+        <Heading level={3}>{headingText}</Heading>
+        {renderFederatedProviders ? (
+          <FederatedProviderView
+            providerOptions={getFederatedProviderOptions(
+              ['amazon'],
+              displayText[route].getFederatedProviderButtonText,
+              (provider) => {
+                // eslint-disable-next-line no-console
+                console.log('provider', provider);
               }
-              providers={['apple']}
-            />
-          ) : null}
-          {renderQRCode ? (
-            <QRCodeView
-              copyTooltipText={displayText[route].getCopyTooltipText}
-              totpSecretCode="Secret!"
-              totpIssuer="AWSCognito"
-              totpUsername="username"
-            />
-          ) : null}
-          <DefaultFields fields={fields} />
-          {error ? <ErrorView>{error}</ErrorView> : null}
-          <DefaultForm.ButtonControl type="submit">
-            <SubmitButton isDisabled={isPending}>
-              {submitButtonText}
-            </SubmitButton>
-          </DefaultForm.ButtonControl>
-          <LinkView
-            links={getLinks({ displayText, route, setNavigableRoute })}
+            )}
           />
-        </Flex>
+        ) : null}
+        {renderQRCode ? (
+          <TOTPView
+            copyTooltipText={displayText[route].getCopyTooltipText}
+            totpSecretCode="Secret!"
+            totpIssuer="AWSCognito"
+            totpUsername="username"
+          />
+        ) : null}
+        <DefaultFields fields={fields} />
+        <ErrorView>{error}</ErrorView>
+        <DefaultForm.ButtonControl type="submit">
+          <SubmitButton isDisabled={isPending}>{submitButtonText}</SubmitButton>
+        </DefaultForm.ButtonControl>
+        <LinkView links={getLinks({ displayText, route, setNavigableRoute })} />
       </Form>
-    </View>
+    </Container>
   );
 }
 
@@ -440,9 +432,11 @@ export function Authenticator(props: AuthenticatorProps): JSX.Element {
 }
 
 Authenticator.Provider = Provider;
+Authenticator.Field = Field;
 Authenticator.Form = DefaultForm;
 Authenticator.ErrorView = DefaultErrorView;
 Authenticator.SubmitButton = DefaultSubmitButton;
+Authenticator.TOTPView = DefaultTOTPView;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
 
 // Authenticator.Container = ...;

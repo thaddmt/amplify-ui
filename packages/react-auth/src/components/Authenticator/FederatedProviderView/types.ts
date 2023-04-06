@@ -1,26 +1,27 @@
-import {
-  FederatedIdentityProviders,
-  Prettify,
-  FederatedProvider,
-} from '@aws-amplify/ui';
+import { Prettify, FederatedProvider } from '@aws-amplify/ui';
 import { Button, Flex } from '@aws-amplify/ui-react';
 
-type IconComponent = React.ComponentType;
-
-export type ProviderIconComponents = Record<
-  FederatedIdentityProviders,
-  IconComponent
->;
+export interface FederatedProviderIconProps {
+  provider?: FederatedProvider;
+}
+export type FederatedProviderIconComponent =
+  React.ComponentType<FederatedProviderIconProps>;
 
 export type FederatedProviderButtonProps = Prettify<
-  Parameters<typeof Button>[0]
+  // omit default `variation` prop for override
+  Omit<Parameters<typeof Button>[0], 'variation'>
 > & {
-  Icon?: IconComponent;
+  Icon?: FederatedProviderIconComponent;
 };
 
+export interface FederatedProviderOptions
+  extends Required<Pick<FederatedProviderButtonProps, 'children' | 'onClick'>> {
+  provider: FederatedProvider;
+  Icon?: FederatedProviderIconComponent;
+}
+
 type FederatedProviderViewProps = Prettify<Parameters<typeof Flex>[0]> & {
-  providers?: FederatedProvider[];
-  providerButtonText?: string | ((provider: string) => string);
+  providerOptions?: FederatedProviderOptions[];
 };
 
 export type FederatedProviderViewComponent<P = {}> = React.ComponentType<

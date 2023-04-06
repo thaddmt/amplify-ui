@@ -1,5 +1,4 @@
 import React from 'react';
-import { Prettify } from '@aws-amplify/ui';
 
 import {
   CheckboxField,
@@ -10,50 +9,17 @@ import {
   SelectField,
   TextField,
 } from '@aws-amplify/ui-react';
-import { default as Form, FieldControlType, useFieldControl } from './Form';
-
-type BaseFieldOptions<Type extends FieldControlType> = {
-  label: string;
-  name: string;
-  type: Type;
-};
-
-export type PhoneNumberFieldOptions = Prettify<
-  Parameters<typeof PhoneNumberField>[0] & BaseFieldOptions<'tel'>
->;
-
-export type CheckboxFieldOptions = Prettify<
-  Parameters<typeof CheckboxField>[0] & BaseFieldOptions<'checkbox'>
->;
-
-export type TextFieldOptions = Prettify<
-  Parameters<typeof TextField>[0] & BaseFieldOptions<'text' | 'email'>
->;
-
-export type PasswordFieldOptions = Prettify<
-  Parameters<typeof PasswordField>[0] & BaseFieldOptions<'password'>
->;
-
-export type SelectFieldOptions = Prettify<
-  Parameters<typeof SelectField>[0] & BaseFieldOptions<'select'>
->;
-
-export type RadioGroupFieldOptions = Prettify<
-  Parameters<typeof RadioGroupField>[0] &
-    BaseFieldOptions<'radio'> & { options: string[] }
->;
-
-export type FieldOptions =
-  | TextFieldOptions
-  | SelectFieldOptions
-  | PasswordFieldOptions
-  | PhoneNumberFieldOptions
-  | CheckboxFieldOptions
-  | RadioGroupFieldOptions;
-
-type FieldProps<Type extends FieldControlType> = {
-  type: Type;
-} & FieldOptions;
+import { default as Form, useFieldControl } from './Form';
+import {
+  BaseFieldComponent,
+  CheckboxFieldOptions,
+  FieldProps,
+  PasswordFieldOptions,
+  PhoneNumberFieldOptions,
+  RadioGroupFieldOptions,
+  SelectFieldOptions,
+  TextFieldOptions,
+} from './types';
 
 const isSelectFieldOptions = (props: unknown): props is SelectFieldOptions =>
   (props as SelectFieldOptions).type === 'select';
@@ -132,12 +98,11 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupFieldOptions>(
 // type FieldPropsRef<Type extends FieldControlType> = UnwrapRef<FieldProps<Type>['ref']>;
 
 // const Field = React.forwardRef(function Field<Type extends FieldControlType>(
-
-function Field<Type extends FieldControlType>(
-  props: FieldProps<Type>
+const BaseField: BaseFieldComponent = (
+  props
   // @todo mergeRefs?
   // ref: React.ForwardedRef<any>
-): JSX.Element | null {
+) => {
   const { error, name, onBlur, onChange, ref } = useFieldControl();
   const errorMessage = (error as { message?: string })?.message;
 
@@ -170,6 +135,20 @@ function Field<Type extends FieldControlType>(
   ) : isRadioGroupFieldOptions(combinedProps) ? (
     <RadioGroup {...combinedProps} />
   ) : null;
-}
+};
 // });
+
+export function Field({
+  Control = BaseField,
+  name,
+  validate,
+  ...rest
+}: FieldProps): JSX.Element {
+  return (
+    <Form.FieldControlProvider key={name} name={name} validate={validate}>
+      <Control {...rest} name={name} />
+    </Form.FieldControlProvider>
+  );
+}
+
 export default Field;

@@ -6,11 +6,12 @@ import { Flex, Loader, Text } from '@aws-amplify/ui-react';
 import { IconCopy } from '@aws-amplify/ui-react/internal';
 
 import { useQRCodeDataUrl } from '../../../hooks';
-import { QRCodeViewComponent } from './types';
+import { createDisplayName } from '../utils/index';
+import { TOTPViewComponent } from './types';
 
 const RESET_TOOTIP_TEXT_DELAY = 3000;
 
-const QRCodeView: QRCodeViewComponent = ({
+const TOTPView: TOTPViewComponent = ({
   copyTooltipText,
   totpSecretCode,
   totpIssuer,
@@ -60,6 +61,6 @@ const QRCodeView: QRCodeViewComponent = ({
   );
 };
 
-QRCodeView.displayName = 'QRCodeView';
+TOTPView.displayName = createDisplayName('TOTPView');
 
-export default QRCodeView;
+export default TOTPView;

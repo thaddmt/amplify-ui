@@ -141,18 +141,19 @@ export function useFieldControl(): FieldControlContextType {
   return context;
 }
 
+export interface FieldControlProviderProps {
+  children: React.ReactNode;
+  name: string;
+  // setValueAs?: (value: string) => string;
+  validate?: Validator | Record<string, Validator>;
+}
 // @todo Control prop?
 export function FieldControlProvider({
   children,
   name,
   // setValueAs,
   validate,
-}: {
-  children: React.ReactNode;
-  name: string;
-  // setValueAs?: (value: string) => string;
-  validate?: Validator | Record<string, Validator>;
-}): JSX.Element {
+}: FieldControlProviderProps): JSX.Element {
   const { formState, getFieldState, register } = useFormContext();
   // @todo explain destructure
   const { error, isDirty, isTouched, invalid } = getFieldState(name, formState);
@@ -298,7 +299,6 @@ export type FormComponent = React.ForwardRefExoticComponent<
   FormProps<FieldValues> & React.RefAttributes<FormHandle>
 >;
 
-// ignore missing control elements assigned below declaration
 const Form: FormComponent = React.forwardRef(function Form<
   Init extends FieldValues
 >(
@@ -331,8 +331,16 @@ const Form: FormComponent = React.forwardRef(function Form<
 
   return (
     <FormProvider {...formProviderProps}>
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-      <form onSubmit={handleSubmit}>{children}</form>
+      <Flex
+        // @todo move style to classes
+        data-amplify-container=""
+        direction="column"
+        as="form"
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={handleSubmit}
+      >
+        {children}
+      </Flex>
     </FormProvider>
   );
 });

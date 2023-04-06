@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { Icon } from '@aws-amplify/ui-react';
-import { ProviderIconComponents } from './types';
 
-const SignInWithApple = (): JSX.Element => (
+import { createDisplayName } from '../utils/index';
+import { FederatedProviderIconComponent } from './types';
+
+const Apple = (): JSX.Element => (
   <svg
     aria-label="Apple icon"
     className="amplify-icon federated-sign-in-icon"
@@ -55,7 +57,7 @@ const Facebook = (): JSX.Element => (
   />
 );
 
-const LoginWithAmazon = (): JSX.Element => (
+const Amazon = (): JSX.Element => (
   <svg
     aria-label="Amazon icon"
     className="amplify-icon federated-sign-in-icon"
@@ -76,11 +78,23 @@ const LoginWithAmazon = (): JSX.Element => (
   </svg>
 );
 
-const ProviderIcons: ProviderIconComponents = {
-  Facebook,
-  Google,
-  LoginWithAmazon,
-  SignInWithApple,
+const FederatedProviderIcon: FederatedProviderIconComponent = ({
+  provider,
+}) => {
+  switch (provider) {
+    case 'amazon':
+      return <Amazon />;
+    case 'apple':
+      return <Apple />;
+    case 'facebook':
+      return <Facebook />;
+    case 'google':
+      return <Google />;
+    default:
+      return null;
+  }
 };
 
-export default ProviderIcons;
+FederatedProviderIcon.displayName = createDisplayName('FederatedProviderIcon');
+
+export default FederatedProviderIcon;
