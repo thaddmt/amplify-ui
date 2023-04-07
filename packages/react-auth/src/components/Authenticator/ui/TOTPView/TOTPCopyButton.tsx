@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isFunction, isString, Prettify } from '@aws-amplify/ui';
+import { isFunction, isString } from '@aws-amplify/ui';
 import {
   resolveChildrenOrCallback,
   useTimeout,
@@ -8,24 +8,17 @@ import {
 import { Button } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
+import { useTOTPViewContext } from './ViewContext';
+import { TOTPCopyButtonComponent } from './types';
 
 const RESET_TOOTIP_TEXT_DELAY = 2000;
 
-type CopyButtonChildren = React.ReactNode | ((hasCopied: boolean) => string);
-type CopyButtonProps = Prettify<
-  Omit<Parameters<typeof Button>[0], 'children'> & {
-    target?: string;
-    children?: CopyButtonChildren;
-  }
->;
-type CopyButtonComponent<P = {}> = React.ComponentType<CopyButtonProps & P>;
-
-const CopyButton: CopyButtonComponent = ({
+const TOTPCopyButton: TOTPCopyButtonComponent = ({
   children,
-  target,
   onClick,
   ...props
-}): JSX.Element => {
+}) => {
+  const { copyButtonText, totpSecretCode } = useTOTPViewContext();
   const [hasCopied, setHasCopied] = React.useState(false);
 
   // @todo make util hook?
@@ -35,8 +28,8 @@ const CopyButton: CopyButtonComponent = ({
   useTimeout(() => setHasCopied(false), delay);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (isString(target)) {
-      navigator.clipboard.writeText(target);
+    if (isString(totpSecretCode)) {
+      navigator.clipboard.writeText(totpSecretCode);
       setHasCopied(true);
     }
 
@@ -45,7 +38,10 @@ const CopyButton: CopyButtonComponent = ({
     }
   };
 
-  const resolvedChildren = resolveChildrenOrCallback(children, hasCopied);
+  const resolvedChildren = resolveChildrenOrCallback(
+    children ?? copyButtonText,
+    hasCopied
+  );
 
   return (
     <Button {...props} onClick={handleClick}>
@@ -54,6 +50,6 @@ const CopyButton: CopyButtonComponent = ({
   );
 };
 
-CopyButton.displayName = createDisplayName('CopyButton');
+TOTPCopyButton.displayName = createDisplayName('TOTPCopyButton');
 
-export default CopyButton;
+export default TOTPCopyButton;

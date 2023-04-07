@@ -1,50 +1,52 @@
 import React from 'react';
 
-import { getTotpCodeURL } from '@aws-amplify/ui';
-import { Flex, Loader } from '@aws-amplify/ui-react';
-
-import { useQRCodeDataUrl } from '../../../../hooks';
+import { Flex, useAuthenticator } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
+
+import TOTPQRCodeImage from './TOTPQRCodeImage';
+import TOTPCopyButton from './TOTPCopyButton';
 import { TOTPViewComponent } from './types';
+import { TOTPViewContext } from './ViewContext';
+
+const DEFAULT_TOTP_ISSUER = 'AWSCognito';
 
 const TOTPView: TOTPViewComponent = ({
   alignItems = 'center',
+  copyButtonText,
   children,
   direction = 'column',
-  totpSecretCode,
-  totpIssuer,
-  totpUsername,
+  totpIssuer: overrideTOTPIssuer,
+  totpSecretCode: overrideTotpSecretCode,
+  totpUsername: overrideTotpUsername,
   ...props
 }) => {
-  // if `false`, prevent QR code url geenration and return `null`
-  const hasRequiredParams = totpIssuer && totpUsername && totpSecretCode;
+  const { totpSecretCode: defaultTotpSecretCode, user } = useAuthenticator(
+    ({ totpSecretCode, user }) => [totpSecretCode, user]
+  );
 
-  const input = hasRequiredParams
-    ? getTotpCodeURL(totpIssuer, totpUsername, totpSecretCode)
-    : undefined;
+  const totpIssuer = overrideTOTPIssuer ?? DEFAULT_TOTP_ISSUER;
+  const totpSecretCode = overrideTotpSecretCode ?? defaultTotpSecretCode;
+  const totpUsername = overrideTotpUsername ?? user?.username;
 
-  const { dataUrl, isLoading } = useQRCodeDataUrl({ input });
-
-  if (!hasRequiredParams) {
-    return null;
-  }
+  const value = React.useMemo(
+    () => ({ copyButtonText, totpIssuer, totpUsername, totpSecretCode }),
+    [copyButtonText, totpIssuer, totpUsername, totpSecretCode]
+  );
 
   return (
-    <Flex alignItems={alignItems} direction={direction} {...props}>
-      {isLoading ? (
-        <Loader size="large" />
-      ) : (
-        <img
-          data-amplify-qrcode
-          src={dataUrl}
-          alt="qr code"
-          width="228"
-          height="228"
-        />
-      )}
-      {children}
-    </Flex>
+    <TOTPViewContext.Provider value={value}>
+      <Flex alignItems={alignItems} direction={direction} {...props}>
+        {children ? (
+          children
+        ) : (
+          <>
+            <TOTPQRCodeImage />
+            <TOTPCopyButton />
+          </>
+        )}
+      </Flex>
+    </TOTPViewContext.Provider>
   );
 };
 

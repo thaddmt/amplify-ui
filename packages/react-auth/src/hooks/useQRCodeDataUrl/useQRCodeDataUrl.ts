@@ -1,20 +1,19 @@
 import React from 'react';
 import QRCode from 'qrcode';
 
-type UseAsyncHookParams<Params> = Params & {
-  onError?: (err: string) => void;
-};
+import { isFunction } from '@aws-amplify/ui';
 
-type UseAsyncHook<Return> = Return & {
+interface UseQRCodeUrlParams {
+  input: string | undefined;
+  onError?: (err: string) => void;
+  onSuccess?: (dataUrl: string) => void;
+}
+
+interface UseQRCodeUrl {
+  dataUrl: string | undefined;
   hasError: boolean;
   isLoading: boolean;
-};
-
-type UseQRCodeUrlParams = UseAsyncHookParams<{ input: string | undefined }>;
-
-type UseQRCodeUrl = UseAsyncHook<{
-  dataUrl: string | undefined;
-}>;
+}
 
 const INITIAL_OUTPUT: UseQRCodeUrl = {
   dataUrl: undefined,
@@ -31,6 +30,7 @@ const INITIAL_OUTPUT: UseQRCodeUrl = {
 export default function useQRCodeDataUrl({
   input,
   onError,
+  onSuccess,
 }: UseQRCodeUrlParams): UseQRCodeUrl {
   const [output, setOutput] = React.useState<UseQRCodeUrl>(
     () => INITIAL_OUTPUT
@@ -41,18 +41,20 @@ export default function useQRCodeDataUrl({
       return;
     }
 
-    const isLoading = false;
     try {
       QRCode.toDataURL(input).then((dataUrl) => {
-        setOutput((prev) => ({ ...prev, dataUrl, isLoading }));
+        if (isFunction(onSuccess)) {
+          onSuccess(dataUrl);
+        }
+        setOutput((prev) => ({ ...prev, dataUrl, isLoading: false }));
       });
     } catch (error) {
-      if (typeof onError === 'function') {
+      if (isFunction(onError)) {
         onError((error as Error).message);
       }
-      setOutput((prev) => ({ ...prev, hasError: true, isLoading }));
+      setOutput((prev) => ({ ...prev, hasError: true, isLoading: false }));
     }
-  }, [input, onError, output.dataUrl]);
+  }, [input, onError, onSuccess, output.dataUrl]);
 
   return output;
 }

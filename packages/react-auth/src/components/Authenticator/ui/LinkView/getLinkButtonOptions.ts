@@ -8,12 +8,17 @@ import {
 import { DefaultAuthenticatorDisplayText } from '../../displayText';
 import { LinkButtonProps } from './types';
 
+type LinkButtonDisplayText = Pick<
+  DefaultAuthenticatorDisplayText,
+  'getResetPasswordLinkText' | 'getSignInLinkText' | 'getSignUpLinkText'
+>;
+
 export default function getLinkButtonOptions<Route extends AuthenticatorRoute>({
-  displayText,
+  linkButtonDisplayText,
   route,
   setNavigableRoute,
 }: {
-  displayText: DefaultAuthenticatorDisplayText;
+  linkButtonDisplayText: LinkButtonDisplayText;
   route: Route;
   setNavigableRoute: UseAuthenticator['setNavigableRoute'];
 }): LinkButtonProps[] | undefined {
@@ -21,13 +26,14 @@ export default function getLinkButtonOptions<Route extends AuthenticatorRoute>({
     return undefined;
   }
 
+  const { getResetPasswordLinkText, getSignInLinkText, getSignUpLinkText } =
+    linkButtonDisplayText;
+
   switch (route) {
     case 'resetPassword': {
-      const { linkSignInText } = displayText.resetPassword;
-
       const buttons: LinkButtonProps[] = [
         {
-          children: linkSignInText,
+          children: getSignInLinkText(route),
           key: 'signIn',
           onClick: () => setNavigableRoute('signIn'),
         },
@@ -36,16 +42,14 @@ export default function getLinkButtonOptions<Route extends AuthenticatorRoute>({
       return buttons;
     }
     case 'signIn': {
-      const { linkResetPasswordText, linkSignUpText } = displayText.signIn;
-
       const buttons: LinkButtonProps[] = [
         {
-          children: linkResetPasswordText,
+          children: getResetPasswordLinkText(route),
           key: 'resetPassword',
           onClick: () => setNavigableRoute('resetPassword'),
         },
         {
-          children: linkSignUpText,
+          children: getSignUpLinkText(route),
           key: 'signUp',
           onClick: () => setNavigableRoute('signUp'),
         },
@@ -54,10 +58,9 @@ export default function getLinkButtonOptions<Route extends AuthenticatorRoute>({
       return buttons;
     }
     case 'setupTOTP': {
-      const { linkSignInText } = displayText.setupTOTP;
       const buttons: LinkButtonProps[] = [
         {
-          children: linkSignInText,
+          children: getSignInLinkText(route),
           key: 'signIn',
           onClick: () => setNavigableRoute('signIn'),
         },
@@ -66,11 +69,9 @@ export default function getLinkButtonOptions<Route extends AuthenticatorRoute>({
       return buttons;
     }
     case 'signUp': {
-      const { linkSignInText } = displayText.signUp;
-
       const buttons: LinkButtonProps[] = [
         {
-          children: linkSignInText,
+          children: getSignInLinkText(route),
           key: 'signIn',
           onClick: () => setNavigableRoute('signIn'),
         },

@@ -1,4 +1,5 @@
-export { Authenticator, AuthenticatorProps } from './Authenticator';
+export { Authenticator } from './Authenticator';
+export { AuthenticatorProps } from './types';
 export {
   withAuthenticator,
   WithAuthenticatorOptions,

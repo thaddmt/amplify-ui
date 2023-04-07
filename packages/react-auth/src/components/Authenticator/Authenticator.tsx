@@ -11,10 +11,9 @@ import {
 
 import { VERSION } from '../../version';
 
-import { defaultDisplayText } from './displayText';
+import { DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './displayText';
 import {
   ContainerView as DefaultContainerView,
-  CopyButton,
   Fields as DefaultFields,
   Field,
   Form as DefaultForm,
@@ -88,7 +87,7 @@ export function AuthenticatorInternal({
   // const props = useAuthenticatorProps({ route });
 
   const displayText = React.useMemo(
-    () => ({ ...overrideDisplayText, ...defaultDisplayText }),
+    () => ({ ...overrideDisplayText, ...DEFAULT_AUTHENTICATOR_DISPLAY_TEXT }),
     [overrideDisplayText]
   );
 
@@ -122,22 +121,35 @@ export function AuthenticatorInternal({
     return null;
   }
 
-  const { headingText, submitButtonText } = displayText[route];
+  const {
+    getCopyButtonText,
+    getHeadingText,
+    getSubmitButtonText,
+    getFederatedProviderButtonText,
+    ...linkButtonDisplayText
+  } = displayText;
+  const submitButtonText = getSubmitButtonText(route);
+  const headingText = getHeadingText(route);
 
   const hasFederatedProviders = route === 'signIn' || route === 'signUp';
 
   const totpProps = {
+    copyButtonText: getCopyButtonText,
     totpSecretCode: 'Secret!',
     // totpSecretCode: undefined,
     totpIssuer: 'AWSCognito',
     totpUsername: 'username',
   };
 
-  const links = getLinkButtonOptions({ displayText, route, setNavigableRoute });
+  const links = getLinkButtonOptions({
+    linkButtonDisplayText,
+    route,
+    setNavigableRoute,
+  });
   const providers = hasFederatedProviders
     ? getFederatedProviderOptions(
         socialProviders,
-        displayText[route].getFederatedProviderButtonText,
+        getFederatedProviderButtonText,
         (provider) => {
           // eslint-disable-next-line no-console
           console.log('provider', provider);
@@ -161,15 +173,11 @@ export function AuthenticatorInternal({
     <ContainerView variation={variation}>
       {/* <CustomHeaderProp /> */}
       <Form onSubmit={handleSubmit} ref={formRef}>
+        {/* <Heading level={3}>{headingText ?? calbbacl}</Heading> */}
         <Heading level={3}>{headingText}</Heading>
-
+        <Heading level={4}>Sub title</Heading>
         <FederatedProviderView providerOptions={providers} />
-
-        <TOTPView {...totpProps}>
-          <CopyButton target="secret code">
-            {displayText['setupTOTP'].getCopyTooltipText}
-          </CopyButton>
-        </TOTPView>
+        <TOTPView {...totpProps} />
         <DefaultFields fields={fields} />
         <ErrorView>{error}</ErrorView>
         <DefaultForm.ButtonControl type="submit">
