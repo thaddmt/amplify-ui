@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { getTotpCodeURL } from '@aws-amplify/ui';
-import { useTimeout } from '@aws-amplify/ui-react-core';
 import { Flex, Loader } from '@aws-amplify/ui-react';
 
 import { useQRCodeDataUrl } from '../../../../hooks';
@@ -9,28 +8,31 @@ import { useQRCodeDataUrl } from '../../../../hooks';
 import { createDisplayName } from '../utils';
 import { TOTPViewComponent } from './types';
 
-const RESET_TOOTIP_TEXT_DELAY = 3000;
-
 const TOTPView: TOTPViewComponent = ({
+  alignItems = 'center',
   children,
+  direction = 'column',
   totpSecretCode,
   totpIssuer,
   totpUsername,
-}): JSX.Element => {
-  const [hasCopied, setHasCopied] = React.useState(false);
+  ...props
+}) => {
+  // if `false`, prevent QR code url geenration and return `null`
+  const hasRequiredParams = totpIssuer && totpUsername && totpSecretCode;
 
-  const { dataUrl } = useQRCodeDataUrl({
-    input: getTotpCodeURL(totpIssuer, totpUsername, totpSecretCode),
-  });
+  const input = hasRequiredParams
+    ? getTotpCodeURL(totpIssuer, totpUsername, totpSecretCode)
+    : undefined;
 
-  // assigning `undefined` as the value of `delay` prevents `useTimeout`
-  // from running the callback
-  const delay = hasCopied ? RESET_TOOTIP_TEXT_DELAY : undefined;
-  useTimeout(() => setHasCopied(false), delay);
+  const { dataUrl, isLoading } = useQRCodeDataUrl({ input });
+
+  if (!hasRequiredParams) {
+    return null;
+  }
 
   return (
-    <Flex alignItems="center" direction="column">
-      {!dataUrl ? (
+    <Flex alignItems={alignItems} direction={direction} {...props}>
+      {isLoading ? (
         <Loader size="large" />
       ) : (
         <img

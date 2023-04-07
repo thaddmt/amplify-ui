@@ -14,12 +14,20 @@ export type FederatedProviderButtonProps = Prettify<
   Icon?: FederatedProviderIconComponent;
 };
 
+// @todo not sure if we want to go this deep in to component slots.
+// If that is the direction, may make more sense to do as top level
+// prop and handle map calls in Authenticator itself
+// export type FederatedProviderButtonComponent<P = {}> = React.ComponentType<
+//   FederatedProviderButtonProps & P
+// >;
+
 export interface FederatedProviderOptions
   extends Required<Pick<FederatedProviderButtonProps, 'children' | 'onClick'>> {
   Icon?: FederatedProviderIconComponent;
 }
 
 type FederatedProviderViewProps = Prettify<Parameters<typeof Flex>[0]> & {
+  // Button?: FederatedProviderButtonComponent;
   providerOptions?: FederatedProviderOptions[];
 };
 

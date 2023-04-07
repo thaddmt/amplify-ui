@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isString, Prettify } from '@aws-amplify/ui';
+import { isFunction, isString, Prettify } from '@aws-amplify/ui';
 import {
   resolveChildrenOrCallback,
   useTimeout,
@@ -20,24 +20,38 @@ type CopyButtonProps = Prettify<
 >;
 type CopyButtonComponent<P = {}> = React.ComponentType<CopyButtonProps & P>;
 
-const CopyButton: CopyButtonComponent = ({ children, target }): JSX.Element => {
+const CopyButton: CopyButtonComponent = ({
+  children,
+  target,
+  onClick,
+  ...props
+}): JSX.Element => {
   const [hasCopied, setHasCopied] = React.useState(false);
 
-  // assigning `undefined` as the value of `delay` prevents `useTimeout`
-  // from running the callback
+  // @todo make util hook?
+  // assign `undefined` as the value of `delay` to prevent `useTimeout`
+  // from running callback
   const delay = hasCopied ? RESET_TOOTIP_TEXT_DELAY : undefined;
   useTimeout(() => setHasCopied(false), delay);
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isString(target)) {
       navigator.clipboard.writeText(target);
       setHasCopied(true);
+    }
+
+    if (isFunction(onClick)) {
+      onClick(event);
     }
   };
 
   const resolvedChildren = resolveChildrenOrCallback(children, hasCopied);
 
-  return <Button onClick={handleClick}>{resolvedChildren}</Button>;
+  return (
+    <Button {...props} onClick={handleClick}>
+      {resolvedChildren}
+    </Button>
+  );
 };
 
 CopyButton.displayName = createDisplayName('CopyButton');

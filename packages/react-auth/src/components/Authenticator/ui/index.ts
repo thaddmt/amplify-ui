@@ -1,4 +1,4 @@
-export * from './Container';
+export * from './ContainerView';
 export * from './ErrorView';
 export * from './FederatedProviderView';
 export * from './Form';

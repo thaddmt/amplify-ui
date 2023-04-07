@@ -2,7 +2,6 @@ export { Authenticator, AuthenticatorProps } from './Authenticator';
 export {
   withAuthenticator,
   WithAuthenticatorOptions,
-  WithAuthenticatorProps,
 } from './withAuthenticator';
 
 // re-export shared `Authenticator` exports

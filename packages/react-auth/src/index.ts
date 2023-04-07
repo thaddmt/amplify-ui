@@ -5,5 +5,4 @@ export {
   useAuthenticator,
   withAuthenticator,
   WithAuthenticatorOptions,
-  WithAuthenticatorProps,
 } from './components';

@@ -3,7 +3,6 @@ export {
   AuthenticatorProps,
   withAuthenticator,
   WithAuthenticatorOptions,
-  WithAuthenticatorProps,
 } from './Authenticator';
 
 // re-export shared `Authenticator` exports

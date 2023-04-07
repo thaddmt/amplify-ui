@@ -10,14 +10,14 @@ type UseAsyncHook<Return> = Return & {
   isLoading: boolean;
 };
 
-type UseQRCodeUrlParams = UseAsyncHookParams<{ input: string }>;
+type UseQRCodeUrlParams = UseAsyncHookParams<{ input: string | undefined }>;
 
 type UseQRCodeUrl = UseAsyncHook<{
-  dataUrl: string | null;
+  dataUrl: string | undefined;
 }>;
 
 const INITIAL_OUTPUT: UseQRCodeUrl = {
-  dataUrl: null,
+  dataUrl: undefined,
   hasError: false,
   isLoading: true,
 };

@@ -3,15 +3,15 @@ import { View } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
 
-type ContainerProps = Parameters<typeof View>[0] & {
+type ContainerViewProps = Parameters<typeof View>[0] & {
   // @todo add full-screen maybe? Make modal cancelable?
   variation?: 'default' | 'modal';
 };
-export type ContainerComponent<P = {}> = React.ComponentType<
-  ContainerProps & P
+export type ContainerViewComponent<P = {}> = React.ComponentType<
+  ContainerViewProps & P
 >;
 
-const Container: ContainerComponent = ({
+const ContainerView: ContainerViewComponent = ({
   children,
   variation = 'default',
   ...props
@@ -29,6 +29,6 @@ const Container: ContainerComponent = ({
   );
 };
 
-Container.displayName = createDisplayName('Container');
+ContainerView.displayName = createDisplayName('ContainerView');
 
-export default Container;
+export default ContainerView;
