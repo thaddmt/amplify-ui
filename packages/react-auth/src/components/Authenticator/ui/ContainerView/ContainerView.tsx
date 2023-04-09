@@ -16,13 +16,14 @@ const ContainerView: ContainerViewComponent = ({
   variation = 'default',
   ...props
 }) => {
+  // @todo add context here
   return (
     <View
       {...props}
       data-amplify-authenticator=""
       // @todo all styles converted to classname
       data-variation={variation}
-      style={{ justifyContent: 'center' }}
+      style={{ justifyContent: 'center', backgroundColor: 'white' }}
     >
       {children}
     </View>

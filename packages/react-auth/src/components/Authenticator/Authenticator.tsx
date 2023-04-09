@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { configureComponent } from '@aws-amplify/ui';
 
-import { Heading } from '@aws-amplify/ui-react';
 import {
   AuthenticatorProvider as Provider,
   useAuthenticator,
@@ -17,12 +16,14 @@ import {
   Fields as DefaultFields,
   Field,
   Form as DefaultForm,
+  Heading as DefaultHeading,
   SubmitButton as DefaultSubmitButton,
   ErrorView as DefaultErrorView,
   LinkView as DefaultLinkView,
   getLinkButtonOptions,
   getFederatedProviderOptions,
   FederatedProviderView as DefaultFederatedProviderView,
+  SubHeading as DefaultSubHeading,
   TOTPView as DefaultTOTPView,
 } from './ui';
 import { getDefaultFields } from './utils';
@@ -174,8 +175,8 @@ export function AuthenticatorInternal({
       {/* <CustomHeaderProp /> */}
       <Form onSubmit={handleSubmit} ref={formRef}>
         {/* <Heading level={3}>{headingText ?? calbbacl}</Heading> */}
-        <Heading level={3}>{headingText}</Heading>
-        <Heading level={4}>Sub title</Heading>
+        <DefaultHeading>{headingText}</DefaultHeading>
+        <DefaultSubHeading>Sub title</DefaultSubHeading>
         <FederatedProviderView providerOptions={providers} />
         <TOTPView {...totpProps} />
         <DefaultFields fields={fields} />
@@ -200,13 +201,15 @@ export function Authenticator(props: AuthenticatorProps): JSX.Element {
   );
 }
 
-Authenticator.Provider = Provider;
-Authenticator.Field = Field;
-Authenticator.Form = DefaultForm;
 Authenticator.ErrorView = DefaultErrorView;
-Authenticator.SubmitButton = DefaultSubmitButton;
-Authenticator.TOTPView = DefaultTOTPView;
+Authenticator.Field = Field;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
+Authenticator.Form = DefaultForm;
+Authenticator.Heading = DefaultHeading;
+Authenticator.Provider = Provider;
+Authenticator.SubmitButton = DefaultSubmitButton;
+Authenticator.SubHeading = DefaultSubHeading;
+Authenticator.TOTPView = DefaultTOTPView;
 
 // Authenticator.Container = ...;
 
