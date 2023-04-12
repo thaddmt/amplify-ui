@@ -7,6 +7,7 @@ import {
 } from '@aws-amplify/ui-react-core';
 import { Button } from '@aws-amplify/ui-react';
 
+import { useDisplayText } from '../../context';
 import { createDisplayName } from '../utils';
 import { useTOTPViewContext } from './ViewContext';
 import { TOTPCopyButtonComponent } from './types';
@@ -18,8 +19,10 @@ const TOTPCopyButton: TOTPCopyButtonComponent = ({
   onClick,
   ...props
 }) => {
-  const { copyButtonText, totpSecretCode } = useTOTPViewContext();
+  const { totpSecretCode } = useTOTPViewContext();
   const [hasCopied, setHasCopied] = React.useState(false);
+
+  const { getCopyButtonText } = useDisplayText();
 
   // @todo make util hook?
   // assign `undefined` as the value of `delay` to prevent `useTimeout`
@@ -39,7 +42,7 @@ const TOTPCopyButton: TOTPCopyButtonComponent = ({
   };
 
   const resolvedChildren = resolveChildrenOrCallback(
-    children ?? copyButtonText,
+    children ?? getCopyButtonText,
     hasCopied
   );
 

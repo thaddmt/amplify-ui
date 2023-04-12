@@ -4,9 +4,11 @@ import { TOTPViewContextType } from './types';
 
 const [TOTPViewContext, useTOTPViewContext] =
   createContextUtility<TOTPViewContextType>({
-    totpIssuer: undefined,
-    totpSecretCode: undefined,
-    totpUsername: undefined,
+    initialValue: {
+      totpIssuer: undefined,
+      totpSecretCode: undefined,
+      totpUsername: undefined,
+    },
   });
 
 export { TOTPViewContext, useTOTPViewContext };

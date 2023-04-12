@@ -23,12 +23,9 @@ export type TOTPCopyButtonComponent<P = {}> = React.ComponentType<
 >;
 
 export type TOTPViewContextType = {
-  copyButtonText?: string | ((hasCopied: boolean) => string) | undefined;
   totpIssuer?: string | undefined | null;
   totpSecretCode?: string | undefined | null;
   totpUsername?: string | undefined | null;
 };
 
-type TOTPViewProps = Prettify<Parameters<typeof Flex>[0]> & TOTPViewContextType;
-
-export type TOTPViewComponent<P = {}> = React.ComponentType<TOTPViewProps & P>;
+export type FlexProps = Prettify<Parameters<typeof Flex>[0]>;

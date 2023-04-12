@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AuthenticatorMachineOptions } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core-auth';
 
-import { AuthenticatorDisplayText } from './displayText';
+import { AuthenticatorDisplayText } from './context';
 import {
   ContainerViewComponent,
   FieldOptions,
@@ -12,7 +12,7 @@ import {
   ErrorViewComponent,
   LinkViewComponent,
   FederatedProviderViewComponent,
-  TOTPViewComponent,
+  // TOTPViewComponent,
 } from './ui';
 
 type Fields = Partial<
@@ -34,7 +34,7 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
   FederatedProviderView?: FederatedProviderViewComponent;
-  TOTPView?: TOTPViewComponent;
+  TOTPView?: any;
 
   variation?: 'default' | 'modal';
 };

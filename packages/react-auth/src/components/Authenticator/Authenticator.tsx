@@ -10,6 +10,7 @@ import {
 
 import { VERSION } from '../../version';
 
+import { DisplayTextProvider } from './context';
 import { DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './displayText';
 import {
   ContainerView as DefaultContainerView,
@@ -85,6 +86,11 @@ export function AuthenticatorInternal({
     formFields,
   });
 
+  const value = React.useMemo(
+    () => ({ ...DEFAULT_AUTHENTICATOR_DISPLAY_TEXT, ...overrideDisplayText }),
+    [overrideDisplayText]
+  );
+
   // const props = useAuthenticatorProps({ route });
 
   const displayText = React.useMemo(
@@ -123,7 +129,6 @@ export function AuthenticatorInternal({
   }
 
   const {
-    getCopyButtonText,
     getHeadingText,
     getSubmitButtonText,
     getFederatedProviderButtonText,
@@ -135,7 +140,6 @@ export function AuthenticatorInternal({
   const hasFederatedProviders = route === 'signIn' || route === 'signUp';
 
   const totpProps = {
-    copyButtonText: getCopyButtonText,
     totpSecretCode: 'Secret!',
     // totpSecretCode: undefined,
     totpIssuer: 'AWSCognito',
@@ -171,22 +175,26 @@ export function AuthenticatorInternal({
   // }
 
   return (
-    <ContainerView variation={variation}>
-      {/* <CustomHeaderProp /> */}
-      <Form onSubmit={handleSubmit} ref={formRef}>
-        {/* <Heading level={3}>{headingText ?? calbbacl}</Heading> */}
-        <DefaultHeading>{headingText}</DefaultHeading>
-        <DefaultSubHeading>Sub title</DefaultSubHeading>
-        <FederatedProviderView providerOptions={providers} />
-        <TOTPView {...totpProps} />
-        <DefaultFields fields={fields} />
-        <ErrorView>{error}</ErrorView>
-        <DefaultForm.ButtonControl type="submit">
-          <SubmitButton isDisabled={isPending}>{submitButtonText}</SubmitButton>
-        </DefaultForm.ButtonControl>
-        <LinkView links={links} />
-      </Form>
-    </ContainerView>
+    <DisplayTextProvider value={value}>
+      <ContainerView variation={variation}>
+        {/* <CustomHeaderProp /> */}
+        <Form onSubmit={handleSubmit} ref={formRef}>
+          {/* <Heading level={3}>{headingText ?? calbbacl}</Heading> */}
+          <DefaultHeading>{headingText}</DefaultHeading>
+          <DefaultSubHeading>Sub title</DefaultSubHeading>
+          <FederatedProviderView providerOptions={providers} />
+          <TOTPView {...totpProps} />
+          <DefaultFields fields={fields} />
+          <ErrorView>{error}</ErrorView>
+          <DefaultForm.ButtonControl type="submit">
+            <SubmitButton isDisabled={isPending}>
+              {submitButtonText}
+            </SubmitButton>
+          </DefaultForm.ButtonControl>
+          <LinkView links={links} />
+        </Form>
+      </ContainerView>
+    </DisplayTextProvider>
   );
 }
 

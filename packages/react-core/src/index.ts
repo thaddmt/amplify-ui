@@ -48,4 +48,8 @@ export {
 // components/hooks/utils
 export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
-export { createContextUtility, resolveChildrenOrCallback } from './utils';
+export {
+  createContextUtility,
+  createProviderView,
+  resolveChildrenOrCallback,
+} from './utils';
