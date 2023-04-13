@@ -1,2 +1,2 @@
-export { default as createTOTPView } from './createTOTPView';
+export { withTOTPView } from './withTOTPView';
 export { useTOTPView } from './TOTPViewContext';

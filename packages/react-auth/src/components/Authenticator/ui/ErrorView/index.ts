@@ -1,1 +1,1 @@
-export { default as ErrorView, ErrorViewComponent } from './ErrorView';
+export { default as ErrorView } from './ErrorView';

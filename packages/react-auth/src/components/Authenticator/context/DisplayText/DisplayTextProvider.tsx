@@ -6,6 +6,7 @@ import {
   DefaultAuthenticatorDisplayText,
 } from './types';
 
+// @todo add actual DisplayTextProvider
 const [{ Provider: DisplayTextProvider }, useDisplayText] =
   createContextUtility<
     AuthenticatorDisplayText | null,

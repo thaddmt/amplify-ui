@@ -8,9 +8,9 @@ import {
   FieldOptions,
   FormComponent,
   SubmitButtonComponent,
-  ErrorViewComponent,
-  LinkViewComponent,
-  FederatedProviderViewComponent,
+  // ErrorViewComponent,
+  // LinkViewComponent,
+  // FederatedProviderViewComponent,
   // TOTPViewComponent,
 } from './ui';
 
@@ -25,18 +25,21 @@ type DefaultViewComponent<P = {}> = React.ComponentType<
   { children?: React.ReactNode } & P
 >;
 
+// @todo does this make sense to allow a full Authenticator override?
+// type Components = Authenticator | { } // route keys: component
+
 export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   children?: React.ReactNode;
-
   displayText?: AuthenticatorDisplayText;
   fields?: Fields;
 
-  ContainerView?: DefaultViewComponent;
   Form?: FormComponent;
-  ErrorView?: ErrorViewComponent;
-  LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
-  FederatedProviderView?: FederatedProviderViewComponent;
+
+  ContainerView?: DefaultViewComponent;
+  ErrorView?: DefaultViewComponent;
+  LinkView?: DefaultViewComponent;
+  FederatedProviderView?: DefaultViewComponent;
   TOTPView?: DefaultViewComponent;
 
   variation?: 'default' | 'modal';

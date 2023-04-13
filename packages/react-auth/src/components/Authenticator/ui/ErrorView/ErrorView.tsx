@@ -1,26 +1,19 @@
 import React from 'react';
-import { Prettify } from '@aws-amplify/ui';
-import { Alert } from '@aws-amplify/ui-react';
 
-import { createDisplayName } from '../utils';
+import { Flex } from '@aws-amplify/ui-react';
 
-type ErrorViewProps = Prettify<Parameters<typeof Alert>[0]>;
+import ErrorAlert from './ErrorAlert';
+import { FlexProps } from './types';
 
-export type ErrorViewComponent<P = {}> = React.ComponentType<
-  ErrorViewProps & P
->;
-
-const ErrorView: ErrorViewComponent = ({
+const ErrorView = ({
+  // @todo add classname
   children,
-  variation = 'error',
+  direction = 'column',
   ...props
-}: ErrorViewProps): JSX.Element | null =>
-  !children ? null : (
-    <Alert {...props} variation={variation}>
-      {children}
-    </Alert>
-  );
-
-ErrorView.displayName = createDisplayName('ErrorView');
+}: FlexProps): JSX.Element => (
+  <Flex direction={direction} {...props}>
+    {children ? children : <ErrorAlert />}
+  </Flex>
+);
 
 export default ErrorView;

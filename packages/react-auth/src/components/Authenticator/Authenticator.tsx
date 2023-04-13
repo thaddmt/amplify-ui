@@ -11,7 +11,11 @@ import {
 import { VERSION } from '../../version';
 
 import { DisplayTextProvider, RouteContext } from './context';
-import { createTOTPView, DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './context';
+import {
+  DEFAULT_AUTHENTICATOR_DISPLAY_TEXT,
+  withErrorView,
+  withTOTPView,
+} from './context';
 import {
   ContainerView as DefaultContainerView,
   Fields as DefaultFields,
@@ -19,8 +23,8 @@ import {
   Form as DefaultForm,
   Heading as DefaultHeading,
   SubmitButton as DefaultSubmitButton,
-  ErrorView as DefaultErrorView,
-  LinkView as DefaultLinkView,
+  ErrorView as BaseErrorView,
+  // LinkView as DefaultLinkView,
   getLinkButtonOptions,
   getFederatedProviderOptions,
   FederatedProviderView as DefaultFederatedProviderView,
@@ -43,7 +47,14 @@ import { AuthenticatorProps } from './types';
 // Once the `Provider` is removed from the `Authenticator` component and exported as
 // `AuthenticatorProvider`, this component should be renamed to `Authenticator`.
 
-const DefaultTOTPView = createTOTPView(TOTPViewPrimitive);
+// const createAUthenticator = ({ views, options }) => {
+//   const DefaultTOTPView = createTOTPView(TOTPViewPrimitive);
+
+//   Authenticator
+// }
+
+const Errrrrr = withErrorView(BaseErrorView);
+const DefaultTOTPView = withTOTPView(TOTPViewPrimitive);
 
 export function AuthenticatorInternal({
   // @todo create example showing how to do this without prop
@@ -51,12 +62,12 @@ export function AuthenticatorInternal({
   children,
   displayText: overrideDisplayText,
   ContainerView: OverrideContainerView,
-  ErrorView = DefaultErrorView,
-  FederatedProviderView = DefaultFederatedProviderView,
+  // ErrorView = DefaultErrorView,
+  // FederatedProviderView = DefaultFederatedProviderView,
   Form = DefaultForm,
   formFields,
   initialState,
-  LinkView = DefaultLinkView,
+  // LinkView = DefaultLinkView,
   loginMechanisms,
   TOTPView: OverrideTOTPView,
   services,
@@ -69,19 +80,15 @@ export function AuthenticatorInternal({
     () => ({
       ContainerView: OverrideContainerView ?? DefaultContainerView,
       TOTPView: OverrideTOTPView
-        ? createTOTPView(OverrideTOTPView)
+        ? withTOTPView(OverrideTOTPView)
         : DefaultTOTPView,
     }),
     [OverrideContainerView, OverrideTOTPView]
   );
 
-  // @todo rename error to submitError (or similar)?
-  const { error, isPending, route, setNavigableRoute, submitForm } =
-    useAuthenticator(({ error, isPending, route }) => [
-      error,
-      isPending,
-      route,
-    ]);
+  const { isPending, route, setNavigableRoute, submitForm } = useAuthenticator(
+    ({ error, isPending, route }) => [error, isPending, route]
+  );
 
   React.useEffect(() => {
     configureComponent({
@@ -173,6 +180,11 @@ export function AuthenticatorInternal({
       )
     : undefined;
 
+  // eslint-disable-next-line no-console
+  console.log('links', links);
+  // eslint-disable-next-line no-console
+  console.log('providers', providers);
+
   const handleSubmit = (data: Record<string, string>) => {
     // eslint-disable-next-line no-console
     console.log('Sbbbbbbbbmit', data);
@@ -185,7 +197,7 @@ export function AuthenticatorInternal({
 
   // const Override = components?.[route];
   // if (Override) {
-  //   // @todo "props" will match the context value that is passed to ContainerViewContext
+  //   // @todo "props" will match the context value that is passed to ContainerView Context
   //   // DisplayTextProvider and RouteContext.Provider will wrap both
   //   return <Override {...props} />;
   // }
@@ -195,19 +207,20 @@ export function AuthenticatorInternal({
       <DisplayTextProvider value={displayTextValue}>
         <ContainerView route={route} variation={variation}>
           {/* <CustomHeaderProp /> */}
+
           <Form onSubmit={handleSubmit} ref={formRef}>
             <DefaultHeading />
             <DefaultSubHeading />
-            <FederatedProviderView providerOptions={providers} />
+            {/* <FederatedProviderView providerOptions={providers} /> */}
             <TOTPView {...totpProps} />
             <DefaultFields fields={fields} />
-            <ErrorView>{error}</ErrorView>
+            <Errrrrr />
             <DefaultForm.ButtonControl type="submit">
               <SubmitButton isDisabled={isPending}>
                 {submitButtonText}
               </SubmitButton>
             </DefaultForm.ButtonControl>
-            <LinkView links={links} />
+            {/* <LinkView links={links} /> */}
           </Form>
         </ContainerView>
       </DisplayTextProvider>
@@ -231,19 +244,20 @@ export function Authenticator(props: AuthenticatorProps): JSX.Element {
   );
 }
 
+// do not require a View context
+Authenticator.Heading = DefaultHeading;
+Authenticator.SubHeading = DefaultSubHeading;
+Authenticator.Provider = Provider;
+
+// require a View context
 Authenticator.Container = DefaultContainerView;
 Authenticator.TOTPView = DefaultTOTPView;
 
-Authenticator.ErrorView = DefaultErrorView;
+Authenticator.ErrorView = Errrrrr;
 Authenticator.Field = Field;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
+
+// @todo should Form be part of the wrapping component, and not s static property
 Authenticator.Form = DefaultForm;
-Authenticator.Heading = DefaultHeading;
-Authenticator.Provider = Provider;
+
 Authenticator.SubmitButton = DefaultSubmitButton;
-Authenticator.SubHeading = DefaultSubHeading;
-
-// Authenticator.Container = ...;
-
-// should these take children?
-// Authenticator.Field = ...;

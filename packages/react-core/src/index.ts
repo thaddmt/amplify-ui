@@ -45,11 +45,8 @@ export {
   useMessage,
 } from './InAppMessaging';
 
-// components/hooks/utils
+// generic components/hooks/typo/utils
 export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
-export {
-  createContextUtility,
-  composeProviderView,
-  resolveChildrenOrCallback,
-} from './utils';
+export { PropsType, WithContextProps } from './types';
+export { createContextUtility, resolveChildrenOrCallback } from './utils';
