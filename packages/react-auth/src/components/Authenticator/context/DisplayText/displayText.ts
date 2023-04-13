@@ -10,5 +10,6 @@ export const DEFAULT_AUTHENTICATOR_DISPLAY_TEXT: DefaultAuthenticatorDisplayText
     getSignUpLinkText: () => 'Create Account',
     getHeadingText: (route) => capitalize(route),
     getSignInLinkText: () => 'Back to Sign In',
+    getSubHeadingText: (route) => `${route} Sub Heading`,
     getSubmitButtonText: () => 'Submit Button',
   };

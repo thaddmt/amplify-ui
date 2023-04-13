@@ -1,4 +1,2 @@
-export {
-  default as ContainerView,
-  ContainerViewComponent,
-} from './ContainerView';
+export { default as ContainerView } from './ContainerView';
+// export {} from './types';

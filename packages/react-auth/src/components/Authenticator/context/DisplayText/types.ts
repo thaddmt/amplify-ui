@@ -1,7 +1,7 @@
 import { Prettify, RequiredDeep } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core';
 
-// @todo do template types go in react-core or ui?
+// @todo do template types go in /ui-react-core or /ui?
 type GetDisplayTextKey = `get${string}Text`;
 type DisplayTextKey = `${string}Text`;
 
@@ -26,6 +26,8 @@ type GetSubmitButtonText = (route: AuthenticatorRouteComponentKey) => string;
 
 type GetHeadingText = (route: AuthenticatorRouteComponentKey) => string;
 
+type GetSubHeadingText = (route: AuthenticatorRouteComponentKey) => string;
+
 type GetSignInLinkText = (
   route: 'resetPassword' | 'signUp' | 'setupTOTP'
 ) => string;
@@ -41,6 +43,7 @@ export type AuthenticatorDisplayText = TypedDisplayText<{
   getResetPasswordLinkText: GetResetPasswordLinkText;
   getSignInLinkText?: GetSignInLinkText;
   getSignUpLinkText?: GetSignUpLinkText;
+  getSubHeadingText?: GetSubHeadingText;
   getSubmitButtonText?: GetSubmitButtonText;
 }>;
 

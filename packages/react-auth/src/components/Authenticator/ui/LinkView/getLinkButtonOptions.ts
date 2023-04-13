@@ -5,7 +5,7 @@ import {
   isAuthenticatorComponentRouteKey,
 } from '@aws-amplify/ui-react-core-auth';
 
-import { DefaultAuthenticatorDisplayText } from '../../displayText';
+import { DefaultAuthenticatorDisplayText } from '../../context';
 import { LinkButtonProps } from './types';
 
 type LinkButtonDisplayText = Pick<

@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Heading as BaseHeading } from '@aws-amplify/ui-react';
+
+import { useDisplayText, useRoute } from '../../context';
 import { createDisplayName } from '../utils';
 
 type SubHeadingProps = Parameters<typeof BaseHeading>[0];
@@ -15,9 +17,12 @@ const SubHeading: SubHeadingComponent = ({
   level = DEFAULT_LEVEL,
   ...props
 }) => {
+  const { route } = useRoute();
+  const { getSubHeadingText } = useDisplayText();
+
   return (
     <BaseHeading {...props} level={level}>
-      {children}
+      {children ? children : getSubHeadingText(route)}
     </BaseHeading>
   );
 };

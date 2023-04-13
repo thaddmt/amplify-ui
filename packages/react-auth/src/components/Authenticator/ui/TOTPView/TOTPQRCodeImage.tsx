@@ -5,7 +5,7 @@ import { getTotpCodeURL } from '@aws-amplify/ui';
 import { useQRCodeDataUrl } from '../../../../hooks';
 
 import { createDisplayName } from '../utils';
-import { useTOTPViewContext } from './ViewContext';
+import { useTOTPView } from '../../context';
 import { LoaderComponent, QRCodeImageComponent } from './types';
 
 const DefaultLoaderComponent: LoaderComponent = ({
@@ -20,12 +20,13 @@ const DefaultLoaderComponent: LoaderComponent = ({
 
 const QRCodeImage: QRCodeImageComponent = ({
   alt = 'qr code',
-  width = '228',
-  height = '228',
+  children,
   Loader = DefaultLoaderComponent,
+  height = '228',
+  width = '228',
   ...props
 }) => {
-  const { totpIssuer, totpSecretCode, totpUsername } = useTOTPViewContext();
+  const { totpIssuer, totpSecretCode, totpUsername } = useTOTPView();
 
   // prevent QR code url generation if `false`
   const hasRequiredParams = totpIssuer && totpSecretCode && totpUsername;
@@ -50,7 +51,9 @@ const QRCodeImage: QRCodeImageComponent = ({
       alt={alt}
       width={width}
       height={height}
-    />
+    >
+      {children}
+    </Image>
   );
 };
 

@@ -7,9 +7,8 @@ import {
 } from '@aws-amplify/ui-react-core';
 import { Button } from '@aws-amplify/ui-react';
 
-import { useDisplayText } from '../../context';
+import { useDisplayText, useTOTPView } from '../../context';
 import { createDisplayName } from '../utils';
-import { useTOTPViewContext } from './ViewContext';
 import { TOTPCopyButtonComponent } from './types';
 
 const RESET_TOOTIP_TEXT_DELAY = 2000;
@@ -19,7 +18,7 @@ const TOTPCopyButton: TOTPCopyButtonComponent = ({
   onClick,
   ...props
 }) => {
-  const { totpSecretCode } = useTOTPViewContext();
+  const { totpSecretCode } = useTOTPView();
   const [hasCopied, setHasCopied] = React.useState(false);
 
   const { getCopyButtonText } = useDisplayText();
@@ -41,14 +40,11 @@ const TOTPCopyButton: TOTPCopyButtonComponent = ({
     }
   };
 
-  const resolvedChildren = resolveChildrenOrCallback(
-    children ?? getCopyButtonText,
-    hasCopied
-  );
-
   return (
     <Button {...props} onClick={handleClick}>
-      {resolvedChildren}
+      {children
+        ? children
+        : resolveChildrenOrCallback(getCopyButtonText, hasCopied)}
     </Button>
   );
 };

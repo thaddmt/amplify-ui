@@ -10,8 +10,8 @@ import {
 
 import { VERSION } from '../../version';
 
-import { DisplayTextProvider } from './context';
-import { DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './displayText';
+import { DisplayTextProvider, RouteContext } from './context';
+import { createTOTPView, DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './context';
 import {
   ContainerView as DefaultContainerView,
   Fields as DefaultFields,
@@ -25,7 +25,7 @@ import {
   getFederatedProviderOptions,
   FederatedProviderView as DefaultFederatedProviderView,
   SubHeading as DefaultSubHeading,
-  TOTPView as DefaultTOTPView,
+  TOTPView as TOTPViewPrimitive,
 } from './ui';
 import { getDefaultFields } from './utils';
 import { AuthenticatorProps } from './types';
@@ -42,11 +42,15 @@ import { AuthenticatorProps } from './types';
 // which allows the `Authenticator` to just return `children` if a user is authenticated.
 // Once the `Provider` is removed from the `Authenticator` component and exported as
 // `AuthenticatorProvider`, this component should be renamed to `Authenticator`.
+
+const DefaultTOTPView = createTOTPView(TOTPViewPrimitive);
+
 export function AuthenticatorInternal({
+  // @todo create example showing how to do this without prop
   // hideSignUp,
   children,
   displayText: overrideDisplayText,
-  ContainerView = DefaultContainerView,
+  ContainerView: OverrideContainerView,
   ErrorView = DefaultErrorView,
   FederatedProviderView = DefaultFederatedProviderView,
   Form = DefaultForm,
@@ -54,13 +58,23 @@ export function AuthenticatorInternal({
   initialState,
   LinkView = DefaultLinkView,
   loginMechanisms,
-  TOTPView = DefaultTOTPView,
+  TOTPView: OverrideTOTPView,
   services,
   signUpAttributes,
   socialProviders,
   SubmitButton = DefaultSubmitButton,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
+  const { ContainerView, TOTPView } = React.useMemo(
+    () => ({
+      ContainerView: OverrideContainerView ?? DefaultContainerView,
+      TOTPView: OverrideTOTPView
+        ? createTOTPView(OverrideTOTPView)
+        : DefaultTOTPView,
+    }),
+    [OverrideContainerView, OverrideTOTPView]
+  );
+
   // @todo rename error to submitError (or similar)?
   const { error, isPending, route, setNavigableRoute, submitForm } =
     useAuthenticator(({ error, isPending, route }) => [
@@ -86,17 +100,16 @@ export function AuthenticatorInternal({
     formFields,
   });
 
-  const value = React.useMemo(
+  const displayTextValue = React.useMemo(
     () => ({ ...DEFAULT_AUTHENTICATOR_DISPLAY_TEXT, ...overrideDisplayText }),
     [overrideDisplayText]
   );
+  const routeValue = React.useMemo(
+    () => (isAuthenticatorComponentRouteKey(route) ? { route } : null),
+    [route]
+  );
 
   // const props = useAuthenticatorProps({ route });
-
-  const displayText = React.useMemo(
-    () => ({ ...overrideDisplayText, ...DEFAULT_AUTHENTICATOR_DISPLAY_TEXT }),
-    [overrideDisplayText]
-  );
 
   const fields = React.useMemo(
     () => getDefaultFields({ route, loginMechanism: loginMechanisms?.[0] }),
@@ -129,13 +142,11 @@ export function AuthenticatorInternal({
   }
 
   const {
-    getHeadingText,
     getSubmitButtonText,
     getFederatedProviderButtonText,
     ...linkButtonDisplayText
-  } = displayText;
+  } = displayTextValue;
   const submitButtonText = getSubmitButtonText(route);
-  const headingText = getHeadingText(route);
 
   const hasFederatedProviders = route === 'signIn' || route === 'signUp';
 
@@ -169,34 +180,45 @@ export function AuthenticatorInternal({
     submitForm(data);
   };
 
+  // eslint-disable-next-line no-console
+  console.count('A.Render');
+
   // const Override = components?.[route];
   // if (Override) {
+  //   // @todo "props" will match the context value that is passed to ContainerViewContext
+  //   // DisplayTextProvider and RouteContext.Provider will wrap both
   //   return <Override {...props} />;
   // }
 
   return (
-    <DisplayTextProvider value={value}>
-      <ContainerView variation={variation}>
-        {/* <CustomHeaderProp /> */}
-        <Form onSubmit={handleSubmit} ref={formRef}>
-          {/* <Heading level={3}>{headingText ?? calbbacl}</Heading> */}
-          <DefaultHeading>{headingText}</DefaultHeading>
-          <DefaultSubHeading>Sub title</DefaultSubHeading>
-          <FederatedProviderView providerOptions={providers} />
-          <TOTPView {...totpProps} />
-          <DefaultFields fields={fields} />
-          <ErrorView>{error}</ErrorView>
-          <DefaultForm.ButtonControl type="submit">
-            <SubmitButton isDisabled={isPending}>
-              {submitButtonText}
-            </SubmitButton>
-          </DefaultForm.ButtonControl>
-          <LinkView links={links} />
-        </Form>
-      </ContainerView>
-    </DisplayTextProvider>
+    <RouteContext.Provider value={routeValue}>
+      <DisplayTextProvider value={displayTextValue}>
+        <ContainerView route={route} variation={variation}>
+          {/* <CustomHeaderProp /> */}
+          <Form onSubmit={handleSubmit} ref={formRef}>
+            <DefaultHeading />
+            <DefaultSubHeading />
+            <FederatedProviderView providerOptions={providers} />
+            <TOTPView {...totpProps} />
+            <DefaultFields fields={fields} />
+            <ErrorView>{error}</ErrorView>
+            <DefaultForm.ButtonControl type="submit">
+              <SubmitButton isDisabled={isPending}>
+                {submitButtonText}
+              </SubmitButton>
+            </DefaultForm.ButtonControl>
+            <LinkView links={links} />
+          </Form>
+        </ContainerView>
+      </DisplayTextProvider>
+    </RouteContext.Provider>
   );
 }
+
+// const TextComp = (_: { children?: React.ReactNode; style?: string }) => (
+//   <>LOL</>
+// );
+// <AuthenticatorInternal ContainerView={TextComp} />;
 
 /**
  * [📖 Docs](https://ui.docs.amplify.aws/react/connected-components/authenticator)
@@ -209,6 +231,9 @@ export function Authenticator(props: AuthenticatorProps): JSX.Element {
   );
 }
 
+Authenticator.Container = DefaultContainerView;
+Authenticator.TOTPView = DefaultTOTPView;
+
 Authenticator.ErrorView = DefaultErrorView;
 Authenticator.Field = Field;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
@@ -217,7 +242,6 @@ Authenticator.Heading = DefaultHeading;
 Authenticator.Provider = Provider;
 Authenticator.SubmitButton = DefaultSubmitButton;
 Authenticator.SubHeading = DefaultSubHeading;
-Authenticator.TOTPView = DefaultTOTPView;
 
 // Authenticator.Container = ...;
 

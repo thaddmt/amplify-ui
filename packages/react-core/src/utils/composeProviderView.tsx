@@ -7,10 +7,7 @@ type ResolveProps<ViewProps, ProviderProps> = (
   viewProps: ViewProps;
 };
 
-type CreateProviderViewParams<
-  ViewProps extends JSX.IntrinsicAttributes,
-  ProviderProps
-> = {
+type ComposeProviderViewParams<ViewProps, ProviderProps> = {
   displayName: string;
   Provider: React.ComponentType<ProviderProps & { children?: React.ReactNode }>;
   View: React.ComponentType<ViewProps>;
@@ -23,22 +20,20 @@ type CreateProviderViewParams<
  * @param params
  * @returns
  */
-export default function createProviderView<
-  ViewProps extends JSX.IntrinsicAttributes,
-  ProviderProps
->({
+export default function composeProviderView<ViewProps, ProviderProps>({
   Provider,
   displayName,
   resolveProps,
   View,
-}: CreateProviderViewParams<ViewProps, ProviderProps>): React.ComponentType<
+}: ComposeProviderViewParams<ViewProps, ProviderProps>): React.ComponentType<
   ViewProps & ProviderProps
 > {
   function ProviderView(props: ViewProps & ProviderProps) {
     const { providerProps, viewProps } = resolveProps(props);
+
     return (
       <Provider {...providerProps}>
-        <View {...viewProps} />
+        <View {...(viewProps as ViewProps & JSX.IntrinsicAttributes)} />
       </Provider>
     );
   }

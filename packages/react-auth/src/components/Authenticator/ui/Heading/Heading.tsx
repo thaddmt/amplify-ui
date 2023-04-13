@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { Heading as BaseHeading } from '@aws-amplify/ui-react';
+import { resolveChildrenOrCallback } from '@aws-amplify/ui-react-core';
+
+import { useRoute, useDisplayText } from '../../context';
 import { createDisplayName } from '../utils';
 
 type HeadingProps = Parameters<typeof BaseHeading>[0];
@@ -13,9 +16,12 @@ const Heading: HeadingComponent = ({
   level = DEFAULT_LEVEL,
   ...props
 }) => {
+  const { route } = useRoute();
+  const { getHeadingText } = useDisplayText();
+
   return (
     <BaseHeading {...props} level={level}>
-      {children}
+      {children ? children : resolveChildrenOrCallback(getHeadingText, route)}
     </BaseHeading>
   );
 };

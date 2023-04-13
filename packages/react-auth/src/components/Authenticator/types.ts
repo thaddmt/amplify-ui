@@ -5,7 +5,6 @@ import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core-auth'
 
 import { AuthenticatorDisplayText } from './context';
 import {
-  ContainerViewComponent,
   FieldOptions,
   FormComponent,
   SubmitButtonComponent,
@@ -22,19 +21,23 @@ type Fields = Partial<
   >
 >;
 
+type DefaultViewComponent<P = {}> = React.ComponentType<
+  { children?: React.ReactNode } & P
+>;
+
 export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   children?: React.ReactNode;
 
   displayText?: AuthenticatorDisplayText;
   fields?: Fields;
 
-  ContainerView?: ContainerViewComponent;
+  ContainerView?: DefaultViewComponent;
   Form?: FormComponent;
   ErrorView?: ErrorViewComponent;
   LinkView?: LinkViewComponent;
   SubmitButton?: SubmitButtonComponent;
   FederatedProviderView?: FederatedProviderViewComponent;
-  TOTPView?: any;
+  TOTPView?: DefaultViewComponent;
 
   variation?: 'default' | 'modal';
 };

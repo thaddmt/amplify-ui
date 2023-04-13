@@ -2,7 +2,7 @@ import { createContextUtility } from '@aws-amplify/ui-react-core';
 
 import { TOTPViewContextType } from './types';
 
-const [TOTPViewContext, useTOTPViewContext] =
+const [TOTPViewContext, useTOTPView] =
   createContextUtility<TOTPViewContextType>({
     initialValue: {
       totpIssuer: undefined,
@@ -11,4 +11,4 @@ const [TOTPViewContext, useTOTPViewContext] =
     },
   });
 
-export { TOTPViewContext, useTOTPViewContext };
+export { TOTPViewContext, useTOTPView };

@@ -50,6 +50,6 @@ export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
 export {
   createContextUtility,
-  createProviderView,
+  composeProviderView,
   resolveChildrenOrCallback,
 } from './utils';
