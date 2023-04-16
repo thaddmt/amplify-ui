@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { configureComponent } from '@aws-amplify/ui';
 
+import { configureComponent } from '@aws-amplify/ui';
 import {
   AuthenticatorProvider as Provider,
   useAuthenticator,
@@ -40,12 +40,12 @@ import { AuthenticatorProps } from './types';
 //   Authenticator
 // }
 
-const DefaultLinkView = withLinkView(BaseLinkView);
 const DefaultErrorView = withErrorView(BaseErrorView);
-const DefaultTOTPView = withTOTPView(TOTPViewPrimitive);
+const DefaultLinkView = withLinkView(BaseLinkView);
 const DefaultFederatedProviderView = withFederatedProviderView(
   BaseFederatedProviderView
 );
+const DefaultTOTPView = withTOTPView(TOTPViewPrimitive);
 
 export function AuthenticatorInternal({
   // @todo create example showing how to do this without prop
@@ -168,7 +168,7 @@ export function AuthenticatorInternal({
 
   return (
     <RouteContext.Provider value={routeValue}>
-      <DisplayTextProvider value={displayTextValue}>
+      <DisplayTextProvider displayText={overrideDisplayText}>
         <ContainerView route={route} variation={variation}>
           {/* <CustomHeaderProp /> */}
 

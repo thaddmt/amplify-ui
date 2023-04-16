@@ -5,17 +5,14 @@ import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core';
 type GetDisplayTextKey = `get${string}Text`;
 type DisplayTextKey = `${string}Text`;
 
-type DisplayTextTemplate = Record<GetDisplayTextKey | DisplayTextKey, any>;
-type DisplayText<T extends DisplayTextTemplate = DisplayTextTemplate> = {
+type Template = Record<GetDisplayTextKey | DisplayTextKey, any>;
+type TypedDisplayText<T extends Template = Template> = Prettify<{
   [K in keyof T]: K extends GetDisplayTextKey
     ? (value: Parameters<T[K]>[0]) => string
     : K extends DisplayTextKey
     ? string
     : never;
-};
-
-type TypedDisplayText<T extends DisplayTextTemplate = DisplayTextTemplate> =
-  Prettify<DisplayText<T>>;
+}>;
 
 // Template types end here
 type GetCopyButtonText = (hasCopied: boolean) => string;
@@ -34,16 +31,20 @@ type GetResetPasswordLinkText = (route: NavigationRoute) => string;
 
 type GetSignUpLinkText = (route: NavigationRoute) => string;
 
-export type AuthenticatorDisplayText = TypedDisplayText<{
+export type DisplayText = TypedDisplayText<{
   getCopyButtonText?: GetCopyButtonText;
   getFederatedProviderButtonText?: GetFederatedProviderButtonText;
   getHeadingText?: GetHeadingText;
-  getResetPasswordLinkText: GetResetPasswordLinkText;
+  getResetPasswordLinkText?: GetResetPasswordLinkText;
   getSignInLinkText?: GetSignInLinkText;
   getSignUpLinkText?: GetSignUpLinkText;
   getSubHeadingText?: GetSubHeadingText;
   getSubmitButtonText?: GetSubmitButtonText;
 }>;
 
-export type DefaultAuthenticatorDisplayText =
-  RequiredDeep<AuthenticatorDisplayText>;
+export type DefaultDisplayText = RequiredDeep<DisplayText>;
+
+export interface DisplayTextProviderProps {
+  children?: React.ReactNode;
+  displayText?: DisplayText;
+}

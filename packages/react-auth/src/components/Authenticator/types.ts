@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AuthenticatorMachineOptions } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core-auth';
 
-import { AuthenticatorDisplayText } from './context';
+import { DisplayText } from './context';
 import {
   FieldOptions,
   FormComponent,
@@ -30,7 +30,7 @@ type DefaultViewComponent<P = {}> = React.ComponentType<
 
 export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   children?: React.ReactNode;
-  displayText?: AuthenticatorDisplayText;
+  displayText?: DisplayText;
   fields?: Fields;
 
   Form?: FormComponent;

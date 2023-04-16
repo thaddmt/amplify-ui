@@ -1,16 +1,27 @@
-import { createContextUtility } from '@aws-amplify/ui-react-core';
+import React from 'react';
+
+import { createDisplayName } from '../../ui/utils';
 
 import { DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './displayText';
-import {
-  AuthenticatorDisplayText,
-  DefaultAuthenticatorDisplayText,
-} from './types';
+import { DisplayTextContext } from './DisplayTextContext';
+import { DisplayTextProviderProps } from './types';
 
-// @todo add actual DisplayTextProvider
-const [{ Provider: DisplayTextProvider }, useDisplayText] =
-  createContextUtility<
-    AuthenticatorDisplayText | null,
-    DefaultAuthenticatorDisplayText
-  >({ initialValue: null });
+const DisplayTextProvider = ({
+  children,
+  displayText,
+}: DisplayTextProviderProps): JSX.Element => {
+  const value = React.useMemo(
+    () => ({ ...DEFAULT_AUTHENTICATOR_DISPLAY_TEXT, ...displayText }),
+    [displayText]
+  );
 
-export { DisplayTextProvider, useDisplayText };
+  return (
+    <DisplayTextContext.Provider value={value}>
+      {children}
+    </DisplayTextContext.Provider>
+  );
+};
+
+DisplayTextProvider.displayName = createDisplayName('DisplayTextProvider');
+
+export default DisplayTextProvider;
