@@ -14,6 +14,7 @@ import { DisplayTextProvider, RouteContext } from './context';
 import {
   DEFAULT_AUTHENTICATOR_DISPLAY_TEXT,
   withErrorView,
+  withFederatedProviderView,
   withTOTPView,
 } from './context';
 import {
@@ -26,8 +27,7 @@ import {
   ErrorView as BaseErrorView,
   // LinkView as DefaultLinkView,
   getLinkButtonOptions,
-  getFederatedProviderOptions,
-  FederatedProviderView as DefaultFederatedProviderView,
+  FederatedProviderView as BaseFederatedProviderView,
   SubHeading as DefaultSubHeading,
   TOTPView as TOTPViewPrimitive,
 } from './ui';
@@ -55,6 +55,9 @@ import { AuthenticatorProps } from './types';
 
 const Errrrrr = withErrorView(BaseErrorView);
 const DefaultTOTPView = withTOTPView(TOTPViewPrimitive);
+const DefaultFederatedProviderView = withFederatedProviderView(
+  BaseFederatedProviderView
+);
 
 export function AuthenticatorInternal({
   // @todo create example showing how to do this without prop
@@ -148,14 +151,8 @@ export function AuthenticatorInternal({
     return null;
   }
 
-  const {
-    getSubmitButtonText,
-    getFederatedProviderButtonText,
-    ...linkButtonDisplayText
-  } = displayTextValue;
+  const { getSubmitButtonText, ...linkButtonDisplayText } = displayTextValue;
   const submitButtonText = getSubmitButtonText(route);
-
-  const hasFederatedProviders = route === 'signIn' || route === 'signUp';
 
   const totpProps = {
     totpSecretCode: 'Secret!',
@@ -169,21 +166,9 @@ export function AuthenticatorInternal({
     route,
     setNavigableRoute,
   });
-  const providers = hasFederatedProviders
-    ? getFederatedProviderOptions(
-        socialProviders,
-        getFederatedProviderButtonText,
-        (provider) => {
-          // eslint-disable-next-line no-console
-          console.log('provider', provider);
-        }
-      )
-    : undefined;
 
   // eslint-disable-next-line no-console
   console.log('links', links);
-  // eslint-disable-next-line no-console
-  console.log('providers', providers);
 
   const handleSubmit = (data: Record<string, string>) => {
     // eslint-disable-next-line no-console
@@ -211,7 +196,7 @@ export function AuthenticatorInternal({
           <Form onSubmit={handleSubmit} ref={formRef}>
             <DefaultHeading />
             <DefaultSubHeading />
-            {/* <FederatedProviderView providerOptions={providers} /> */}
+            <DefaultFederatedProviderView providers={['amazon']} />
             <TOTPView {...totpProps} />
             <DefaultFields fields={fields} />
             <Errrrrr />
