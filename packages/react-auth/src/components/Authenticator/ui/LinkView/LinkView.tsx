@@ -3,22 +3,17 @@ import * as React from 'react';
 import { Flex } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
-import LinkButton from './LinkButton';
-import { LinkViewComponent } from './types';
+import LinkButtons from './LinkButtons';
+import { LinkViewProps } from './types';
 
-const LinkView: LinkViewComponent = ({
+const LinkView = ({
   children,
-  links,
   justifyContent = 'space-around',
   ...props
-}): JSX.Element | null => {
-  if (!links?.length && !children) {
-    return null;
-  }
-
+}: LinkViewProps): JSX.Element | null => {
   return (
     <Flex {...props} justifyContent={justifyContent}>
-      {children ? children : links?.map(LinkButton)}
+      {children ? children : <LinkButtons />}
     </Flex>
   );
 };

@@ -1,4 +1,4 @@
-import { Prettify, RequiredDeep } from '@aws-amplify/ui';
+import { NavigationRoute, Prettify, RequiredDeep } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core';
 
 // @todo do template types go in /ui-react-core or /ui?
@@ -28,13 +28,11 @@ type GetHeadingText = (route: AuthenticatorRouteComponentKey) => string;
 
 type GetSubHeadingText = (route: AuthenticatorRouteComponentKey) => string;
 
-type GetSignInLinkText = (
-  route: 'resetPassword' | 'signUp' | 'setupTOTP'
-) => string;
+type GetSignInLinkText = (route: NavigationRoute) => string;
 
-type GetResetPasswordLinkText = (route: 'signIn') => string;
+type GetResetPasswordLinkText = (route: NavigationRoute) => string;
 
-type GetSignUpLinkText = (route: 'signIn') => string;
+type GetSignUpLinkText = (route: NavigationRoute) => string;
 
 export type AuthenticatorDisplayText = TypedDisplayText<{
   getCopyButtonText?: GetCopyButtonText;

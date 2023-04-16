@@ -14,14 +14,21 @@ import {
 const FederatedProviderViewProvider = ({
   children,
   providers: overrideProviders,
+  toFederatedProvider: overrideToFederatedProvider,
 }: FederatedProviderViewContextType & { children?: React.ReactNode }) => {
-  const { socialProviders: defaultProviders } = useAuthenticator(
-    ({ socialProviders }) => [socialProviders]
-  );
+  const {
+    socialProviders: defaultProviders,
+    toFederatedSignIn: defaultToFederatedProvider,
+  } = useAuthenticator(({ socialProviders }) => [socialProviders]);
 
   const providers = overrideProviders ?? defaultProviders;
+  const toFederatedProvider =
+    overrideToFederatedProvider ?? defaultToFederatedProvider;
 
-  const value = React.useMemo(() => ({ providers }), [providers]);
+  const value = React.useMemo(
+    () => ({ providers, toFederatedProvider }),
+    [providers, toFederatedProvider]
+  );
 
   return (
     <FederatedProviderViewContext.Provider value={value}>
@@ -30,7 +37,7 @@ const FederatedProviderViewProvider = ({
   );
 };
 
-export function withFederatedProviderView<
+export default function withFederatedProviderView<
   C extends React.ComponentType<any>,
   P extends PropsType<C>,
   Props extends WithFederatedProviderViewProps<P>

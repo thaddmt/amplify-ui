@@ -15,6 +15,7 @@ import {
   DEFAULT_AUTHENTICATOR_DISPLAY_TEXT,
   withErrorView,
   withFederatedProviderView,
+  withLinkView,
   withTOTPView,
 } from './context';
 import {
@@ -25,8 +26,7 @@ import {
   Heading as DefaultHeading,
   SubmitButton as DefaultSubmitButton,
   ErrorView as BaseErrorView,
-  // LinkView as DefaultLinkView,
-  getLinkButtonOptions,
+  LinkView as BaseLinkView,
   FederatedProviderView as BaseFederatedProviderView,
   SubHeading as DefaultSubHeading,
   TOTPView as TOTPViewPrimitive,
@@ -34,26 +34,14 @@ import {
 import { getDefaultFields } from './utils';
 import { AuthenticatorProps } from './types';
 
-// type RouteLinkButtonProps<Route extends AuthenticatorRoute> = Route extends
-//   | 'signIn'
-//   | 'signUp'
-//   | 'resetPassword'
-//   | 'forceNewPassword'
-//   ? LinkButtonProps[]
-//   : undefined;
-
-// `AuthenticatorInternal` exists to give access to the context returned via `useAuthenticator`,
-// which allows the `Authenticator` to just return `children` if a user is authenticated.
-// Once the `Provider` is removed from the `Authenticator` component and exported as
-// `AuthenticatorProvider`, this component should be renamed to `Authenticator`.
-
 // const createAUthenticator = ({ views, options }) => {
 //   const DefaultTOTPView = createTOTPView(TOTPViewPrimitive);
 
 //   Authenticator
 // }
 
-const Errrrrr = withErrorView(BaseErrorView);
+const DefaultLinkView = withLinkView(BaseLinkView);
+const DefaultErrorView = withErrorView(BaseErrorView);
 const DefaultTOTPView = withTOTPView(TOTPViewPrimitive);
 const DefaultFederatedProviderView = withFederatedProviderView(
   BaseFederatedProviderView
@@ -89,7 +77,7 @@ export function AuthenticatorInternal({
     [OverrideContainerView, OverrideTOTPView]
   );
 
-  const { isPending, route, setNavigableRoute, submitForm } = useAuthenticator(
+  const { isPending, route, submitForm } = useAuthenticator(
     ({ error, isPending, route }) => [error, isPending, route]
   );
 
@@ -151,7 +139,7 @@ export function AuthenticatorInternal({
     return null;
   }
 
-  const { getSubmitButtonText, ...linkButtonDisplayText } = displayTextValue;
+  const { getSubmitButtonText } = displayTextValue;
   const submitButtonText = getSubmitButtonText(route);
 
   const totpProps = {
@@ -160,15 +148,6 @@ export function AuthenticatorInternal({
     totpIssuer: 'AWSCognito',
     totpUsername: 'username',
   };
-
-  const links = getLinkButtonOptions({
-    linkButtonDisplayText,
-    route,
-    setNavigableRoute,
-  });
-
-  // eslint-disable-next-line no-console
-  console.log('links', links);
 
   const handleSubmit = (data: Record<string, string>) => {
     // eslint-disable-next-line no-console
@@ -199,13 +178,13 @@ export function AuthenticatorInternal({
             <DefaultFederatedProviderView providers={['amazon']} />
             <TOTPView {...totpProps} />
             <DefaultFields fields={fields} />
-            <Errrrrr />
+            <DefaultErrorView />
             <DefaultForm.ButtonControl type="submit">
               <SubmitButton isDisabled={isPending}>
                 {submitButtonText}
               </SubmitButton>
             </DefaultForm.ButtonControl>
-            {/* <LinkView links={links} /> */}
+            <DefaultLinkView />
           </Form>
         </ContainerView>
       </DisplayTextProvider>
@@ -238,7 +217,7 @@ Authenticator.Provider = Provider;
 Authenticator.Container = DefaultContainerView;
 Authenticator.TOTPView = DefaultTOTPView;
 
-Authenticator.ErrorView = Errrrrr;
+Authenticator.ErrorView = DefaultErrorView;
 Authenticator.Field = Field;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
 
