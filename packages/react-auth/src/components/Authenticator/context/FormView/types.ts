@@ -1,5 +1,5 @@
 import React from 'react';
-import { UseFormHandleSubmit } from 'react-hook-form';
+import { UseFormHandleSubmit, UseFormReset } from 'react-hook-form';
 
 import { WithContextProps } from '@aws-amplify/ui-react-core';
 
@@ -11,11 +11,13 @@ export type OnSubmit<T extends FieldValues = FieldValues> = Parameters<
   UseFormHandleSubmit<T>
 >[0];
 
-export type FormHandle = { reset: () => void };
+export type FormHandle<T extends FieldValues = FieldValues> = {
+  // @todo maybe just type as () => void?
+  reset: UseFormReset<T>;
+};
 
 export type FormViewContextType<T extends FieldValues = FieldValues> = {
   children?: React.ReactNode;
-
   // onReset?: (values: T) => void;
   handleSubmit?: UseFormHandleSubmit<T>;
   onSubmit?: OnSubmit<T> | undefined;

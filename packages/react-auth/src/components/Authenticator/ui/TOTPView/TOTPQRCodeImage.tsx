@@ -6,7 +6,7 @@ import { useQRCodeDataUrl } from '../../../../hooks';
 
 import { createDisplayName } from '../utils';
 import { useTOTPView } from '../../context';
-import { LoaderComponent, QRCodeImageComponent } from './types';
+import { LoaderComponent, TOTPQRCodeImageProps } from './types';
 
 const DefaultLoaderComponent: LoaderComponent = ({
   children,
@@ -18,14 +18,14 @@ const DefaultLoaderComponent: LoaderComponent = ({
   </DefaultLoader>
 );
 
-const QRCodeImage: QRCodeImageComponent = ({
+const QRCodeImage = ({
   alt = 'qr code',
   children,
   Loader = DefaultLoaderComponent,
   height = '228',
   width = '228',
   ...props
-}) => {
+}: TOTPQRCodeImageProps): JSX.Element | null => {
   const { totpIssuer, totpSecretCode, totpUsername } = useTOTPView();
 
   // prevent QR code url generation if `false`

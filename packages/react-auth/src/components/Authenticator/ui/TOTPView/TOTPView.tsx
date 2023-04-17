@@ -2,16 +2,18 @@ import React from 'react';
 
 import { Flex } from '@aws-amplify/ui-react';
 
+import { createDisplayName } from '../utils';
+
 import TOTPQRCodeImage from './TOTPQRCodeImage';
 import TOTPCopyButton from './TOTPCopyButton';
-import { FlexProps } from './types';
+import { TOTPViewProps } from './types';
 
-const DefaultView = ({
+const TOTPView = ({
   alignItems = 'center',
   children,
   direction = 'column',
   ...props
-}: FlexProps): JSX.Element => (
+}: TOTPViewProps): JSX.Element => (
   <Flex alignItems={alignItems} direction={direction} {...props}>
     {children ? (
       children
@@ -24,4 +26,6 @@ const DefaultView = ({
   </Flex>
 );
 
-export default DefaultView;
+TOTPView.displayName = createDisplayName('TOTPView');
+
+export default TOTPView;

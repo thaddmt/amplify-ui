@@ -4,14 +4,7 @@ import { AuthenticatorMachineOptions } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core-auth';
 
 import { DisplayText } from './context';
-import {
-  FieldOptions,
-  FormComponent,
-  // ErrorViewComponent,
-  // LinkViewComponent,
-  // FederatedProviderViewComponent,
-  // TOTPViewComponent,
-} from './ui';
+import { FieldOptions } from './ui';
 
 type Fields = Partial<
   Record<
@@ -32,13 +25,12 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   displayText?: DisplayText;
   fields?: Fields;
 
-  Form?: FormComponent;
   SubmitButton?: DefaultViewComponent;
 
   ContainerView?: DefaultViewComponent;
   ErrorView?: DefaultViewComponent;
   LinkView?: DefaultViewComponent;
-  FederatedProviderView?: DefaultViewComponent;
+  FederatedProvidersView?: DefaultViewComponent;
   TOTPView?: DefaultViewComponent;
 
   variation?: 'default' | 'modal';

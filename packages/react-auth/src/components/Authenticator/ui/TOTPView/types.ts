@@ -6,20 +6,14 @@ import { Button, Flex, Image, Loader } from '@aws-amplify/ui-react';
 type LoaderProps = Prettify<Parameters<typeof Loader>[0]>;
 export type LoaderComponent<P = {}> = React.ComponentType<LoaderProps & P>;
 
-type TOTPQRCodeImageProps = Prettify<
-  Omit<Parameters<typeof Image>[0], 'alt' | 'children' | 'src'> & {
+export type TOTPQRCodeImageProps = Prettify<
+  Omit<Parameters<typeof Image>[0], 'alt' | 'src'> & {
     alt?: string;
     isLoading?: boolean;
     Loader?: LoaderComponent;
   }
 >;
-export type QRCodeImageComponent<P = {}> = React.ComponentType<
-  TOTPQRCodeImageProps & P
->;
 
-type TOTPCopyButtonProps = Prettify<Parameters<typeof Button>[0]>;
-export type TOTPCopyButtonComponent<P = {}> = React.ComponentType<
-  TOTPCopyButtonProps & P
->;
+export type TOTPCopyButtonProps = Prettify<Parameters<typeof Button>[0]>;
 
-export type FlexProps = Prettify<Parameters<typeof Flex>[0]>;
+export type TOTPViewProps = Prettify<Parameters<typeof Flex>[0]>;

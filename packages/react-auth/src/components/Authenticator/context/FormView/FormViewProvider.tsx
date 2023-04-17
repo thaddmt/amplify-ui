@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  useForm,
-  FormProvider as ReactHookFormProvider,
-} from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import { isTypedFunction } from '@aws-amplify/ui';
 
@@ -22,9 +19,10 @@ const FormViewProvider = React.forwardRef(function FormViewProvider<
     isDisabled: _isDisabled = false,
     onSubmit,
   }: FormViewContextType<Values>,
-  ref: React.ForwardedRef<FormHandle>
+  ref: React.ForwardedRef<FormHandle<Values>>
 ) {
   const formProviderProps = useForm<Values>({
+    // @todo make configurable
     mode: 'all',
   });
 
@@ -41,16 +39,14 @@ const FormViewProvider = React.forwardRef(function FormViewProvider<
 
   const handleSubmit = React.useCallback(
     (_onSubmit?: OnSubmit<Values>) =>
-      _handleSubmit(
-        ((e) => {
-          if (isTypedFunction(_onSubmit)) {
-            _onSubmit(e);
-          }
-          if (isTypedFunction(onSubmit)) {
-            onSubmit(e);
-          }
-        }) ?? (() => null)
-      ),
+      _handleSubmit((e) => {
+        if (isTypedFunction(_onSubmit)) {
+          _onSubmit(e);
+        }
+        if (isTypedFunction(onSubmit)) {
+          onSubmit(e);
+        }
+      }),
     [_handleSubmit, onSubmit]
   );
 
@@ -59,16 +55,12 @@ const FormViewProvider = React.forwardRef(function FormViewProvider<
     [handleSubmit, isDisabled, onSubmit]
   );
 
-  if (!children) {
-    return null;
-  }
-
   return (
-    <ReactHookFormProvider {...formProviderProps}>
+    <FormProvider {...formProviderProps}>
       <FormViewContext.Provider value={value as FormViewContextType}>
         {children}
       </FormViewContext.Provider>
-    </ReactHookFormProvider>
+    </FormProvider>
   );
 });
 
