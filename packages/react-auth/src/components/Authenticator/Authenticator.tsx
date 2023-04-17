@@ -13,8 +13,10 @@ import { VERSION } from '../../version';
 import { DisplayTextProvider, RouteContext } from './context';
 import {
   DEFAULT_AUTHENTICATOR_DISPLAY_TEXT,
+  FormHandle,
   withErrorView,
   withFederatedProviderView,
+  withFormView,
   withLinkView,
   withTOTPView,
 } from './context';
@@ -30,6 +32,7 @@ import {
   FederatedProviderView as BaseFederatedProviderView,
   SubHeading as DefaultSubHeading,
   TOTPView as TOTPViewPrimitive,
+  FormView as BaseFormView,
 } from './ui';
 import { getDefaultFields } from './utils';
 import { AuthenticatorProps } from './types';
@@ -41,6 +44,7 @@ import { AuthenticatorProps } from './types';
 // }
 
 const DefaultErrorView = withErrorView(BaseErrorView);
+const DefaultFormView = withFormView(BaseFormView);
 const DefaultLinkView = withLinkView(BaseLinkView);
 const DefaultFederatedProviderView = withFederatedProviderView(
   BaseFederatedProviderView
@@ -55,7 +59,7 @@ export function AuthenticatorInternal({
   ContainerView: OverrideContainerView,
   // ErrorView = DefaultErrorView,
   // FederatedProviderView = DefaultFederatedProviderView,
-  Form = DefaultForm,
+  // Form = DefaultForm,
   formFields,
   initialState,
   // LinkView = DefaultLinkView,
@@ -77,7 +81,7 @@ export function AuthenticatorInternal({
     [OverrideContainerView, OverrideTOTPView]
   );
 
-  const { isPending, route, submitForm } = useAuthenticator(
+  const { route, submitForm } = useAuthenticator(
     ({ error, isPending, route }) => [error, isPending, route]
   );
 
@@ -114,7 +118,8 @@ export function AuthenticatorInternal({
     [route, loginMechanisms]
   );
 
-  const formRef = React.useRef<React.ElementRef<typeof DefaultForm>>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const formRef = React.useRef<FormHandle>(null);
 
   // @todo clear `Form` on initial mount or unmount
   // @todo prevemt reset on submit events
@@ -172,20 +177,21 @@ export function AuthenticatorInternal({
         <ContainerView route={route} variation={variation}>
           {/* <CustomHeaderProp /> */}
 
-          <Form onSubmit={handleSubmit} ref={formRef}>
+          <DefaultFormView onSubmit={handleSubmit} ref={formRef}>
             <DefaultHeading />
             <DefaultSubHeading />
             <DefaultFederatedProviderView providers={['amazon']} />
             <TOTPView {...totpProps} />
             <DefaultFields fields={fields} />
             <DefaultErrorView />
-            <DefaultForm.ButtonControl type="submit">
-              <SubmitButton isDisabled={isPending}>
+            <DefaultForm.FormStateProvider>
+              <SubmitButton>
+                {/* <SubmitButton isDisabled={isPending}> */}
                 {submitButtonText}
               </SubmitButton>
-            </DefaultForm.ButtonControl>
+            </DefaultForm.FormStateProvider>
             <DefaultLinkView />
-          </Form>
+          </DefaultFormView>
         </ContainerView>
       </DisplayTextProvider>
     </RouteContext.Provider>
@@ -215,9 +221,9 @@ Authenticator.Provider = Provider;
 
 // require a View context
 Authenticator.Container = DefaultContainerView;
+Authenticator.ErrorView = DefaultErrorView;
 Authenticator.TOTPView = DefaultTOTPView;
 
-Authenticator.ErrorView = DefaultErrorView;
 Authenticator.Field = Field;
 Authenticator.FederatedProviderView = DefaultFederatedProviderView;
 

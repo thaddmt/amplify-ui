@@ -31,6 +31,9 @@ type GetResetPasswordLinkText = (route: NavigationRoute) => string;
 
 type GetSignUpLinkText = (route: NavigationRoute) => string;
 
+/**
+ * Authenticator display text
+ */
 export type DisplayText = TypedDisplayText<{
   getCopyButtonText?: GetCopyButtonText;
   getFederatedProviderButtonText?: GetFederatedProviderButtonText;

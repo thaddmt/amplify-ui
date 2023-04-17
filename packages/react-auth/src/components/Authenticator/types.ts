@@ -7,7 +7,6 @@ import { DisplayText } from './context';
 import {
   FieldOptions,
   FormComponent,
-  SubmitButtonComponent,
   // ErrorViewComponent,
   // LinkViewComponent,
   // FederatedProviderViewComponent,
@@ -34,7 +33,7 @@ export type AuthenticatorProps = Partial<AuthenticatorMachineOptions> & {
   fields?: Fields;
 
   Form?: FormComponent;
-  SubmitButton?: SubmitButtonComponent;
+  SubmitButton?: DefaultViewComponent;
 
   ContainerView?: DefaultViewComponent;
   ErrorView?: DefaultViewComponent;

@@ -6,77 +6,18 @@ import {
   UseFormHandleSubmit,
   UseFormRegisterReturn,
   UseFormGetFieldState,
-  FormProvider,
+  FormProvider as ReactHookFormProvider,
+  useFormState as useReactHookFormState,
+  FormState,
   // UseFormRegister,
   // UseFormReturn,
 } from 'react-hook-form';
 
 import { Button, Flex } from '@aws-amplify/ui-react';
-
-function mergeRefs<T = unknown>(
-  refs: (
-    | React.MutableRefObject<T>
-    | React.LegacyRef<T>
-    | React.RefCallback<T>
-  )[]
-): React.RefCallback<T> {
-  return (value) => {
-    refs.forEach((ref) => {
-      if (typeof ref === 'function') {
-        ref(value);
-      } else if (ref !== null) {
-        (ref as React.MutableRefObject<T | null>).current = value;
-      }
-    });
-  };
-}
-
-// type InferValues<T extends Record<string, string>> = T extends Record<
-//   infer Key,
-//   infer Value
-// >
-//   ? Record<Key, Value>
-//   : never;
-// type Hehe = InferValues<{ name: string }>;
-
-// type FormData = { [key: string]: string };
+import { Prettify } from '@aws-amplify/ui';
 
 // @todo should these types just have only common props?
 type ButtonControlChildProps = Parameters<typeof Button>[0];
-
-// interface BaseOption<
-//   Name extends string = string,
-//   Type extends ControlType = ControlType,
-//   ElementType = OptionElementType<Type>
-// > extends Omit<FieldControlProps, "children"> {
-//   label: string;
-//   name: Name;
-//   placeholder?: string;
-//   onBlur?: React.FocusEventHandler<ElementType>;
-//   onChange?: React.FocusEventHandler<ElementType>;
-// }
-type FieldElementType<Type extends FieldControlType> = Type extends
-  | 'text'
-  | 'password'
-  | 'tel'
-  ? HTMLInputElement
-  : Type extends 'select'
-  ? HTMLSelectElement
-  : never;
-
-type FieldControlChildProps<
-  Name extends string = string,
-  Type extends FieldControlType = FieldControlType,
-  ElementType = FieldElementType<Type>
-> = {
-  // added for radio
-  children?: React.ReactNode | React.ReactNode;
-  onBlur?: React.FocusEventHandler<ElementType>;
-  onChange?: React.ChangeEventHandler<ElementType>;
-  name: Name;
-  ref: React.Ref<ElementType>;
-  type: Type;
-};
 
 type FieldValues = Record<string, string>;
 
@@ -93,9 +34,7 @@ export type FormProps<T extends FieldValues> = {
   initialValues?: InitialValues<T>;
 };
 
-type FormHandle = {
-  reset: () => void;
-};
+type FormHandle = { reset: () => void };
 
 type Validator = (
   value: string,
@@ -111,28 +50,52 @@ export type FieldControlType =
   | 'radio'
   | 'text';
 
-export interface FieldControlProps {
-  children?: React.ReactNode;
-  isDisabled?: boolean;
-  isReadonly?: boolean;
-  isRequired?: boolean;
-  validate?: Validator | Record<string, Validator>;
-  type: FieldControlType;
-}
-
 export interface ButtonControlProps {
   children?: React.ReactNode;
   isDisabled?: boolean;
   type: 'button' | 'reset' | 'submit';
 }
 
-export type FieldControlContextType<Values extends FieldValues = FieldValues> =
-  UseFormRegisterReturn & ReturnType<UseFormGetFieldState<Values>>;
+export interface ButtonControlProviderProps {
+  children?: React.ReactNode;
+}
 
+type FormStateContextType<Values extends FieldValues = FieldValues> =
+  FormState<Values> & { handleSubmit: UseFormHandleSubmit<Values> };
+
+type ButtonControlContextType = { isValid: boolean };
+
+export type FieldControlContextType<Values extends FieldValues = FieldValues> =
+  Prettify<UseFormRegisterReturn & ReturnType<UseFormGetFieldState<Values>>>;
+
+const ButtonControlContext = createContext<ButtonControlContextType | null>(
+  null
+);
 const FieldControlContext = createContext<FieldControlContextType | null>(null);
+const FormStateContext = createContext<FormStateContextType | null>(null);
 
 export function useFieldControl(): FieldControlContextType {
   const context = React.useContext(FieldControlContext);
+
+  if (!context) {
+    // @todo add better error message
+    throw new Error('No context access here :(');
+  }
+  return context;
+}
+
+export function useButtonControl(): ButtonControlContextType {
+  const context = React.useContext(ButtonControlContext);
+
+  if (!context) {
+    // @todo add better error message
+    throw new Error('No context access here :(');
+  }
+  return context;
+}
+
+export function useFormState(): FormStateContextType {
+  const context = React.useContext(FormStateContext);
 
   if (!context) {
     // @todo add better error message
@@ -204,112 +167,65 @@ const ButtonControl = ({ children, type }: ButtonControlProps) => {
   return <>{children}</>;
 };
 
-const FieldControl = React.forwardRef<HTMLInputElement, FieldControlProps>(
-  function FieldControl({ children, type, validate }, controlRef) {
-    const { getFieldState, register, formState } = useFormContext();
+const ButtonControlProvider = ({ children }: ButtonControlProviderProps) => {
+  const {
+    formState: { isValid },
+  } = useFormContext();
 
-    const cloneChildElement = React.useCallback(
-      (child: React.ReactNode) => {
-        if (Array.isArray(child)) {
-          // eslint-disable-next-line no-console
-          console.warn(
-            'Form.Control children should be a single React element'
-          );
-          return null;
-        }
+  const value = React.useMemo(() => ({ isValid }), [isValid]);
 
-        if (!React.isValidElement<FieldControlChildProps>(child)) {
-          return null;
-        }
-        const { children, name, onBlur, onChange } = child.props;
+  return (
+    <ButtonControlContext.Provider value={value}>
+      {children}
+    </ButtonControlContext.Provider>
+  );
+};
 
-        if (type === 'radio') {
-          // radio group options may have be nested within a parent view
+const FormStateProvider = ({ children }: ButtonControlProviderProps) => {
+  const value = useReactHookFormState();
+  const { handleSubmit } = useFormContext();
 
-          const radioRegisterProps = register(name, { validate });
-
-          const handleChange: FieldControlChildProps['onChange'] = (e) => {
-            if (onChange) {
-              // pass the event regardless of shape to child onChange
-              onChange(e);
-            }
-
-            // in components that do not have an HTML element equivalent such as radio groups,
-            // a standard practice is to pass a string value as the event param of onChange, which
-            // conflicts with the shape of the event required by react-hook-form. In order to
-            // achieve the correct behavior for validation and change events, wrap...
-            const changeEvent =
-              typeof e === 'string' ? { target: { value: e } } : e;
-
-            radioRegisterProps.onChange(changeEvent);
-          };
-
-          const clonedChildren = Array.isArray(children)
-            ? (children as React.ReactNode[]).map((radioChild) => {
-                if (isValidElement<FieldControlChildProps>(radioChild)) {
-                  return React.cloneElement(radioChild, {
-                    ...radioChild.props,
-                    ...radioRegisterProps,
-                    onChange: handleChange,
-                    ref: mergeRefs([controlRef, radioRegisterProps.ref]),
-                  });
-                }
-                return null;
-              })
-            : null;
-
-          return React.cloneElement(child, {
-            ...child.props,
-            ...radioRegisterProps,
-            children: clonedChildren,
-            onChange: handleChange,
-          });
-        }
-
-        const { error } = getFieldState(name, formState);
-
-        const registerProps = register(name, { validate });
-
-        const handleBlur: FieldControlChildProps['onBlur'] = (e) => {
-          if (onBlur) {
-            onBlur(e);
-          }
-          registerProps.onBlur(e);
-        };
-
-        const handleChange: FieldControlChildProps['onChange'] = (e) => {
-          if (onChange) {
-            onChange(e);
-          }
-          registerProps.onChange(e);
-        };
-
-        const props = {
-          ...child.props,
-          ...registerProps,
-          errorMessage: error?.message,
-          hasError: !!error,
-          onBlur: handleBlur,
-          onChange: handleChange,
-          ref: mergeRefs([controlRef, registerProps.ref]),
-        };
-
-        return React.cloneElement(child, props);
-      },
-      [controlRef, getFieldState, formState, register, type, validate]
-    );
-
-    return cloneChildElement(children);
-  }
-);
+  return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <FormStateContext.Provider value={{ ...value, handleSubmit }}>
+      {children}
+    </FormStateContext.Provider>
+  );
+};
 
 export type FormComponent = React.ForwardRefExoticComponent<
   FormProps<FieldValues> & React.RefAttributes<FormHandle>
 >;
 
-const Form: FormComponent = React.forwardRef(function Form<
-  Init extends FieldValues
->(
+const FormFlex = ({
+  children,
+  onSubmit,
+}: {
+  children?: React.ReactNode;
+  onSubmit?: FormProps<FieldValues>['onSubmit'];
+}) => {
+  const { handleSubmit: _handleSubmit } = useFormState();
+
+  const handleSubmit = React.useMemo(
+    () => _handleSubmit(onSubmit ?? (() => null)),
+    [_handleSubmit, onSubmit]
+  );
+
+  return (
+    <Flex
+      // @todo move style to classes
+      data-amplify-container=""
+      direction="column"
+      as="form"
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      onSubmit={handleSubmit}
+    >
+      {children}
+    </Flex>
+  );
+};
+
+const Form = React.forwardRef(function Form<Init extends FieldValues>(
   {
     children,
     initialValues: defaultValues,
@@ -328,6 +244,7 @@ const Form: FormComponent = React.forwardRef(function Form<
 
   const { handleSubmit: _handleSubmit } = formProviderProps;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSubmit = React.useMemo(
     () => _handleSubmit(onSubmit ?? (() => null)),
     [_handleSubmit, onSubmit]
@@ -338,27 +255,18 @@ const Form: FormComponent = React.forwardRef(function Form<
   }
 
   return (
-    <FormProvider {...formProviderProps}>
-      <Flex
-        // @todo move style to classes
-        data-amplify-container=""
-        direction="column"
-        as="form"
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onSubmit={handleSubmit}
-      >
-        {children}
-      </Flex>
-    </FormProvider>
+    <ReactHookFormProvider {...formProviderProps}>
+      <FormFlex>{children}</FormFlex>
+    </ReactHookFormProvider>
   );
 });
 
-// Form.FieldControl = FieldControl;
 // Form.FieldControlProvider = FieldControlProvider;
 // Form.ButtonControl = ButtonControl;
 
 export default Object.assign(Form, {
-  FieldControl,
   FieldControlProvider,
+  FormStateProvider,
   ButtonControl,
+  ButtonControlProvider,
 });
