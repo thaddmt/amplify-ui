@@ -42,11 +42,16 @@ export default defineConfig({
   build: {
     cssCodeSplit: false,
     lib: {
-      entry: resolvePath('./src/index.ts'),
+      entry: {
+        base: resolvePath('./src/index.ts'),
+        preview: resolvePath('./preview/src/index.ts'),
+      },
       formats: ['es', 'cjs'],
       name: 'ui-vue',
-      fileName: (format: string) =>
-        format === 'es' ? 'index.js' : `index.${format}`,
+      fileName: (format, entryName) =>
+        `${entryName === 'base' ? '' : 'preview/'}index.${
+          format === 'es' ? 'js' : 'cjs'
+        }`,
     },
     rollupOptions: {
       plugins: [dynamicImportVars],
@@ -56,6 +61,11 @@ export default defineConfig({
           vue: 'Vue',
         },
       },
+      // input: {
+      //   preview: path.resolve(__dirname, 'src/preview/index.ts'),
+      //   preview: path.resolve(__dirname, 'src/preview/index.ts'),
+      //   'styles.css': path.resolve(__dirname, 'src/styles.css'),
+      // },
     },
   },
 });

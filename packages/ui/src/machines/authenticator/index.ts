@@ -20,6 +20,7 @@ export type AuthenticatorMachineOptions = AuthContext['config'] & {
 };
 
 export function createAuthenticatorMachine() {
+  console.log('creating Authenticator Machine...');
   return createMachine<AuthContext, AuthEvent>(
     {
       id: 'authenticator',

@@ -6,7 +6,11 @@
   "module": "dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./styles.css": "./dist/style.css"
+    "./styles.css": "./dist/style.css",
+    "./preview": {
+      "import": "./dist/preview/index.js",
+      "require": "./dist/preview/index.cjs"
+    }
   },
   "browser": {
     "./styles.css": "./dist/style.css"
@@ -70,7 +74,7 @@
     "ts-jest": "^27",
     "typescript": "^4.6.4",
     "unplugin-vue-components": "^0.15.0",
-    "vite": "^2.9.12",
+    "vite": "^3",
     "vite-jest": "^0.1.4",
     "vue-tsc": "~0.40.10"
   },
