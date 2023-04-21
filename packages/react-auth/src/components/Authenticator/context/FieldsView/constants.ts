@@ -57,6 +57,12 @@ export const PASSWORD: CommonFieldOptions = {
   },
 };
 
+export const COUNTRY_CODE: CommonFieldOptions = {
+  type: 'text',
+  label: 'Dial Code',
+  name: 'dial_code',
+};
+
 export const PRIMARY_ALIAS: Record<LoginMechanism, CommonFieldOptions> = {
   email: USERNAME_EMAIL,
   phone_number: USERNAME_PHONE,

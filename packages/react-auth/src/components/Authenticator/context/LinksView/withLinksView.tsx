@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { PropsType } from '@aws-amplify/ui-react-core';
-
 import { useRoute } from '../Route';
 
 import { createDisplayName } from '../../ui/utils';
-import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
+import {
+  isAuthenticatorComponentRouteKey,
+  useAuthenticator,
+} from '@aws-amplify/ui-react-core-auth';
 
 import { NAVIGABLE_ROUTES } from './constants';
 import { LinksViewContext } from './LinksViewContext';
@@ -19,7 +20,15 @@ const LinksViewProvider = ({
   const { setNavigableRoute: defaultSetNavigableRoute } = useAuthenticator();
   const { route } = useRoute();
 
-  const links = overrideLinks ?? NAVIGABLE_ROUTES[route];
+  const links = React.useMemo(() => {
+    if (Array.isArray(overrideLinks)) {
+      return overrideLinks;
+    }
+    return isAuthenticatorComponentRouteKey(route)
+      ? NAVIGABLE_ROUTES[route]
+      : undefined;
+  }, [overrideLinks, route]);
+
   const setNavigableRoute =
     overrideSetNavigableRoute ?? defaultSetNavigableRoute;
 
@@ -37,7 +46,7 @@ const LinksViewProvider = ({
 
 export default function withLinkView<
   C extends React.ComponentType<any>,
-  P extends PropsType<C>,
+  P extends React.ComponentProps<C>,
   Props extends withLinkViewProps<P>
 >(Component: C): (props: Props) => JSX.Element {
   const LinksView = ({ links, ...props }: Props) => (

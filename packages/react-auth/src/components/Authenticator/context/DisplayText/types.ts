@@ -1,5 +1,5 @@
 import { NavigationRoute, Prettify, RequiredDeep } from '@aws-amplify/ui';
-import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core';
+import { AuthenticatorRoute } from '@aws-amplify/ui';
 
 // @todo do template types go in /ui-react-core or /ui?
 type GetDisplayTextKey = `get${string}Text`;
@@ -19,11 +19,11 @@ type GetCopyButtonText = (hasCopied: boolean) => string;
 
 type GetFederatedProviderButtonText = (provider: string) => string;
 
-type GetSubmitButtonText = (route: AuthenticatorRouteComponentKey) => string;
+type GetSubmitButtonText = (route: AuthenticatorRoute) => string;
 
-type GetHeadingText = (route: AuthenticatorRouteComponentKey) => string;
+type GetHeadingText = (route: AuthenticatorRoute) => string;
 
-type GetSubHeadingText = (route: AuthenticatorRouteComponentKey) => string;
+type GetSubHeadingText = (route: AuthenticatorRoute) => string;
 
 type GetSignInLinkText = (route: NavigationRoute) => string;
 

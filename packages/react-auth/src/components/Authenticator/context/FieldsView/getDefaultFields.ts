@@ -1,11 +1,12 @@
 import { AuthenticatorRoute, LoginMechanism } from '@aws-amplify/ui';
 
 import {
+  CONFIRM_PASSWORD,
+  COUNTRY_CODE,
   PASSWORD,
+  PRIMARY_ALIAS,
   USERNAME_EMAIL,
   USERNAME_PHONE,
-  PRIMARY_ALIAS,
-  CONFIRM_PASSWORD,
 } from './constants';
 import { CommonFieldOptions } from './types';
 
@@ -21,7 +22,12 @@ export default function getDefaultFields<Route extends AuthenticatorRoute>({
       return [PRIMARY_ALIAS[loginMechanism], PASSWORD];
     }
     case 'signUp': {
-      return [PRIMARY_ALIAS[loginMechanism], PASSWORD, CONFIRM_PASSWORD];
+      return [
+        PRIMARY_ALIAS[loginMechanism],
+        // COUNTRY_CODE,
+        PASSWORD,
+        CONFIRM_PASSWORD,
+      ];
     }
     case 'resetPassword': {
       return [

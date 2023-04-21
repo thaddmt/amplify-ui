@@ -10,18 +10,19 @@ import {
 
 import { VERSION } from '../../version';
 
-import { DisplayTextProvider, RouteContext } from './context';
 import {
-  FormHandle,
   withErrorView,
   withFederatedProvidersView,
+  // withFieldsView,
   withFormView,
   withLinksView,
+  withSubmitView,
   withTOTPView,
 } from './context';
+import { FormHandle } from './Form';
 import {
   ContainerView as DefaultContainerView,
-  Fields as DefaultFields,
+  FieldsView as BaseFieldsView,
   Field,
   Heading as DefaultHeading,
   SubmitButton as DefaultSubmitButton,
@@ -31,9 +32,28 @@ import {
   SubHeading as DefaultSubHeading,
   TOTPView as BaseTOTPView,
   FormView as BaseFormView,
+  SubmitView as BaseSubmitView,
 } from './ui';
-import { getDefaultFields } from './utils';
+
 import { AuthenticatorProps } from './types';
+import { Auth } from 'aws-amplify';
+
+export const useFetchUser = (): void => {
+  const [user, setUser] = React.useState<Record<string, any> | undefined>();
+  // eslint-disable-next-line no-console
+  console.log('user', user);
+
+  const fetchUser = React.useCallback(async () => {
+    const output = (await Auth.currentAuthenticatedUser()) as
+      | Record<string, any>
+      | undefined;
+    setUser(output);
+  }, []);
+
+  React.useEffect(() => {
+    fetchUser();
+  }, [fetchUser]);
+};
 
 // const createAUthenticator = ({ views, options }) => {
 //   const DefaultTOTPView = createTOTPView(BaseTOTPView);
@@ -41,6 +61,14 @@ import { AuthenticatorProps } from './types';
 //   Authenticator
 // }
 
+// const totpProps = {
+//   totpSecretCode: 'Secret!',
+//   // totpSecretCode: undefined,
+//   totpIssuer: 'AWSCognito',
+//   totpUsername: 'username',
+// };
+
+// const DefaultFieldsView = withFieldsView(BaseFieldsView);
 const DefaultErrorView = withErrorView(BaseErrorView);
 const DefaultFormView = withFormView(BaseFormView);
 const DefaultLinksView = withLinksView(BaseLinksView);
@@ -48,6 +76,7 @@ const DefaultFederatedProvidersView = withFederatedProvidersView(
   BaseFederatedProvidersView
 );
 const DefaultTOTPView = withTOTPView(BaseTOTPView);
+const DefaultSubmitView = withSubmitView(BaseSubmitView);
 
 export function AuthenticatorInternal({
   // @todo create example showing how to do this without prop
@@ -58,7 +87,6 @@ export function AuthenticatorInternal({
   // ErrorView = DefaultErrorView,
   // FederatedProvidersView = DefaultFederatedProvidersView,
   // Form = DefaultForm,
-  formFields,
   initialState,
   // LinksView = DefaultLinksView,
   loginMechanisms,
@@ -66,12 +94,13 @@ export function AuthenticatorInternal({
   services,
   signUpAttributes,
   socialProviders,
-  SubmitButton = DefaultSubmitButton,
+  // SubmitButton = DefaultSubmitButton,
   variation,
 }: AuthenticatorProps): JSX.Element | null {
   // eslint-disable-next-line no-console
   console.count('A.Render');
 
+  // useFetchUser();
   const { ContainerView, TOTPView } = React.useMemo(
     () => ({
       ContainerView: OverrideContainerView ?? DefaultContainerView,
@@ -82,9 +111,7 @@ export function AuthenticatorInternal({
     [OverrideContainerView, OverrideTOTPView]
   );
 
-  const { route, submitForm } = useAuthenticator(
-    ({ error, isPending, route }) => [error, isPending, route]
-  );
+  const { route } = useAuthenticator(({ route }) => [route]);
 
   React.useEffect(() => {
     configureComponent({
@@ -100,29 +127,9 @@ export function AuthenticatorInternal({
     services,
     signUpAttributes,
     socialProviders,
-    formFields,
   });
 
-  const routeValue = React.useMemo(
-    () => (isAuthenticatorComponentRouteKey(route) ? { route } : null),
-    [route]
-  );
-
-  // @todo can "default fields" be shared across platforms
-  const fields = React.useMemo(
-    () => getDefaultFields({ route, loginMechanism: loginMechanisms?.[0] }),
-    [route, loginMechanisms]
-  );
-
   const formRef = React.useRef<FormHandle>(null);
-
-  // @todo clear `Form` on initial mount or unmount
-  // @todo prevemt reset on submit events
-  React.useEffect(() => {
-    // console.log('HIHIHIHI', formRef);
-    // @todo so brokennnnnnnn
-    // formRef.current?.reset();
-  }, [route]);
 
   const isAuthenticatedRoute = route === 'authenticated' || route === 'signOut';
 
@@ -138,20 +145,6 @@ export function AuthenticatorInternal({
     return null;
   }
 
-  // const totpProps = {
-  //   totpSecretCode: 'Secret!',
-  //   // totpSecretCode: undefined,
-  //   totpIssuer: 'AWSCognito',
-  //   totpUsername: 'username',
-  // };
-
-  const handleSubmit = (data: Record<string, string>) => {
-    // eslint-disable-next-line no-console
-    console.log('Sbbbbbbbbmit', data);
-
-    submitForm(data);
-  };
-
   // const Override = components?.[route];
   // if (Override) {
   //   // @todo "props" will match the context value that is passed to ContainerView Context
@@ -160,31 +153,21 @@ export function AuthenticatorInternal({
   // }
 
   return (
-    <DefaultFormView onSubmit={handleSubmit} ref={formRef}>
-      <RouteContext.Provider value={routeValue}>
-        <DisplayTextProvider displayText={overrideDisplayText}>
-          <ContainerView route={route} variation={variation}>
-            {/* <CustomHeaderProp /> */}
-
-            <DefaultHeading />
-            <DefaultSubHeading />
-            <DefaultFederatedProvidersView />
-            <TOTPView />
-            <DefaultFields fields={fields} />
-            <DefaultErrorView />
-            <SubmitButton />
-            <DefaultLinksView />
-          </ContainerView>
-        </DisplayTextProvider>
-      </RouteContext.Provider>
+    <DefaultFormView displayText={overrideDisplayText} ref={formRef}>
+      <ContainerView variation={variation}>
+        <DefaultHeading />
+        <DefaultSubHeading />
+        <DefaultFederatedProvidersView />
+        <TOTPView />
+        {/* No HOC here, fomr needs access */}
+        <BaseFieldsView />
+        <DefaultErrorView />
+        <DefaultSubmitView />
+        <DefaultLinksView />
+      </ContainerView>
     </DefaultFormView>
   );
 }
-
-// const TextComp = (_: { children?: React.ReactNode; style?: string }) => (
-//   <>LOL</>
-// );
-// <AuthenticatorInternal ContainerView={TextComp} />;
 
 /**
  * [📖 Docs](https://ui.docs.amplify.aws/react/connected-components/authenticator)
@@ -207,6 +190,8 @@ Authenticator.SubHeading = DefaultSubHeading;
 // require a View context
 Authenticator.ContainerView = DefaultContainerView;
 Authenticator.ErrorView = DefaultErrorView;
+Authenticator.FieldsView = BaseFieldsView;
+// Authenticator.Field = BaseFieldsView;
 Authenticator.TOTPView = DefaultTOTPView;
 Authenticator.FederatedProvidersView = DefaultFederatedProvidersView;
 

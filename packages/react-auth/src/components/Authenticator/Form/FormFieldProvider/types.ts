@@ -3,7 +3,7 @@ import { UseFormRegisterReturn, UseFormGetFieldState } from 'react-hook-form';
 
 import { Prettify } from '@aws-amplify/ui';
 
-export type FormControlContextType<Values extends FieldValues = FieldValues> =
+export type FormFieldContextType<Values extends FieldValues = FieldValues> =
   Prettify<UseFormRegisterReturn & ReturnType<UseFormGetFieldState<Values>>>;
 
 export type Validator<T extends FieldValues = FieldValues> = (
@@ -13,7 +13,7 @@ export type Validator<T extends FieldValues = FieldValues> = (
 
 export type Validate = Validator | Record<string, Validator>;
 
-export interface FormControlProps {
+export interface FormFieldProps {
   children: React.ReactNode;
   name: string;
   // setValueAs?: (value: string) => string;

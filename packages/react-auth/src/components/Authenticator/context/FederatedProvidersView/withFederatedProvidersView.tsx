@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { PropsType } from '@aws-amplify/ui-react-core';
 import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
 
 import { createDisplayName } from '../../ui/utils';
@@ -39,7 +38,7 @@ const FederatedProvidersViewProvider = ({
 
 export default function withFederatedProvidersView<
   C extends React.ComponentType<any>,
-  P extends PropsType<C>,
+  P extends React.ComponentProps<C>,
   Props extends WithFederatedProvidersViewProps<P>
 >(Component: C): (props: Props) => JSX.Element {
   const FederatedProvidersView = ({ providers, ...props }: Props) => (

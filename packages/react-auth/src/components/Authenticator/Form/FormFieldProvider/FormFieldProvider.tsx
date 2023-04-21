@@ -1,15 +1,15 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FormControlContext } from './FormControlContext';
-import { FormControlProps } from './types';
+import { FormFieldContext } from './FormFieldContext';
+import { FormFieldProps } from './types';
 
-export default function FormControl({
+export default function FormFieldProvider({
   children,
   name,
   // setValueAs,
   validate,
-}: FormControlProps): JSX.Element {
+}: FormFieldProps): JSX.Element {
   const { formState, getFieldState, register } = useFormContext();
 
   // destructure the field state return to avoid recalculating `value` on each call to `getFieldState`
@@ -32,8 +32,8 @@ export default function FormControl({
   );
 
   return (
-    <FormControlContext.Provider value={value}>
+    <FormFieldContext.Provider value={value}>
       {children}
-    </FormControlContext.Provider>
+    </FormFieldContext.Provider>
   );
 }

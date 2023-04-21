@@ -1,29 +1,42 @@
 import React from 'react';
 
-import { PropsType } from '@aws-amplify/ui-react-core';
-
 import { createDisplayName } from '../../ui/utils';
+import { Form, FormHandle } from '../../Form';
+import { DisplayTextProvider } from '../DisplayText';
+import { RouteProvider } from '../Route';
+import { FieldsViewProvider } from '../FieldsView';
 
-import FormViewProvider from './FormViewProvider';
+import { WithFormView, WithFormViewProps, FormViewProps } from './types';
 
-import { FormHandle, WithFormViewProps } from './types';
+import { useFieldsView } from '../FieldsView';
+
+function WrappedFormView({ children }: FormViewProps): JSX.Element {
+  const { defaultValues } = useFieldsView();
+
+  return <Form defaultValues={defaultValues}>{children}</Form>;
+}
 
 export default function withFormView<
-  C extends React.ComponentType<any>,
-  P extends PropsType<C>,
-  Props extends WithFormViewProps<P>
->(
-  Component: C
-): React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<Props> & React.RefAttributes<FormHandle>
-> {
-  const FormView = React.forwardRef<FormHandle, Props>(
-    ({ isDisabled, onSubmit, ...props }, ref) => (
-      <FormViewProvider isDisabled={isDisabled} onSubmit={onSubmit} ref={ref}>
-        <Component {...(props as P)} />
-      </FormViewProvider>
-    )
+  View extends React.ComponentType<any>,
+  ViewProps extends React.ComponentProps<View>,
+  FormViewProps extends WithFormViewProps<ViewProps>
+>(Component: View): WithFormView<FormViewProps> {
+  const Provider = (
+    { displayText, ...props }: FormViewProps,
+    _ref: React.ForwardedRef<FormHandle>
+  ) => (
+    <RouteProvider>
+      <FieldsViewProvider>
+        <WrappedFormView>
+          <DisplayTextProvider displayText={displayText}>
+            <Component {...(props as ViewProps)} />
+          </DisplayTextProvider>
+        </WrappedFormView>
+      </FieldsViewProvider>
+    </RouteProvider>
   );
+
+  const FormView = React.forwardRef(Provider);
 
   FormView.displayName = createDisplayName('FormView');
 

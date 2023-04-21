@@ -1,5 +1,5 @@
 export { default as Field } from './Field';
-export { default as Fields } from './FieldsView';
+export { default as FieldsView } from './FieldsView';
 export {
   FieldOptions,
   CheckboxFieldOptions,

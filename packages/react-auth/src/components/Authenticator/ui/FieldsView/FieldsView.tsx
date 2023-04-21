@@ -3,30 +3,25 @@ import React from 'react';
 import { Flex } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
+import { useFieldsView } from '../../context';
+
 import Field from './Field';
 import { FieldsViewProps } from './types';
 
 const FieldsView = ({
   children,
   direction = 'column',
-  fields,
   ...props
 }: FieldsViewProps): JSX.Element | null => {
+  const { fields } = useFieldsView();
+
   if (!fields?.length && !children) {
     return null;
   }
 
   return (
-    <Flex {...props} data-amplify-container="" direction={direction}>
+    <Flex {...props} direction={direction}>
       {children ?? fields?.map(Field)}
-      <Field
-        label="will"
-        name="will"
-        validate={(v, values) => {
-          return values['will'] === 'will' ? undefined : 'should equal will';
-        }}
-        type="text"
-      />
     </Flex>
   );
 };

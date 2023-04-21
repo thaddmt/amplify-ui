@@ -1,7 +1,7 @@
 import createFieldsViewContext from './createFieldsView';
 import { FieldOptions } from './types';
 
-const { useFieldsView, withFieldsView } =
+const { FieldsViewProvider, useFieldsView, withFieldsView } =
   createFieldsViewContext<{ fields?: FieldOptions[] }>();
 
-export { useFieldsView, withFieldsView };
+export { FieldsViewProvider, useFieldsView, withFieldsView };

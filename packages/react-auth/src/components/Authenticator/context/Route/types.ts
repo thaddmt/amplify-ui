@@ -1,5 +1,5 @@
-import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core';
+import { AuthenticatorRoute } from '@aws-amplify/ui';
 
 export interface RouteContextType {
-  route: AuthenticatorRouteComponentKey;
+  route: AuthenticatorRoute;
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { createContextUtility } from '@aws-amplify/ui-react-core';
-import { PropsType, WithContextProps } from '@aws-amplify/ui-react-core';
+import { WithContextProps } from '@aws-amplify/ui-react-core';
 
 import { createDisplayName } from '../../ui/utils';
 import { useRoute } from '../Route';
 
 import getDefaultFields from './getDefaultFields';
+import getDefaultValues from './getDefaultValues';
 
 type FieldsType<Type extends { fields?: unknown }> = Type extends {
   fields?: infer T;
@@ -13,22 +14,27 @@ type FieldsType<Type extends { fields?: unknown }> = Type extends {
   ? T
   : never;
 
+type WithDefaultValues<T> = Required<T> & {
+  defaultValues: Record<string, any>;
+};
+
 export default function createFieldsViewContext<
-  Type extends { fields?: unknown },
-  StrictType extends Required<Type> = Required<Type>
+  T extends { fields?: unknown },
+  RT extends WithDefaultValues<T> = WithDefaultValues<T>
 >(): {
-  useFieldsView: () => StrictType;
+  FieldsViewProvider: (props: { children?: React.ReactNode }) => JSX.Element;
+  useFieldsView: () => RT;
   withFieldsView: <
     C extends React.ComponentType<any>,
-    P extends PropsType<C>,
-    Props extends WithContextProps<Type, P>
+    P extends React.ComponentProps<C>,
+    CP extends WithContextProps<T, P>
   >(
-    t: C
-  ) => (p: Props) => JSX.Element;
+    Component: C
+  ) => (props: CP) => JSX.Element;
 } {
   const [FieldsViewContext, useFieldsView] = createContextUtility<
-    Type | null,
-    StrictType
+    T | null,
+    RT & { defaultValues: Record<string, any> }
   >({
     errorMessage: 'better message here',
     initialValue: null,
@@ -39,17 +45,17 @@ export default function createFieldsViewContext<
     fields: _fields,
   }: {
     children?: React.ReactNode;
-    fields?: FieldsType<Type>;
+    fields?: FieldsType<RT>;
   }) {
     const { route } = useRoute();
 
-    const value = React.useMemo(
-      () => ({ fields: getDefaultFields({ route }) }),
-      [route]
-    );
+    const value = React.useMemo(() => {
+      const fields = getDefaultFields({ route });
+      return { defaultValues: getDefaultValues(fields), fields };
+    }, [route]);
 
     return (
-      <FieldsViewContext.Provider value={value as Type}>
+      <FieldsViewContext.Provider value={value as RT}>
         {children}
       </FieldsViewContext.Provider>
     );
@@ -57,8 +63,8 @@ export default function createFieldsViewContext<
 
   function withFieldsView<
     C extends React.ComponentType<any>,
-    P extends PropsType<C>,
-    Props extends WithContextProps<Type, P>
+    P extends React.ComponentProps<C>,
+    Props extends WithContextProps<T, P>
   >(Component: C) {
     function FieldsView({ fields, ...props }: Props) {
       return (
@@ -73,5 +79,5 @@ export default function createFieldsViewContext<
     return FieldsView;
   }
 
-  return { useFieldsView, withFieldsView };
+  return { FieldsViewProvider, useFieldsView, withFieldsView };
 }

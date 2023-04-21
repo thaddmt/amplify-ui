@@ -1,5 +1,9 @@
 import React from 'react';
-import { UseFormHandleSubmit, UseFormReset } from 'react-hook-form';
+import {
+  UseFormHandleSubmit,
+  UseFormReset,
+  UseFormProps,
+} from 'react-hook-form';
 
 export type FieldValues = Record<string, string>;
 
@@ -12,14 +16,16 @@ export type OnSubmit<T extends FieldValues = FieldValues> = Parameters<
 
 export type FormHandle<T extends FieldValues = FieldValues> = {
   // @todo maybe just type as () => void?
+  getValues: () => T;
   reset: UseFormReset<T>;
 };
 
-export type FormViewContextType<T extends FieldValues = FieldValues> = {
+export type FormProviderProps<T extends FieldValues = FieldValues> = {
   children?: React.ReactNode;
-  // onReset?: (values: T) => void;
-  handleSubmit?: UseFormHandleSubmit<T>;
-  onSubmit?: OnSubmit<T> | undefined;
-  // defaultValues?: InitialValues<T>;
-  isDisabled?: boolean | undefined;
+  defaultValues?: UseFormProps<T>['defaultValues'];
+  // onSubmit?: OnSubmit<T>;
+  // onReset?: UseFormReset<T>;
 };
+
+export type FormProps<T extends FieldValues = FieldValues> =
+  FormProviderProps<T>;

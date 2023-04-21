@@ -9,7 +9,8 @@ import {
   SelectField,
   TextField,
 } from '@aws-amplify/ui-react';
-import { FieldControl, useFieldControl } from '../../context';
+import { FormFieldProvider, useFormField } from '../../Form';
+
 import {
   BaseFieldComponent,
   CheckboxFieldOptions,
@@ -53,7 +54,7 @@ type DialCodeSelectProps = Parameters<
 >[0];
 
 const DialCodeSelect = (props: DialCodeSelectProps) => {
-  const { name, onBlur, onChange, ref } = useFieldControl();
+  const { name, onBlur, onChange, ref } = useFormField();
 
   // @todo combine handlers, merge ref?
   const combinedProps = { ...props, name, onBlur, onChange, ref };
@@ -61,9 +62,9 @@ const DialCodeSelect = (props: DialCodeSelectProps) => {
 };
 
 const ComposedDialCodeSelect = (props: DialCodeSelectProps) => (
-  <FieldControl name="dial_code">
+  <FormFieldProvider name="dial_code">
     <DialCodeSelect {...props} />
-  </FieldControl>
+  </FormFieldProvider>
 );
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupFieldOptions>(
@@ -81,7 +82,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupFieldOptions>(
   }
 );
 
-// type FieldElementType<Type extends FieldControlType> = Type extends
+// type FieldElementType<Type extends FormFieldProviderType> = Type extends
 //   | 'tel'
 //   | 'text'
 //   ? HTMLInputElement
@@ -95,15 +96,15 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupFieldOptions>(
 // >
 //   ? ElementType
 //   : never;
-// type FieldPropsRef<Type extends FieldControlType> = UnwrapRef<FieldProps<Type>['ref']>;
+// type FieldPropsRef<Type extends FormFieldProviderType> = UnwrapRef<FieldProps<Type>['ref']>;
 
-// const Field = React.forwardRef(function Field<Type extends FieldControlType>(
+// const Field = React.forwardRef(function Field<Type extends FormFieldProviderType>(
 const BaseField: BaseFieldComponent = (
   props
   // @todo mergeRefs?
   // ref: React.ForwardedRef<any>
 ) => {
-  const { error, name, onBlur, onChange, ref } = useFieldControl();
+  const { error, name, onBlur, onChange, ref } = useFormField();
   const errorMessage = (error as { message?: string })?.message;
 
   const hasError = !!errorMessage;
@@ -145,9 +146,9 @@ export function Field({
   ...rest
 }: FieldProps): JSX.Element {
   return (
-    <FieldControl key={name} name={name} validate={validate}>
+    <FormFieldProvider key={name} name={name} validate={validate}>
       <Control {...rest} name={name} />
-    </FieldControl>
+    </FormFieldProvider>
   );
 }
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 
 import {
@@ -10,15 +11,15 @@ import {
   TextField,
 } from '@aws-amplify/ui-react';
 
-import { Validate } from '../../context';
+import { Validate } from '../../Form';
 
 export type FieldControlType =
   | 'checkbox'
   | 'email'
   | 'password'
-  | 'tel'
-  | 'select'
   | 'radio'
+  | 'select'
+  | 'tel'
   | 'text';
 
 type WithControlType<T extends FieldControlType, P> = Prettify<{ type: T } & P>;
@@ -71,9 +72,7 @@ export type FieldOptions = BaseFieldProps & {
   validate?: Validate;
 };
 
-export type FieldsViewProps = Prettify<Parameters<typeof Flex>[0]> & {
-  fields?: FieldOptions[];
-};
+export type FieldsViewProps = Prettify<Parameters<typeof Flex>[0]>;
 
 export type FieldProps = FieldOptions & {
   Control?: BaseFieldComponent;

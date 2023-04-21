@@ -17,6 +17,7 @@ const SubmitButton = ({
   ...props
 }: SubmitButtonProps): JSX.Element => {
   const { isDisabled: __isDisabled } = useFormView();
+
   const { route } = useRoute();
   const { getSubmitButtonText } = useDisplayText();
 

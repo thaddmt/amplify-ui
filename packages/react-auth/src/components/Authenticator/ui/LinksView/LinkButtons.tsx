@@ -1,8 +1,14 @@
 import * as React from 'react';
 
 import { NavigableRoute, NavigationRoute } from '@aws-amplify/ui';
+import { useFormContext } from 'react-hook-form';
 
-import { useDisplayText, useLinksView, useRoute } from '../../context';
+import {
+  useDisplayText,
+  useLinksView,
+  useFieldsView,
+  useRoute,
+} from '../../context';
 import { createDisplayName } from '../utils';
 
 import LinkButton from './LinkButton';
@@ -15,6 +21,8 @@ const LinkButtons = (): JSX.Element | null => {
     useDisplayText();
   const { route } = useRoute();
   const { links, setNavigableRoute } = useLinksView();
+  const { defaultValues } = useFieldsView();
+  const { reset } = useFormContext();
 
   if (!links?.length) {
     return null;
@@ -43,6 +51,7 @@ const LinkButtons = (): JSX.Element | null => {
         return (
           <LinkButton
             onClick={() => {
+              reset(defaultValues);
               setNavigableRoute(link);
             }}
             key={link}

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { PropsType } from '@aws-amplify/ui-react-core';
 import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
 
 import { createDisplayName } from '../../ui/utils';
@@ -38,7 +37,7 @@ const TOTPViewProvider = ({
 
 export function withTOTPView<
   C extends React.ComponentType<any>,
-  P extends PropsType<C>,
+  P extends React.ComponentProps<C>,
   Props extends WithTOTPViewProps<P>
 >(Component: C): (props: Props) => JSX.Element {
   const TOTPView = ({

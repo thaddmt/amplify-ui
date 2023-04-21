@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { PropsType } from '@aws-amplify/ui-react-core';
 import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
 
 import { createDisplayName } from '../../ui/utils';
@@ -33,14 +32,14 @@ const ErrorViewProvider = ({
 };
 
 export default function withErrorView<
-  C extends React.ComponentType<any>,
-  P extends PropsType<C>,
-  Props extends WithErrorViewProps<P>
->(Component: C): (props: Props) => JSX.Element {
-  const ErrorView = ({ errorMessage, hasError, ...props }: Props) => {
+  View extends React.ComponentType<any>,
+  ViewProps extends React.ComponentProps<View>,
+  ErrorViewProps extends WithErrorViewProps<ViewProps>
+>(Component: View): (props: ErrorViewProps) => JSX.Element {
+  const ErrorView = ({ errorMessage, hasError, ...props }: ErrorViewProps) => {
     return (
       <ErrorViewProvider errorMessage={errorMessage} hasError={hasError}>
-        <Component {...(props as P)} />
+        <Component {...(props as ViewProps)} />
       </ErrorViewProvider>
     );
   };

@@ -48,5 +48,5 @@ export {
 // generic components/hooks/typo/utils
 export { RenderNothing } from './components';
 export { useHasValueUpdated, usePreviousValue, useTimeout } from './hooks';
-export { PropsType, WithContextProps } from './types';
+export { WithContextProps } from './types';
 export { createContextUtility, resolveChildrenOrCallback } from './utils';

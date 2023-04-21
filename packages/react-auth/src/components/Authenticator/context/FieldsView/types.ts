@@ -10,7 +10,7 @@ import {
   TextField,
 } from '@aws-amplify/ui-react';
 
-import { Validate } from '../../context';
+import { Validate } from '../../Form';
 
 export type FieldControlType =
   | 'checkbox'

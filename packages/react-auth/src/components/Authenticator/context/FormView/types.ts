@@ -1,28 +1,25 @@
-import React from 'react';
-import { UseFormHandleSubmit, UseFormReset } from 'react-hook-form';
-
 import { WithContextProps } from '@aws-amplify/ui-react-core';
 
-export type FieldValues = Record<string, string>;
-
-export type HandleSubmit<T extends FieldValues = FieldValues> =
-  UseFormHandleSubmit<T>;
-export type OnSubmit<T extends FieldValues = FieldValues> = Parameters<
-  UseFormHandleSubmit<T>
->[0];
-
-export type FormHandle<T extends FieldValues = FieldValues> = {
-  // @todo maybe just type as () => void?
-  reset: UseFormReset<T>;
-};
+import { DisplayTextProviderProps } from '../DisplayText';
+import { FieldValues, FormHandle, HandleSubmit, OnSubmit } from '../../Form';
 
 export type FormViewContextType<T extends FieldValues = FieldValues> = {
-  children?: React.ReactNode;
-  // onReset?: (values: T) => void;
-  handleSubmit?: UseFormHandleSubmit<T>;
-  onSubmit?: OnSubmit<T> | undefined;
+  // onReset?: () => void;
+  onSubmit?: OnSubmit<T>;
+  handleSubmit?: HandleSubmit<T>;
   // defaultValues?: InitialValues<T>;
-  isDisabled?: boolean | undefined;
+  isDisabled?: boolean;
 };
 
-export type WithFormViewProps<P> = WithContextProps<FormViewContextType, P>;
+export type WithFormViewProps<P> = WithContextProps<
+  FormViewContextType & DisplayTextProviderProps,
+  P
+>;
+
+export type WithFormView<P> = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<P> & React.RefAttributes<FormHandle>
+>;
+
+export interface FormViewProps {
+  children?: React.ReactNode;
+}
