@@ -6,5 +6,5 @@ export * from './FormView';
 export * from './Heading';
 export * from './LinksView';
 export * from './SubHeading';
-export * from './SubmitView';
+export * from './SubmitButton';
 export * from './TOTPView';

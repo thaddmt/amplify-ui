@@ -11,28 +11,25 @@ import {
 import { VERSION } from '../../version';
 
 import {
-  withErrorView,
-  withFederatedProvidersView,
   // withFieldsView,
   withFormView,
-  withLinksView,
-  withSubmitView,
+  // withSubmitView,
   withTOTPView,
 } from './context';
-import { FormHandle } from './Form';
+import { FormHandle } from './BaseForm';
 import {
   ContainerView as DefaultContainerView,
   FieldsView as BaseFieldsView,
   Field,
   Heading as DefaultHeading,
   SubmitButton as DefaultSubmitButton,
-  ErrorView as BaseErrorView,
-  LinksView as BaseLinksView,
-  FederatedProvidersView as BaseFederatedProvidersView,
+  ErrorView,
+  LinksView,
+  FederatedProvidersView,
   SubHeading as DefaultSubHeading,
   TOTPView as BaseTOTPView,
   FormView as BaseFormView,
-  SubmitView as BaseSubmitView,
+  SubmitButton,
 } from './ui';
 
 import { AuthenticatorProps } from './types';
@@ -68,15 +65,8 @@ export const useFetchUser = (): void => {
 //   totpUsername: 'username',
 // };
 
-// const DefaultFieldsView = withFieldsView(BaseFieldsView);
-const DefaultErrorView = withErrorView(BaseErrorView);
 const DefaultFormView = withFormView(BaseFormView);
-const DefaultLinksView = withLinksView(BaseLinksView);
-const DefaultFederatedProvidersView = withFederatedProvidersView(
-  BaseFederatedProvidersView
-);
 const DefaultTOTPView = withTOTPView(BaseTOTPView);
-const DefaultSubmitView = withSubmitView(BaseSubmitView);
 
 export function AuthenticatorInternal({
   // @todo create example showing how to do this without prop
@@ -88,7 +78,7 @@ export function AuthenticatorInternal({
   // FederatedProvidersView = DefaultFederatedProvidersView,
   // Form = DefaultForm,
   initialState,
-  // LinksView = DefaultLinksView,
+  // Links = DefaultLinks,
   loginMechanisms,
   TOTPView: OverrideTOTPView,
   services,
@@ -157,13 +147,13 @@ export function AuthenticatorInternal({
       <ContainerView variation={variation}>
         <DefaultHeading />
         <DefaultSubHeading />
-        <DefaultFederatedProvidersView />
+        <FederatedProvidersView />
         <TOTPView />
         {/* No HOC here, fomr needs access */}
         <BaseFieldsView />
-        <DefaultErrorView />
-        <DefaultSubmitView />
-        <DefaultLinksView />
+        <ErrorView />
+        <SubmitButton />
+        <LinksView />
       </ContainerView>
     </DefaultFormView>
   );
@@ -189,11 +179,11 @@ Authenticator.SubHeading = DefaultSubHeading;
 
 // require a View context
 Authenticator.ContainerView = DefaultContainerView;
-Authenticator.ErrorView = DefaultErrorView;
+Authenticator.ErrorView = ErrorView;
 Authenticator.FieldsView = BaseFieldsView;
 // Authenticator.Field = BaseFieldsView;
 Authenticator.TOTPView = DefaultTOTPView;
-Authenticator.FederatedProvidersView = DefaultFederatedProvidersView;
+Authenticator.FederatedProvidersView = FederatedProvidersView;
 
 Authenticator.Field = Field;
 Authenticator.SubmitButton = DefaultSubmitButton;

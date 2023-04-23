@@ -2,7 +2,8 @@ import React from 'react';
 
 import { Heading as BaseHeading } from '@aws-amplify/ui-react';
 
-import { useDisplayText, useRoute } from '../../context';
+import { useDisplayText } from '../../context';
+import { useRoute } from '../../hooks';
 import { createDisplayName } from '../utils';
 
 type SubHeadingProps = Parameters<typeof BaseHeading>[0];

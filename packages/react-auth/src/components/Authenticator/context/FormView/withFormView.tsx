@@ -1,19 +1,26 @@
 import React from 'react';
 
+import { Form, FormHandle } from '../../BaseForm';
+
 import { createDisplayName } from '../../ui/utils';
-import { Form, FormHandle } from '../../Form';
+
 import { DisplayTextProvider } from '../DisplayText';
-import { RouteProvider } from '../Route';
-import { FieldsViewProvider } from '../FieldsView';
+
+import { FieldsProvider } from '../Fields';
 
 import { WithFormView, WithFormViewProps, FormViewProps } from './types';
 
-import { useFieldsView } from '../FieldsView';
+import { useFields } from '../Fields';
 
-function WrappedFormView({ children }: FormViewProps): JSX.Element {
-  const { defaultValues } = useFieldsView();
+// @todo should this be merged with a View to create a base FormComponent
+function WrappedFormView({ children, ...props }: FormViewProps): JSX.Element {
+  const { defaultValues } = useFields();
 
-  return <Form defaultValues={defaultValues}>{children}</Form>;
+  return (
+    <Form {...props} defaultValues={defaultValues}>
+      {children}
+    </Form>
+  );
 }
 
 export default function withFormView<
@@ -22,18 +29,18 @@ export default function withFormView<
   FormViewProps extends WithFormViewProps<ViewProps>
 >(Component: View): WithFormView<FormViewProps> {
   const Provider = (
-    { displayText, ...props }: FormViewProps,
+    { displayText, onReset, onSubmit, ...props }: FormViewProps,
     _ref: React.ForwardedRef<FormHandle>
   ) => (
-    <RouteProvider>
-      <FieldsViewProvider>
-        <WrappedFormView>
-          <DisplayTextProvider displayText={displayText}>
-            <Component {...(props as ViewProps)} />
-          </DisplayTextProvider>
+    <DisplayTextProvider displayText={displayText}>
+      {/* @todo it may be simpler and more straightforward to add this in the 
+      authenticator because it will need to handle override fields */}
+      <FieldsProvider>
+        <WrappedFormView onReset={onReset} onSubmit={onSubmit}>
+          <Component {...(props as ViewProps)} />
         </WrappedFormView>
-      </FieldsViewProvider>
-    </RouteProvider>
+      </FieldsProvider>
+    </DisplayTextProvider>
   );
 
   const FormView = React.forwardRef(Provider);

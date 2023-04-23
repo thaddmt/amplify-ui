@@ -3,12 +3,10 @@ import * as React from 'react';
 import { NavigableRoute, NavigationRoute } from '@aws-amplify/ui';
 import { useFormContext } from 'react-hook-form';
 
-import {
-  useDisplayText,
-  useLinksView,
-  useFieldsView,
-  useRoute,
-} from '../../context';
+import { useDisplayText, useFields } from '../../context';
+
+import { useRoute, useLinks } from '../../hooks';
+
 import { createDisplayName } from '../utils';
 
 import LinkButton from './LinkButton';
@@ -20,8 +18,8 @@ const LinkButtons = (): JSX.Element | null => {
   const { getResetPasswordLinkText, getSignInLinkText, getSignUpLinkText } =
     useDisplayText();
   const { route } = useRoute();
-  const { links, setNavigableRoute } = useLinksView();
-  const { defaultValues } = useFieldsView();
+  const { links, setNavigableRoute } = useLinks();
+  const { defaultValues } = useFields();
   const { reset } = useFormContext();
 
   if (!links?.length) {
@@ -47,19 +45,17 @@ const LinkButtons = (): JSX.Element | null => {
 
   return (
     <>
-      {links.map((link) => {
-        return (
-          <LinkButton
-            onClick={() => {
-              reset(defaultValues);
-              setNavigableRoute(link);
-            }}
-            key={link}
-          >
-            {getButtonText(link)}
-          </LinkButton>
-        );
-      })}
+      {links?.map((link) => (
+        <LinkButton
+          onClick={() => {
+            reset(defaultValues);
+            setNavigableRoute(link);
+          }}
+          key={link}
+        >
+          {getButtonText(link)}
+        </LinkButton>
+      ))}
     </>
   );
 };

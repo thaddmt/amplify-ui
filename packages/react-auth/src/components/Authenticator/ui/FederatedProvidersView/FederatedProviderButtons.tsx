@@ -2,14 +2,15 @@ import React from 'react';
 
 import { capitalize } from '@aws-amplify/ui';
 
-import { useDisplayText, useFederatedProvidersView } from '../../context';
+import { useDisplayText } from '../../context';
+import { useFederatedProviders } from '../../hooks';
 import { createDisplayName } from '../utils';
 
 import FederatedProviderButton from './FederatedProviderButton';
 import FederatedProviderIcon from './FederatedProviderIcon';
 
 const FederatedProviderButtons = (): JSX.Element | null => {
-  const { providers, toFederatedProvider } = useFederatedProvidersView();
+  const { providers, toFederatedProvider } = useFederatedProviders();
   const { getFederatedProviderButtonText } = useDisplayText();
 
   if (!Array.isArray(providers)) {

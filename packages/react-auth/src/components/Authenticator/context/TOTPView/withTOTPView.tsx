@@ -9,12 +9,12 @@ import { TOTPViewContextType, WithTOTPViewProps } from './types';
 
 const DEFAULT_TOTP_ISSUER = 'AWSCognito';
 
-const TOTPViewProvider = ({
+export const TOTPViewProvider = ({
   children,
   totpIssuer: overrideTOTPIssuer,
   totpSecretCode: overrideTotpSecretCode,
   totpUsername: overrideTotpUsername,
-}: TOTPViewContextType & { children?: React.ReactNode }) => {
+}: TOTPViewContextType & { children?: React.ReactNode }): JSX.Element => {
   const { totpSecretCode: defaultTotpSecretCode, user } = useAuthenticator(
     ({ totpSecretCode, user }) => [totpSecretCode, user]
   );

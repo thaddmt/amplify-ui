@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Alert } from '@aws-amplify/ui-react';
 
-import { useErrorView } from '../../context';
+import { useError } from '../../hooks';
 import { ErrorAlertProps } from './types';
 
 import { createDisplayName } from '../utils';
@@ -12,7 +12,7 @@ const ErrorAlert = ({
   variation = 'error',
   ...props
 }: ErrorAlertProps): JSX.Element | null => {
-  const { errorMessage, hasError } = useErrorView();
+  const { errorMessage, hasError } = useError();
 
   if (!children && !hasError) {
     return null;

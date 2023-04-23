@@ -3,8 +3,8 @@ import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 import { Flex } from '@aws-amplify/ui-react';
 
-import { FieldValues, OnSubmit } from '../../Form';
-import { useFormView } from '../../context';
+import { FieldValues, OnSubmit } from '../../BaseForm';
+import { useSubmit } from '../../hooks';
 
 import { createDisplayName } from '../utils';
 
@@ -16,56 +16,16 @@ const FormView = ({
   children,
   // @todo move style to classes
   direction = 'column',
+  ...props
 }: FormViewProps): JSX.Element => {
-  const { handleSubmit, onSubmit: _onSubmit } = useFormView();
-
-  const onSubmit = React.useMemo(
-    () => handleSubmit(_onSubmit),
-    [handleSubmit, _onSubmit]
-  );
+  const { onSubmit } = useSubmit();
 
   return (
-    <Flex
-      as="form"
-      direction={direction}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
-      onSubmit={onSubmit}
-      // onReset={onReset}
-    >
+    <Flex {...props} as="form" direction={direction} onSubmit={onSubmit}>
       {children}
     </Flex>
   );
 };
-
-// const FormView = ({
-//   children,
-//   // @todo move style to classes
-//   direction = 'column',
-//   onSubmit,
-// }: FormViewProps): JSX.Element => {
-//   const { handleSubmit: _handleSubmit } = useFormView();
-
-//   const handleSubmit = React.useMemo(
-//     () =>
-//       _handleSubmit((e) => {
-//         if (isTypedFunction(onSubmit)) {
-//           onSubmit(e);
-//         }
-//       }),
-//     [_handleSubmit, onSubmit]
-//   );
-
-//   return (
-//     <Flex
-//       as="form"
-//       direction={direction}
-//       // eslint-disable-next-line @typescript-eslint/no-misused-promises
-//       onSubmit={handleSubmit}
-//     >
-//       {children}
-//     </Flex>
-//   );
-// };
 
 FormView.displayName = createDisplayName('FormView');
 

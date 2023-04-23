@@ -3,7 +3,8 @@ import React from 'react';
 import { Heading as BaseHeading } from '@aws-amplify/ui-react';
 import { resolveChildrenOrCallback } from '@aws-amplify/ui-react-core';
 
-import { useRoute, useDisplayText } from '../../context';
+import { useDisplayText } from '../../context';
+import { useRoute } from '../../hooks';
 import { createDisplayName } from '../utils';
 
 type HeadingProps = Parameters<typeof BaseHeading>[0];

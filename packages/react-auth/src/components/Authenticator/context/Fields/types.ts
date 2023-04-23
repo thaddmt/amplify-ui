@@ -1,4 +1,3 @@
-import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 
 import {
@@ -72,8 +71,26 @@ export type FieldOptions = BaseFieldProps & {
   validate?: Validate;
 };
 
-export type FieldsViewProps = Prettify<Parameters<typeof Flex>[0]>;
+export type FieldsViewProps = Prettify<Parameters<typeof Flex>[0]> & {
+  fields?: FieldOptions[];
+};
 
 export type FieldProps = FieldOptions & {
   Control?: BaseFieldComponent;
+};
+
+export type CommonFieldOptions = {
+  defaultDialCode?: string;
+  dialCodeList?: string[];
+  // label: (label: string) => srring | string
+  label: string;
+  name: string;
+  placeholder?: string;
+  type?: FieldControlType;
+  validate?: Validate;
+  autoComplete?: string;
+  isRequired?: boolean;
+  // should be a discriminated union
+  options?: string[];
+  value?: string;
 };

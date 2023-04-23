@@ -8,7 +8,6 @@ const ContainerView = ({ children, ...props }: ViewProps): JSX.Element => {
   return (
     <View
       {...props}
-      data-amplify-authenticator=""
       // @todo all styles converted to classname
       style={{ justifyContent: 'center', backgroundColor: 'white' }}
     >

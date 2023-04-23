@@ -3,7 +3,7 @@ import React from 'react';
 import { Flex } from '@aws-amplify/ui-react';
 
 import { createDisplayName } from '../utils';
-import { useFieldsView } from '../../context';
+import { useFields } from '../../context';
 
 import Field from './Field';
 import { FieldsViewProps } from './types';
@@ -13,7 +13,7 @@ const FieldsView = ({
   direction = 'column',
   ...props
 }: FieldsViewProps): JSX.Element | null => {
-  const { fields } = useFieldsView();
+  const { fields } = useFields();
 
   if (!fields?.length && !children) {
     return null;
