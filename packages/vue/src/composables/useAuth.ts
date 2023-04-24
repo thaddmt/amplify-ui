@@ -5,8 +5,8 @@ import { Auth } from 'aws-amplify';
 import { Hub, HubCallback } from '@aws-amplify/core';
 
 interface UseAuthResult {
-  error: Error | undefined;
-  user: AmplifyUser | undefined;
+  error: Ref<Error | undefined>;
+  user: Ref<AmplifyUser | undefined>;
   getIsAuthenticated: () => Promise<boolean>;
   signOut: () => void;
 }
@@ -22,23 +22,18 @@ const getIsAuthenticated = async () => {
 
 const signOut = () => Auth.signOut();
 
-const useAuth = () => {
+const useAuth = (): UseAuthResult => {
   const unsubscribe: Ref<(() => void) | undefined> = ref();
-  const result: UseAuthResult = reactive({
-    error: undefined,
-    user: undefined,
-    getIsAuthenticated,
-    signOut,
-  });
+  const error: Ref<Error | undefined> = ref();
+  const user: Ref<AmplifyUser | undefined> = ref();
 
   const fetchCurrentUser = async () => {
     try {
-      const user = (await Auth.currentAuthenticatedUser()) as AmplifyUser;
-      result.user = user;
-      result.error = undefined;
+      user.value = (await Auth.currentAuthenticatedUser()) as AmplifyUser;
+      error.value = undefined;
     } catch (e) {
-      result.error = e as Error;
-      result.user = undefined;
+      error.value = e as Error;
+      user.value = undefined;
     }
   };
 
@@ -48,28 +43,27 @@ const useAuth = () => {
       case 'signIn':
       case 'signUp':
       case 'autoSignIn': {
-        const user = payload.data as AmplifyUser;
-        result.user = user;
-        result.error = undefined;
+        user.value = payload.data as AmplifyUser;
+        error.value = undefined;
         break;
       }
       case 'signOut': {
-        result.user = undefined;
-        result.error = undefined;
+        user.value = undefined;
+        error.value = undefined;
         break;
       }
 
       // failure events
       case 'tokenRefresh_failure':
       case 'signIn_failure': {
-        result.error = payload.data as Error;
-        result.user = undefined;
+        user.value = undefined;
+        error.value = payload.data as Error;
         break;
       }
       case 'autoSignIn_failure': {
         // autoSignIn just returns error message. Wrap it to an Error object
-        result.error = new Error(payload.message);
-        result.user = undefined;
+        user.value = undefined;
+        error.value = new Error(payload.message);
         break;
       }
 
@@ -93,6 +87,13 @@ const useAuth = () => {
   onUnmounted(() => {
     unsubscribe.value?.();
   });
+
+  return {
+    user,
+    error,
+    getIsAuthenticated,
+    signOut,
+  };
 };
 
 export default useAuth;
