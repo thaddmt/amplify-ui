@@ -9,13 +9,16 @@ import {
 import { computed, ComputedRef, useAttrs } from 'vue';
 import { createSharedComposable } from '@vueuse/core';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
 const emit = defineEmits(['confirmSignInSubmit', 'backToSignInClicked']);
 const attrs = useAttrs();
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 
 const useAuthShared = createSharedComposable(useAuthenticator);
 const props = useAuthShared();

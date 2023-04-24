@@ -1,5 +1,10 @@
 import type { App } from 'vue';
 
+// import styles
+// TODO: is this necessary?
+import './styles.css';
+
+// import components to register
 import {
   AmplifyButton,
   AmplifyCheckBox,
@@ -23,10 +28,35 @@ import {
   VerifyUser,
 } from './components/index';
 
-import { useAuthenticator } from './composables/useAuth';
+// export hoooks
+export { useAuthenticator } from './composables';
 
-import './styles.css';
+// export components
+export {
+  AmplifyButton,
+  AmplifyCheckBox,
+  AmplifyTextField,
+  Authenticator,
+  AuthenticatorForceNewPasswordFormFields,
+  AuthenticatorSignUpFormFields,
+  ConfirmResetPassword,
+  ConfirmSignIn,
+  ConfirmSignUp,
+  ConfirmVerifyUser,
+  FederatedSignIn,
+  ForceNewPassword,
+  PasswordControl,
+  RenderInfo,
+  ResetPassword,
+  SignIn,
+  SignUp,
+  VerifyUser,
+};
 
+// Re-export public APIs from `@aws-amplify/ui`
+export { translations } from '@aws-amplify/ui';
+
+// register components
 export default {
   install: (app: App) => {
     app.component('SignIn', SignIn);
@@ -57,30 +87,3 @@ export default {
     );
   },
 };
-
-export {
-  SignIn,
-  SignUp,
-  FederatedSignIn,
-  Authenticator,
-  AuthenticatorSignUpFormFields,
-  AuthenticatorForceNewPasswordFormFields,
-  RenderInfo,
-  ForceNewPassword,
-  PasswordControl,
-  ResetPassword,
-  ConfirmResetPassword,
-  ConfirmSignUp,
-  ConfirmSignIn,
-  ConfirmVerifyUser,
-  VerifyUser,
-  AmplifyTextField,
-  AmplifyCheckBox,
-  AmplifyButton,
-  useAuthenticator,
-};
-
-/**
- * Re-export public APIs from `@aws-amplify/ui`
- */
-export { translations } from '@aws-amplify/ui';

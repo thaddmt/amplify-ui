@@ -8,7 +8,10 @@ import {
   translate,
 } from '@aws-amplify/ui';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 
 import AuthenticatorForceNewPasswordFormFields from './authenticator-force-new-password-form-fields.vue';
 import { createSharedComposable } from '@vueuse/core';
@@ -16,7 +19,7 @@ import { createSharedComposable } from '@vueuse/core';
 const attrs = useAttrs();
 const emit = defineEmits(['haveAccountClicked', 'forceNewPasswordSubmit']);
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 
 const useAuthShared = createSharedComposable(useAuthenticator);
 const props = useAuthShared();

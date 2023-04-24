@@ -6,7 +6,7 @@ import {
   translate,
 } from '@aws-amplify/ui';
 
-import { useAuthenticator } from '../composables/useAuth';
+import { useAuthenticator } from '../composables/useAuthenticator';
 import { createSharedComposable } from '@vueuse/core';
 import BaseFormFields from './primitives/base-form-fields.vue';
 

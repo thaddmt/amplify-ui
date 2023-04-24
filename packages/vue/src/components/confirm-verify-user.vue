@@ -11,7 +11,10 @@ import {
 } from '@aws-amplify/ui';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 
 const useAuthShared = createSharedComposable(useAuthenticator);
 const props = useAuthShared();
@@ -19,7 +22,7 @@ const props = useAuthShared();
 const attrs = useAttrs();
 const emit = defineEmits(['confirmVerifyUserSubmit', 'skipClicked']);
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 
 const actorState: ComputedRef<SignInState> = computed(
   () => getActorState(state.value) as SignInState

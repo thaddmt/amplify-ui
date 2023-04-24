@@ -10,7 +10,7 @@ import {
 import FederatedSignIn from './federated-sign-in.vue';
 import AuthenticatorSignUpFormFields from './authenticator-sign-up-form-fields.vue';
 
-import { useAuthenticator } from '../composables/useAuth';
+import { useAuthenticator } from '../composables/useAuthenticator';
 
 const useAuthShared = createSharedComposable(useAuthenticator);
 const facadeValues = useAuthShared();

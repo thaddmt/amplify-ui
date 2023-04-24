@@ -13,7 +13,10 @@ import {
   getTotpCodeURL,
 } from '@aws-amplify/ui';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
 const logger = new Logger('SetupTOTP-logger');
@@ -24,7 +27,7 @@ const props = useAuthShared();
 const attrs = useAttrs();
 const emit = defineEmits(['confirmSetupTOTPSubmit', 'backToSignInClicked']);
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 const {
   value: { context },
 } = state;

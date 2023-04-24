@@ -7,7 +7,7 @@ import {
 } from '@aws-amplify/ui';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
-import { useAuthenticator } from '../composables/useAuth';
+import { useAuthenticator } from '../composables/useAuthenticator';
 import { createSharedComposable } from '@vueuse/core';
 
 const attrs = useAttrs();

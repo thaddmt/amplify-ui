@@ -6,7 +6,7 @@ import {
   getSortedFormFields,
 } from '@aws-amplify/ui';
 
-import { useAuth } from '../../composables/useAuth';
+import { useAuthInternal } from '../../composables/useAuthenticator';
 import BaseFormField from './base-form-field.vue';
 
 interface BaseFormFields {
@@ -16,7 +16,7 @@ const props = defineProps<BaseFormFields>();
 
 const { route } = toRefs(props);
 
-const { state } = useAuth();
+const { state } = useAuthInternal();
 let formFields: FormFieldsArray = [];
 
 onBeforeMount(() => {

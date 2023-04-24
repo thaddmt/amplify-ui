@@ -13,7 +13,10 @@ import {
 import FederatedSignIn from './federated-sign-in.vue';
 
 // @xstate
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
 const useAuthShared = createSharedComposable(useAuthenticator);
@@ -35,7 +38,7 @@ const forgotYourPasswordLink = computed(() => getForgotPasswordText());
 const signInButtonText = computed(() => getSignInText());
 const signIngButtonText = computed(() => getSigningInText());
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 const actorState = computed(() =>
   getActorState(state.value)
 ) as ComputedRef<SignInState>;

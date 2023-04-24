@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuth } from '../composables/useAuth';
+import { useAuthInternal } from '../composables/useAuthenticator';
 import {
   ref,
   toRefs,
@@ -84,7 +84,7 @@ let unsubscribeHub: () => void;
 let unsubscribeMachine: () => void;
 
 const { state, send } = useActor(service);
-useAuth(service);
+useAuthInternal(service);
 
 const hasInitialized = ref(false);
 

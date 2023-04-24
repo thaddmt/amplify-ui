@@ -4,7 +4,7 @@ import { createSharedComposable } from '@vueuse/core';
 import { nanoid } from 'nanoid';
 
 import { FormFieldOptions, getErrors, translate } from '@aws-amplify/ui';
-import { useAuthenticator } from '../../composables/useAuth';
+import { useAuthenticator } from '../../composables/useAuthenticator';
 import PasswordControl from '../password-control.vue';
 import AliasControl from '../alias-control.vue';
 

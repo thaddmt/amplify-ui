@@ -10,10 +10,13 @@ import {
   getFormDataFromEvent,
 } from '@aws-amplify/ui';
 
-import { useAuth, useAuthenticator } from '../composables/useAuth';
+import {
+  useAuthInternal,
+  useAuthenticator,
+} from '../composables/useAuthenticator';
 import BaseFormFields from './primitives/base-form-fields.vue';
 
-const { state, send } = useAuth();
+const { state, send } = useAuthInternal();
 
 const useAuthShared = createSharedComposable(useAuthenticator);
 const props = useAuthShared();
