@@ -29,7 +29,7 @@ import {
 } from './components/index';
 
 // export hoooks
-export { useAuthenticator } from './composables';
+export { useAuth, useAuthenticator } from './composables';
 
 // export components
 export {

@@ -12,7 +12,7 @@ const useAuthenticatorValue = reactive({
 }) as any;
 
 /**
- * @internal - this is for internal usages only.
+ * @internal this is only for internal usage.
  */
 export const useAuthInternal = (serv?: InterpretService) => {
   if (serv) {
