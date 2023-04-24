@@ -1,8 +1,8 @@
-import { reactive, onUnmounted, onMounted, ref, Ref } from 'vue';
+import { onUnmounted, onMounted, ref, Ref } from 'vue';
 
+import { Auth, Hub } from 'aws-amplify';
+import { HubCallback } from '@aws-amplify/core';
 import { AmplifyUser } from '@aws-amplify/ui';
-import { Auth } from 'aws-amplify';
-import { Hub, HubCallback } from '@aws-amplify/core';
 
 interface UseAuthResult {
   error: Ref<Error | undefined>;
@@ -20,7 +20,9 @@ const getIsAuthenticated = async () => {
   }
 };
 
-const signOut = () => Auth.signOut();
+const signOut = (): void => {
+  Auth.signOut();
+};
 
 const useAuth = (): UseAuthResult => {
   const unsubscribe: Ref<(() => void) | undefined> = ref();
@@ -81,7 +83,8 @@ const useAuth = (): UseAuthResult => {
   };
 
   onMounted(() => {
-    unsubscribe.value = Hub.listen('auth', handleAuth);
+    unsubscribe.value = Hub.listen('auth', handleAuth, 'useAuth');
+    fetchCurrentUser();
   });
 
   onUnmounted(() => {
