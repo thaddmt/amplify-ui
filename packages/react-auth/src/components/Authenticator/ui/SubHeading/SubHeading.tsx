@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Heading as BaseHeading } from '@aws-amplify/ui-react';
+import { Heading } from '@aws-amplify/ui-react';
 
-import { useDisplayText } from '../../context';
-import { useRoute } from '../../hooks';
+import { useSubHeadingText } from '../../hooks';
+
 import { createDisplayName } from '../utils';
 
-type SubHeadingProps = Parameters<typeof BaseHeading>[0];
+type SubHeadingProps = Parameters<typeof Heading>[0];
 export type SubHeadingComponent<P = {}> = React.ComponentType<
   SubHeadingProps & P
 >;
@@ -18,13 +18,12 @@ const SubHeading: SubHeadingComponent = ({
   level = DEFAULT_LEVEL,
   ...props
 }) => {
-  const { route } = useRoute();
-  const { getSubHeadingText } = useDisplayText();
+  const subHeadingText = useSubHeadingText();
 
   return (
-    <BaseHeading {...props} level={level}>
-      {children ? children : getSubHeadingText(route)}
-    </BaseHeading>
+    <Heading {...props} level={level}>
+      {children ? children : subHeadingText}
+    </Heading>
   );
 };
 

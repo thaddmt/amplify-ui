@@ -9,7 +9,10 @@ import {
   SelectField,
   TextField,
 } from '@aws-amplify/ui-react';
-import { FormFieldProvider, useFormField } from '../../BaseForm';
+import {
+  FormFieldProvider,
+  useFormField,
+} from '@aws-amplify/ui-react-core-auth';
 
 import {
   BaseFieldComponent,

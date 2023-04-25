@@ -11,7 +11,7 @@ import {
   TextField,
 } from '@aws-amplify/ui-react';
 
-import { Validate } from '../../BaseForm';
+import { Validate } from '@aws-amplify/ui-react-core-auth';
 
 export type FieldControlType =
   | 'checkbox'

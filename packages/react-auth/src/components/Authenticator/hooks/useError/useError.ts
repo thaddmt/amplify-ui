@@ -3,10 +3,11 @@ import {
   UseAuthenticator,
 } from '@aws-amplify/ui-react-core-auth';
 
-export default function useError(): {
+export interface UseError {
   errorMessage: UseAuthenticator['error'];
   hasError: boolean;
-} {
+}
+export default function useError(): UseError {
   const { error: errorMessage } = useAuthenticator(({ error }) => [error]);
 
   const hasError = !!errorMessage;

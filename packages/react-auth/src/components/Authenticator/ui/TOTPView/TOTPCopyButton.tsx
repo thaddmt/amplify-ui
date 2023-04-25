@@ -7,7 +7,8 @@ import {
   useTimeout,
 } from '@aws-amplify/ui-react-core';
 
-import { useDisplayText, useTOTPView } from '../../context';
+import { useTOTP } from '../../context';
+import { useDisplayText } from '../../DisplayText';
 import { createDisplayName } from '../utils';
 
 import { TOTPCopyButtonProps } from './types';
@@ -20,7 +21,7 @@ const TOTPCopyButton = ({
   ...props
 }: TOTPCopyButtonProps): JSX.Element | null => {
   const { getCopyButtonText } = useDisplayText();
-  const { totpSecretCode } = useTOTPView();
+  const { totpSecretCode } = useTOTP();
 
   const [hasCopied, setHasCopied] = React.useState(false);
 

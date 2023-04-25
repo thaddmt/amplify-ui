@@ -1,1 +1,1 @@
-export { default as useError } from './useError';
+export { default as useError, UseError } from './useError';

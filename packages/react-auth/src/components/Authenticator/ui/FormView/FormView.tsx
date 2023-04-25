@@ -3,7 +3,7 @@ import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 import { Flex } from '@aws-amplify/ui-react';
 
-import { FieldValues, OnSubmit } from '../../BaseForm';
+import { FieldValues, OnSubmit } from '@aws-amplify/ui-react-core-auth';
 import { useSubmit } from '../../hooks';
 
 import { createDisplayName } from '../utils';
@@ -16,12 +16,18 @@ const FormView = ({
   children,
   // @todo move style to classes
   direction = 'column',
+  onSubmit: overrideOnSubmit,
   ...props
 }: FormViewProps): JSX.Element => {
   const { onSubmit } = useSubmit();
 
   return (
-    <Flex {...props} as="form" direction={direction} onSubmit={onSubmit}>
+    <Flex
+      {...props}
+      as="form"
+      direction={direction}
+      onSubmit={overrideOnSubmit ?? onSubmit}
+    >
       {children}
     </Flex>
   );

@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { FieldValues } from '../types';
 import { UseFormHandleSubmit } from './types';
 
-export function useFormSubmit<
+export default function useFormHandleSubmit<
   Values extends FieldValues
 >(): UseFormHandleSubmit<Values> {
   const {

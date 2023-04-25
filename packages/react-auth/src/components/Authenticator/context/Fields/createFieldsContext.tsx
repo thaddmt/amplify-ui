@@ -6,7 +6,6 @@ import { createDisplayName } from '../../ui/utils';
 import { useRoute } from '../../hooks';
 
 import getDefaultFields from './getDefaultFields';
-import getDefaultValues from './getDefaultValues';
 
 type FieldsType<Type extends { fields?: unknown }> = Type extends {
   fields?: infer T;
@@ -14,16 +13,9 @@ type FieldsType<Type extends { fields?: unknown }> = Type extends {
   ? T
   : never;
 
-type WithDefaultValues<T> = Required<T> & {
-  defaultValues: Record<string, any>;
-};
-
-export default function createFieldsContext<
-  T extends { fields?: unknown },
-  RT extends WithDefaultValues<T> = WithDefaultValues<T>
->(): {
+export default function createFieldsContext<T extends { fields?: unknown }>(): {
   FieldsProvider: (props: { children?: React.ReactNode }) => JSX.Element;
-  useFields: () => RT;
+  useFields: () => T;
   withFields: <
     C extends React.ComponentType<any>,
     P extends React.ComponentProps<C>,
@@ -34,7 +26,7 @@ export default function createFieldsContext<
 } {
   const [FieldsContext, useFields] = createContextUtility<
     T | null,
-    RT & { defaultValues: Record<string, any> }
+    Required<T>
   >({
     errorMessage: 'better message here',
     initialValue: null,
@@ -45,17 +37,18 @@ export default function createFieldsContext<
     fields: _fields,
   }: {
     children?: React.ReactNode;
-    fields?: FieldsType<RT>[];
+    fields?: FieldsType<T>[];
   }) {
     const { route } = useRoute();
+    // const { route } = useAuthenticator();
 
-    const value = React.useMemo(() => {
-      const fields = getDefaultFields({ route });
-      return { defaultValues: getDefaultValues(fields), fields };
-    }, [route]);
+    const value = React.useMemo(
+      () => ({ fields: getDefaultFields({ route }) }),
+      [route]
+    );
 
     return (
-      <FieldsContext.Provider value={value as RT}>
+      <FieldsContext.Provider value={value as T}>
         {children}
       </FieldsContext.Provider>
     );

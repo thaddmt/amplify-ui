@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { createDisplayName } from '../../ui/utils';
+import { createDisplayName } from '../ui/utils';
 
 import { DEFAULT_AUTHENTICATOR_DISPLAY_TEXT } from './displayText';
 import { DisplayTextContext } from './DisplayTextContext';

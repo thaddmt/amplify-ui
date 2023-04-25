@@ -4,17 +4,17 @@ import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
 
 import { createDisplayName } from '../../ui/utils';
 
-import { TOTPViewContext } from './TOTPViewContext';
-import { TOTPViewContextType, WithTOTPViewProps } from './types';
+import { TOTPContext } from './TOTPContext';
+import { TOTPContextType, WithTOTPProps } from './types';
 
 const DEFAULT_TOTP_ISSUER = 'AWSCognito';
 
-export const TOTPViewProvider = ({
+export const TOTPProvider = ({
   children,
   totpIssuer: overrideTOTPIssuer,
   totpSecretCode: overrideTotpSecretCode,
   totpUsername: overrideTotpUsername,
-}: TOTPViewContextType & { children?: React.ReactNode }): JSX.Element => {
+}: TOTPContextType & { children?: React.ReactNode }): JSX.Element => {
   const { totpSecretCode: defaultTotpSecretCode, user } = useAuthenticator(
     ({ totpSecretCode, user }) => [totpSecretCode, user]
   );
@@ -28,17 +28,13 @@ export const TOTPViewProvider = ({
     [totpIssuer, totpUsername, totpSecretCode]
   );
 
-  return (
-    <TOTPViewContext.Provider value={value}>
-      {children}
-    </TOTPViewContext.Provider>
-  );
+  return <TOTPContext.Provider value={value}>{children}</TOTPContext.Provider>;
 };
 
-export function withTOTPView<
+export function withTOTP<
   C extends React.ComponentType<any>,
   P extends React.ComponentProps<C>,
-  Props extends WithTOTPViewProps<P>
+  Props extends WithTOTPProps<P>
 >(Component: C): (props: Props) => JSX.Element {
   const TOTPView = ({
     totpIssuer,
@@ -46,14 +42,15 @@ export function withTOTPView<
     totpUsername,
     ...props
   }: Props) => (
-    <TOTPViewProvider
+    <TOTPProvider
       totpIssuer={totpIssuer}
       totpSecretCode={totpSecretCode}
       totpUsername={totpUsername}
     >
       <Component {...(props as P)} />
-    </TOTPViewProvider>
+    </TOTPProvider>
   );
+
   TOTPView.displayName = createDisplayName('TOTPView');
 
   return TOTPView;

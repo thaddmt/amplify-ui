@@ -12,12 +12,23 @@ import { CommonFieldOptions } from './types';
 
 export default function getDefaultFields<Route extends AuthenticatorRoute>({
   route,
-  loginMechanism = 'username',
+  loginMechanism = 'phone_number',
 }: {
   route: Route;
   loginMechanism?: LoginMechanism;
 }): CommonFieldOptions[] {
   switch (route) {
+    case 'confirmSignIn':
+      return [
+        {
+          label: 'Confirmation Code',
+          name: 'confirmation_code',
+          placeholder: 'Enter your Confirmation Code',
+          type: 'text',
+          autoComplete: 'one-time-code',
+          isRequired: true,
+        },
+      ];
     case 'signIn': {
       return [
         ...(loginMechanism === 'phone_number'

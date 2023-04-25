@@ -61,6 +61,11 @@ export interface AuthContext {
 export interface CodeDeliveryDetails extends CognitoCodeDeliveryDetails {}
 
 /**
+ * Cognito confirmation code type
+ */
+export type DeliveryMedium = 'SMS' | 'EMAIL';
+
+/**
  * Base context for all actors that have auth forms associated
  */
 interface BaseFormContext {

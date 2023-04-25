@@ -3,7 +3,12 @@ import {
   UseAuthenticator,
 } from '@aws-amplify/ui-react-core-auth';
 
-export default function useRoute(): Pick<UseAuthenticator, 'route'> {
-  const { route } = useAuthenticator(({ route }) => [route]);
-  return { route };
+export interface UseRoute
+  extends Pick<UseAuthenticator, 'route' | 'setNavigableRoute'> {}
+
+export default function useRoute(): UseRoute {
+  const { route, setNavigableRoute } = useAuthenticator(
+    ({ route, setNavigableRoute }) => [route, setNavigableRoute]
+  );
+  return { route, setNavigableRoute };
 }

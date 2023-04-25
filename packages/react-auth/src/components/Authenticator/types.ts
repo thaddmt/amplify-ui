@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AuthenticatorMachineOptions, Prettify } from '@aws-amplify/ui';
 import { AuthenticatorRouteComponentKey } from '@aws-amplify/ui-react-core-auth';
 
-import { DisplayText } from './context';
+import { DisplayText } from './DisplayText';
 import { FieldOptions } from './ui';
 
 type Fields = Partial<

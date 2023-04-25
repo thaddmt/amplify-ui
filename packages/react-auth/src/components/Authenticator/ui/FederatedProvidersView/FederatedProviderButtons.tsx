@@ -2,7 +2,7 @@ import React from 'react';
 
 import { capitalize } from '@aws-amplify/ui';
 
-import { useDisplayText } from '../../context';
+import { useDisplayText } from '../../DisplayText';
 import { useFederatedProviders } from '../../hooks';
 import { createDisplayName } from '../utils';
 

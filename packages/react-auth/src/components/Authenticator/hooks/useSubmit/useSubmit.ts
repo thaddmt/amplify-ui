@@ -2,22 +2,24 @@ import React from 'react';
 
 import { useAuthenticator } from '@aws-amplify/ui-react-core-auth';
 
-import { HandleSubmit, useFormSubmit } from '../../BaseForm';
+import { OnSubmit, useFormHandleSubmit } from '@aws-amplify/ui-react-core-auth';
 
-export default function useSubmit(): {
+export interface UseSubmit {
   isDisabled: boolean;
-  onSubmit?: (event: any) => Promise<void>;
-} {
-  const { isPending: _isDisabled, submitForm: onValid } = useAuthenticator(
+  onSubmit?: OnSubmit;
+}
+
+export default function useSubmit(): UseSubmit {
+  const { isPending, submitForm: onValid } = useAuthenticator(
     ({ isPending, submitForm }) => [isPending, submitForm]
   );
-  const { handleSubmit, isDisabled: __isDisabled } = useFormSubmit();
+  const { handleSubmit, isDisabled: _isDisabled } = useFormHandleSubmit();
 
   // @todo precedence
-  const isDisabled = _isDisabled || __isDisabled;
+  const isDisabled = isPending || _isDisabled;
 
-  const onSubmit = React.useCallback(
-    async (e: Parameters<ReturnType<HandleSubmit>>[0]) => {
+  const onSubmit: OnSubmit = React.useCallback(
+    async (e) => {
       const handler = handleSubmit(onValid);
       await handler(e);
     },

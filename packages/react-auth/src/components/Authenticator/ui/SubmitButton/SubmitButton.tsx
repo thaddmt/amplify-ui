@@ -3,26 +3,21 @@ import React from 'react';
 import { Prettify } from '@aws-amplify/ui';
 import { Button } from '@aws-amplify/ui-react';
 
-import { useDisplayText } from '../../context';
-import { useRoute, useSubmit } from '../../hooks';
+import { useSubmitButton } from '../../hooks';
 
 type SubmitButtonProps = Prettify<Parameters<typeof Button>[0]>;
 
 const SubmitButton = ({
   children,
   fontWeight = 'normal',
-  isDisabled: _isDisabled = false,
-  onSubmit: _onSubmit,
+  isDisabled: overrideIsDisabled = false,
   variation = 'primary',
   type = 'submit',
   ...props
 }: SubmitButtonProps): JSX.Element => {
-  const { isDisabled: __isDisabled } = useSubmit();
+  const { isDisabled: defaultIsDisabled, submitButtonText } = useSubmitButton();
 
-  const { route } = useRoute();
-  const { getSubmitButtonText } = useDisplayText();
-
-  const isDisabled = _isDisabled || __isDisabled;
+  const isDisabled = overrideIsDisabled || defaultIsDisabled;
 
   return (
     <Button
@@ -32,7 +27,7 @@ const SubmitButton = ({
       variation={variation}
       type={type}
     >
-      {children ? children : getSubmitButtonText(route)}
+      {children ? children : submitButtonText}
     </Button>
   );
 };

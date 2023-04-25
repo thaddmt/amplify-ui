@@ -15,9 +15,11 @@ export function withAuthenticator<Props extends JSX.IntrinsicAttributes = {}>(
 
   return function WrappedWithAuthenticator(props: Props) {
     return (
-      <Authenticator variation={variation} {...options}>
-        <Component {...props} />
-      </Authenticator>
+      <Authenticator.Provider>
+        <Authenticator variation={variation} {...options}>
+          <Component {...props} />
+        </Authenticator>
+      </Authenticator.Provider>
     );
   };
 }

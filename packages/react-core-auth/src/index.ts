@@ -20,3 +20,4 @@ export {
   UseAuthenticatorProps,
 } from './components';
 export { DefaultViewComponent } from './types';
+export * from './Form';

@@ -1,34 +1,81 @@
 import React from 'react';
 
-import { useRoute } from '../useRoute';
-
+import { NavigableRoute, NavigationRoute } from '@aws-amplify/ui';
 import {
+  AuthenticatorRouteComponentKey,
+  DefaultValues,
   isAuthenticatorComponentRouteKey,
-  UseAuthenticator,
-  useAuthenticator,
+  useFormReset,
+  useDefaultValues,
 } from '@aws-amplify/ui-react-core-auth';
 
-import { NAVIGABLE_ROUTES } from './constants';
-import { NavigableRoute } from '@aws-amplify/ui';
+import { useDisplayText } from '../../DisplayText';
+import { useRoute } from '../useRoute';
 
-type UseLinks = { links: NavigableRoute[] | undefined } & Pick<
-  UseAuthenticator,
-  'setNavigableRoute'
->;
+import { NAVIGABLE_ROUTES } from './constants';
+
+interface Link {
+  handleButtonAction: () => void;
+  linkButtonText: string | undefined;
+}
+
+export interface UseLinks {
+  links: Link[] | undefined;
+}
+
+const isNavigationRoute = (
+  route: string | undefined
+): route is NavigationRoute =>
+  !!route && ['resetPassword', 'setupTOTP', 'signIn', 'signUp'].includes(route);
 
 export default function useLinks(): UseLinks {
-  const { setNavigableRoute } = useAuthenticator(({ setNavigableRoute }) => [
-    setNavigableRoute,
-  ]);
-  const { route } = useRoute();
+  const { getResetPasswordLinkText, getSignInLinkText, getSignUpLinkText } =
+    useDisplayText();
+  const { reset } = useFormReset();
+  const { route, setNavigableRoute } = useRoute();
+  const { defaultValues } = useDefaultValues();
 
-  const links = React.useMemo(
-    () =>
-      isAuthenticatorComponentRouteKey(route)
-        ? NAVIGABLE_ROUTES[route]
-        : undefined,
-    [route]
+  const getLinkButtonText = React.useCallback(
+    (
+      link: NavigableRoute,
+      route: AuthenticatorRouteComponentKey | undefined
+    ) => {
+      if (!isNavigationRoute(route)) {
+        return;
+      }
+      switch (link) {
+        case 'resetPassword': {
+          return getResetPasswordLinkText(route);
+        }
+        case 'signIn': {
+          return getSignInLinkText(route);
+        }
+        case 'signUp': {
+          return getSignUpLinkText(route);
+        }
+      }
+    },
+    [getResetPasswordLinkText, getSignInLinkText, getSignUpLinkText]
   );
 
-  return { links, setNavigableRoute };
+  const getHandleButtonAction = React.useCallback(
+    (link: NavigableRoute, defaultValues: DefaultValues | undefined) => () => {
+      reset(defaultValues);
+      setNavigableRoute(link);
+    },
+    [reset, setNavigableRoute]
+  );
+
+  const links = React.useMemo(() => {
+    if (!isAuthenticatorComponentRouteKey(route)) {
+      return undefined;
+    }
+
+    return NAVIGABLE_ROUTES[route]?.map((link) => ({
+      linkButtonText: getLinkButtonText(link, route),
+      handleButtonAction: getHandleButtonAction(link, defaultValues),
+    }));
+  }, [defaultValues, getLinkButtonText, getHandleButtonAction, route]);
+
+  return { links: links?.length ? links : undefined };
 }

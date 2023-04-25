@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Heading as BaseHeading } from '@aws-amplify/ui-react';
 import { resolveChildrenOrCallback } from '@aws-amplify/ui-react-core';
+import { isAuthenticatorComponentRouteKey } from '@aws-amplify/ui-react-core-auth';
 
-import { useDisplayText } from '../../context';
+import { useDisplayText } from '../../DisplayText';
 import { useRoute } from '../../hooks';
 import { createDisplayName } from '../utils';
 
@@ -22,7 +23,12 @@ const Heading: HeadingComponent = ({
 
   return (
     <BaseHeading {...props} level={level}>
-      {children ? children : resolveChildrenOrCallback(getHeadingText, route)}
+      {children
+        ? children
+        : resolveChildrenOrCallback(
+            getHeadingText,
+            isAuthenticatorComponentRouteKey(route) ? route : undefined
+          )}
     </BaseHeading>
   );
 };

@@ -3,20 +3,15 @@ import * as React from 'react';
 import { configureComponent } from '@aws-amplify/ui';
 import {
   AuthenticatorProvider as Provider,
-  useAuthenticator,
+  FormHandle,
   isAuthenticatorComponentRouteKey,
   useAuthenticatorInitMachine,
 } from '@aws-amplify/ui-react-core-auth';
 
 import { VERSION } from '../../version';
 
-import {
-  // withFieldsView,
-  withFormView,
-  // withSubmitView,
-  withTOTPView,
-} from './context';
-import { FormHandle } from './BaseForm';
+import { withFormView, withTOTP } from './context';
+import { useRoute } from './hooks';
 import {
   ContainerView as DefaultContainerView,
   FieldsView as BaseFieldsView,
@@ -35,6 +30,13 @@ import {
 import { AuthenticatorProps } from './types';
 import { Auth } from 'aws-amplify';
 
+// const totpProps = {
+//   totpSecretCode: 'Secret!',
+//   // totpSecretCode: undefined,
+//   totpIssuer: 'AWSCognito',
+//   totpUsername: 'username',
+// };
+
 export const useFetchUser = (): void => {
   const [user, setUser] = React.useState<Record<string, any> | undefined>();
   // eslint-disable-next-line no-console
@@ -52,23 +54,10 @@ export const useFetchUser = (): void => {
   }, [fetchUser]);
 };
 
-// const createAUthenticator = ({ views, options }) => {
-//   const DefaultTOTPView = createTOTPView(BaseTOTPView);
-
-//   Authenticator
-// }
-
-// const totpProps = {
-//   totpSecretCode: 'Secret!',
-//   // totpSecretCode: undefined,
-//   totpIssuer: 'AWSCognito',
-//   totpUsername: 'username',
-// };
-
 const DefaultFormView = withFormView(BaseFormView);
-const DefaultTOTPView = withTOTPView(BaseTOTPView);
+const DefaultTOTPView = withTOTP(BaseTOTPView);
 
-export function AuthenticatorInternal({
+export function Authenticator({
   // @todo create example showing how to do this without prop
   // hideSignUp,
   children,
@@ -94,15 +83,14 @@ export function AuthenticatorInternal({
   const { ContainerView, TOTPView } = React.useMemo(
     () => ({
       ContainerView: OverrideContainerView ?? DefaultContainerView,
-      TOTPView: OverrideTOTPView
-        ? withTOTPView(OverrideTOTPView)
-        : DefaultTOTPView,
+      TOTPView: OverrideTOTPView ? withTOTP(OverrideTOTPView) : DefaultTOTPView,
     }),
     [OverrideContainerView, OverrideTOTPView]
   );
 
-  const { route } = useAuthenticator(({ route }) => [route]);
+  const { route } = useRoute();
 
+  // move to Provider
   React.useEffect(() => {
     configureComponent({
       packageName: '@aws-amplify/ui-react',
@@ -110,6 +98,7 @@ export function AuthenticatorInternal({
     });
   }, []);
 
+  // move to Provider
   useAuthenticatorInitMachine({
     initialState,
     // @todo how to surface this back to the UI for passing to getDefaultFields
@@ -143,8 +132,8 @@ export function AuthenticatorInternal({
   // }
 
   return (
-    <DefaultFormView displayText={overrideDisplayText} ref={formRef}>
-      <ContainerView variation={variation}>
+    <ContainerView variation={variation}>
+      <DefaultFormView displayText={overrideDisplayText} ref={formRef}>
         <DefaultHeading />
         <DefaultSubHeading />
         <FederatedProvidersView />
@@ -154,36 +143,26 @@ export function AuthenticatorInternal({
         <ErrorView />
         <SubmitButton />
         <LinksView />
-      </ContainerView>
-    </DefaultFormView>
-  );
-}
-
-/**
- * [📖 Docs](https://ui.docs.amplify.aws/react/connected-components/authenticator)
- */
-export function Authenticator(props: AuthenticatorProps): JSX.Element {
-  return (
-    <Provider>
-      <AuthenticatorInternal {...props} />
-    </Provider>
+      </DefaultFormView>
+    </ContainerView>
   );
 }
 
 // @todo should Form be part of the wrapping component, and not a static property
-
 // do not require a View context
 Authenticator.Provider = Provider;
 Authenticator.Heading = DefaultHeading;
 Authenticator.SubHeading = DefaultSubHeading;
 
-// require a View context
 Authenticator.ContainerView = DefaultContainerView;
 Authenticator.ErrorView = ErrorView;
 Authenticator.FieldsView = BaseFieldsView;
-// Authenticator.Field = BaseFieldsView;
-Authenticator.TOTPView = DefaultTOTPView;
 Authenticator.FederatedProvidersView = FederatedProvidersView;
+
+// Authenticator.Field = BaseFieldsView;
+// require a View context
+Authenticator.TOTPView = DefaultTOTPView;
+Authenticator.FormView = DefaultFormView;
 
 Authenticator.Field = Field;
 Authenticator.SubmitButton = DefaultSubmitButton;

@@ -1,20 +1,22 @@
 import React from 'react';
 
-import { Form, FormHandle } from '../../BaseForm';
+import { Form, FormHandle } from '@aws-amplify/ui-react-core-auth';
 
 import { createDisplayName } from '../../ui/utils';
 
-import { DisplayTextProvider } from '../DisplayText';
+import { DisplayTextProvider } from '../../DisplayText';
 
 import { FieldsProvider } from '../Fields';
 
 import { WithFormView, WithFormViewProps, FormViewProps } from './types';
 
 import { useFields } from '../Fields';
+import getDefaultValues from './getDefaultValues';
 
 // @todo should this be merged with a View to create a base FormComponent
 function WrappedFormView({ children, ...props }: FormViewProps): JSX.Element {
-  const { defaultValues } = useFields();
+  const { fields } = useFields();
+  const defaultValues = React.useMemo(() => getDefaultValues(fields), [fields]);
 
   return (
     <Form {...props} defaultValues={defaultValues}>
@@ -29,14 +31,14 @@ export default function withFormView<
   FormViewProps extends WithFormViewProps<ViewProps>
 >(Component: View): WithFormView<FormViewProps> {
   const Provider = (
-    { displayText, onReset, onSubmit, ...props }: FormViewProps,
+    { displayText, ...props }: FormViewProps,
     _ref: React.ForwardedRef<FormHandle>
   ) => (
     <DisplayTextProvider displayText={displayText}>
       {/* @todo it may be simpler and more straightforward to add this in the 
       authenticator because it will need to handle override fields */}
       <FieldsProvider>
-        <WrappedFormView onReset={onReset} onSubmit={onSubmit}>
+        <WrappedFormView>
           <Component {...(props as ViewProps)} />
         </WrappedFormView>
       </FieldsProvider>
