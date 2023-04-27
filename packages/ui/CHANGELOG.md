@@ -1,5 +1,11 @@
 # @aws-amplify/ui
 
+## 5.6.1
+
+### Patch Changes
+
+- [#3718](https://github.com/aws-amplify/amplify-ui/pull/3718) [`4ca838978`](https://github.com/aws-amplify/amplify-ui/commit/4ca838978d23a086f80859a7cb57f184ff49e2d4) Thanks [@0618](https://github.com/0618)! - Losslessly compress images
+
 ## 5.6.0
 
 ### Minor Changes
