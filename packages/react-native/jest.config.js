@@ -1,30 +1,13 @@
-const { defaults } = require('ts-jest/presets');
-
 module.exports = {
-  ...defaults,
   preset: 'react-native',
-  // modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
     '!<rootDir>/src/**/*{c,C}onstants.ts',
   ],
-  // transformIgnorePatterns: ['jest-runner'],
-  // transformIgnorePatterns: ['node_modules/(?!react-native|ui-react-native)'],
-  // moduleNameMapper: {
-  //   '^react$': '<rootDir>/node_modules/react',
-  //   '^react-native$': '<rootDir>/node_modules/react-native',
-  // },
-  transform: {
-    '^.+\\.jsx$': ['babel-jest', { configFile: './babel.config.js' }],
-    '^.+\\.(ts|tsx)$': 'ts-jest',
-    // '^.+\\.tsx?$': [
-    //   'ts-jest',
-    //   {
-    //     tsconfig: 'tsconfig.spec.json',
-    //   },
-    // ],
-  },
+  moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
+  transformIgnorePatterns: ['node_modules/(?!@?react-native)'],
   coverageThreshold: {
     global: {
       branches: 90,
@@ -34,5 +17,4 @@ module.exports = {
     },
   },
   setupFiles: ['<rootDir>/jest.setup.js'],
-  // moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };

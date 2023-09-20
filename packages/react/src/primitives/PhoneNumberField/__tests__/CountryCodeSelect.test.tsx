@@ -33,7 +33,7 @@ describe('CountryCodeSelect', () => {
     expect(countryCodeOptions).toMatchInlineSnapshot(
       countryDialCodes,
       `
-      Array [
+      [
         "+1",
         "+7",
         "+20",

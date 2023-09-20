@@ -1,0 +1,1 @@
+export { useHandleCopy } from './useHandleCopy';

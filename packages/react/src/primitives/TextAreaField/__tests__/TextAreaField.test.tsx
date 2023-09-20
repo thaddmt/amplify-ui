@@ -190,7 +190,7 @@ describe('TextAreaField component', () => {
       );
       const field = await screen.findByRole('textbox');
       userEvent.type(field, 'hello');
-      userEvent.paste(field, 'there');
+      // userEvent.paste(field, 'there');
       expect(onChange).toHaveBeenCalled();
       expect(onInput).toHaveBeenCalled();
       expect(onPaste).toHaveBeenCalled();

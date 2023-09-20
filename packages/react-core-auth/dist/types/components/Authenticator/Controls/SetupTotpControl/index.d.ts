@@ -1,0 +1,1 @@
+export { SetupTotpControl } from './SetupTotpControl';

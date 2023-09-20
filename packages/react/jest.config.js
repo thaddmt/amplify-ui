@@ -15,22 +15,22 @@ module.exports = {
       statements: 91,
     },
   },
-  // globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
+  moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
+  globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
   // moduleNameMapper: {
   //   '^react$': '<rootDir>/node_modules/react',
   // },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'ts-jest',
-  transform: {
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        //the content you'd placed at "global"
-        babel: true,
-        tsConfig: 'tsconfig.json',
-      },
-    ],
-  },
+  // transform: {
+  //   '^.+\\.tsx?$': [
+  //     'ts-jest',
+  //     {
+  //       //the content you'd placed at "global"
+  //       tsConfig: 'tsconfig.json',
+  //     },
+  //   ],
+  // },
   setupFilesAfterEnv: ['./jest.setup.ts'],
   testEnvironment: 'jsdom',
 };

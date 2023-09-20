@@ -3,6 +3,23 @@
 exports[`Radio applies theme and custom styles 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -76,6 +93,23 @@ exports[`Radio applies theme and custom styles 1`] = `
 exports[`Radio renders as expected when disabled 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -144,6 +178,23 @@ exports[`Radio renders as expected when disabled 1`] = `
 exports[`Radio renders as expected when passing a number to the size prop 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -228,6 +279,23 @@ exports[`Radio renders as expected when passing a number to the size prop 1`] = 
 exports[`Radio renders as expected when selected is false 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -295,6 +363,23 @@ exports[`Radio renders as expected when selected is false 1`] = `
 exports[`Radio renders as expected when selected is true 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -379,6 +464,23 @@ exports[`Radio renders as expected when selected is true 1`] = `
 exports[`Radio renders as expected when size is large 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -463,6 +565,23 @@ exports[`Radio renders as expected when size is large 1`] = `
 exports[`Radio renders as expected when size is medium 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -547,6 +666,23 @@ exports[`Radio renders as expected when size is medium 1`] = `
 exports[`Radio renders as expected when size is small 1`] = `
 <View
   accessibilityRole="radio"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -631,6 +767,23 @@ exports[`Radio renders as expected when size is small 1`] = `
 exports[`Radio renders as expected with accessibilityRole 1`] = `
 <View
   accessibilityRole="none"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}

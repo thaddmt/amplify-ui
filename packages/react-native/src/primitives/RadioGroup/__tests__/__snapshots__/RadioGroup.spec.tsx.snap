@@ -14,6 +14,7 @@ exports[`RadioGroup renders as expected when direction is horizontal 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "row",
@@ -22,6 +23,23 @@ exports[`RadioGroup renders as expected when direction is horizontal 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -103,6 +121,23 @@ exports[`RadioGroup renders as expected when direction is horizontal 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -167,6 +202,23 @@ exports[`RadioGroup renders as expected when direction is horizontal 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -231,6 +283,23 @@ exports[`RadioGroup renders as expected when direction is horizontal 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -312,6 +381,7 @@ exports[`RadioGroup renders as expected when direction is vertical 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "column",
@@ -320,6 +390,23 @@ exports[`RadioGroup renders as expected when direction is vertical 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -401,6 +488,23 @@ exports[`RadioGroup renders as expected when direction is vertical 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -465,6 +569,23 @@ exports[`RadioGroup renders as expected when direction is vertical 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -529,6 +650,23 @@ exports[`RadioGroup renders as expected when direction is vertical 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -610,6 +748,7 @@ exports[`RadioGroup renders as expected when size is large 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "column",
@@ -618,6 +757,23 @@ exports[`RadioGroup renders as expected when size is large 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -699,6 +855,23 @@ exports[`RadioGroup renders as expected when size is large 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -763,6 +936,23 @@ exports[`RadioGroup renders as expected when size is large 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -827,6 +1017,23 @@ exports[`RadioGroup renders as expected when size is large 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -908,6 +1115,7 @@ exports[`RadioGroup renders as expected when size is medium 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "column",
@@ -916,6 +1124,23 @@ exports[`RadioGroup renders as expected when size is medium 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -997,6 +1222,23 @@ exports[`RadioGroup renders as expected when size is medium 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1061,6 +1303,23 @@ exports[`RadioGroup renders as expected when size is medium 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1125,6 +1384,23 @@ exports[`RadioGroup renders as expected when size is medium 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1206,6 +1482,7 @@ exports[`RadioGroup renders as expected when size is small 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "column",
@@ -1214,6 +1491,23 @@ exports[`RadioGroup renders as expected when size is small 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1295,6 +1589,23 @@ exports[`RadioGroup renders as expected when size is small 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1359,6 +1670,23 @@ exports[`RadioGroup renders as expected when size is small 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1423,6 +1751,23 @@ exports[`RadioGroup renders as expected when size is small 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1504,6 +1849,7 @@ exports[`RadioGroup renders default RadioGroup as expected 1`] = `
 >
   <View
     accessibilityRole="radiogroup"
+    accessible={true}
     style={
       Object {
         "flexDirection": "column",
@@ -1512,6 +1858,23 @@ exports[`RadioGroup renders default RadioGroup as expected 1`] = `
   >
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1593,6 +1956,23 @@ exports[`RadioGroup renders default RadioGroup as expected 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1657,6 +2037,23 @@ exports[`RadioGroup renders default RadioGroup as expected 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1721,6 +2118,23 @@ exports[`RadioGroup renders default RadioGroup as expected 1`] = `
     </View>
     <View
       accessibilityRole="radio"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}

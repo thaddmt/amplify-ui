@@ -49,17 +49,27 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
       />
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -86,9 +96,10 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -116,6 +127,23 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -236,17 +264,27 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
       />
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -273,9 +311,10 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -303,6 +342,23 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -448,17 +504,27 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
       />
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -485,9 +551,10 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -557,17 +624,27 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
       />
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -594,9 +671,10 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={

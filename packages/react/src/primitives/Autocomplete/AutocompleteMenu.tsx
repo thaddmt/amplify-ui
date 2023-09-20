@@ -13,6 +13,41 @@ import type {
   BaseAutocompleteMenuProps,
 } from '../types';
 
+const MenuHeader = ({ children }: { children?: React.ReactNode }) => {
+  if (!children) {
+    return null;
+  }
+  return (
+    <View className={ComponentClassNames.AutocompleteMenuHeader}>
+      {children}
+    </View>
+  );
+};
+
+const MenuFooter = ({ children }: { children?: React.ReactNode }) => {
+  if (!children) {
+    return null;
+  }
+  return (
+    <View className={ComponentClassNames.AutocompleteMenuFooter}>
+      {children}
+    </View>
+  );
+};
+
+const MenuLoading = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <View className={ComponentClassNames.AutocompleteMenuLoading}>
+      {children ?? (
+        <>
+          <Loader />
+          {ComponentText.Autocomplete.loadingText}
+        </>
+      )}
+    </View>
+  );
+};
+
 const AutocompleteMenuPrimitive: Primitive<AutocompleteMenuProps, 'div'> = (
   {
     ariaLabel,
@@ -27,41 +62,6 @@ const AutocompleteMenuPrimitive: Primitive<AutocompleteMenuProps, 'div'> = (
   },
   ref
 ) => {
-  const MenuHeader = () => {
-    return (
-      Header && (
-        <View className={ComponentClassNames.AutocompleteMenuHeader}>
-          {Header}
-        </View>
-      )
-    );
-  };
-
-  const MenuFooter = () => {
-    return (
-      Footer && (
-        <View className={ComponentClassNames.AutocompleteMenuFooter}>
-          {Footer}
-        </View>
-      )
-    );
-  };
-
-  const MenuLoading = () => {
-    const MenuLoadingBody = LoadingIndicator ?? (
-      <>
-        <Loader />
-        {ComponentText.Autocomplete.loadingText}
-      </>
-    );
-
-    return (
-      <View className={ComponentClassNames.AutocompleteMenuLoading}>
-        {MenuLoadingBody}
-      </View>
-    );
-  };
-
   const MenuEmpty = () =>
     Empty ? (
       <View className={ComponentClassNames.AutocompleteMenuEmpty}>{Empty}</View>
@@ -78,10 +78,10 @@ const AutocompleteMenuPrimitive: Primitive<AutocompleteMenuProps, 'div'> = (
       {...rest}
     >
       {isLoading ? (
-        <MenuLoading />
+        <MenuLoading>{LoadingIndicator}</MenuLoading>
       ) : (
         <>
-          <MenuHeader />
+          <MenuHeader>{Header}</MenuHeader>
           {children.length > 0 ? (
             <ScrollView
               as="ul"
@@ -95,7 +95,7 @@ const AutocompleteMenuPrimitive: Primitive<AutocompleteMenuProps, 'div'> = (
           ) : (
             <MenuEmpty />
           )}
-          <MenuFooter />
+          <MenuFooter>{Footer}</MenuFooter>
         </>
       )}
     </ScrollView>

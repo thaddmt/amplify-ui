@@ -3,6 +3,7 @@
 exports[`ErrorMessage applies theme and style props 1`] = `
 <View
   accessibilityRole="alert"
+  accessible={true}
   style={
     Array [
       Object {
@@ -20,9 +21,10 @@ exports[`ErrorMessage applies theme and style props 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/error.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/error.png",
       }
     }
     style={
@@ -66,6 +68,7 @@ exports[`ErrorMessage applies theme and style props 1`] = `
 exports[`ErrorMessage renders default ErrorMessage as expected 1`] = `
 <View
   accessibilityRole="alert"
+  accessible={true}
   style={
     Array [
       Object {
@@ -81,9 +84,10 @@ exports[`ErrorMessage renders default ErrorMessage as expected 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/error.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/error.png",
       }
     }
     style={

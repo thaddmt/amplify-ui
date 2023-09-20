@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { render, waitFor } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import * as UIReactCoreModule from '@aws-amplify/ui-react-core';
 import {
@@ -57,7 +57,7 @@ describe('withAuthenticator', () => {
     expect(toJSON()).toMatchSnapshot();
   });
 
-  it.only('renders children when route is authenticated', async () => {
+  it('renders children when route is authenticated', () => {
     useAuthenticatorSpy.mockImplementation(
       () =>
         ({
@@ -66,9 +66,8 @@ describe('withAuthenticator', () => {
     );
 
     const { toJSON, getByTestId } = render(<TestApp />);
-    await waitFor(() => {
-      expect(getByTestId(CHILD_TEST_ID)).toBeDefined();
-      expect(toJSON()).toMatchSnapshot();
-    });
+
+    expect(getByTestId(CHILD_TEST_ID)).toBeDefined();
+    expect(toJSON()).toMatchSnapshot();
   });
 });

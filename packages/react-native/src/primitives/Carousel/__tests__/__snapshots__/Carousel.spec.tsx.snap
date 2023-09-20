@@ -53,6 +53,7 @@ Array [
   >
     <View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={
           Array [
@@ -147,6 +148,7 @@ Array [
   >
     <View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={
           Array [
@@ -245,6 +247,7 @@ Array [
   >
     <View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={
           Array [
@@ -268,6 +271,7 @@ Array [
         </View>
       </View>
       <View
+        onFocusCapture={[Function]}
         onLayout={[Function]}
         style={
           Array [

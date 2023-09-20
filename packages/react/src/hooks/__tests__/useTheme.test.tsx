@@ -20,7 +20,7 @@ describe('useTheme', () => {
     };
 
     const { result } = renderHook(() => useTheme(), {
-      wrapper: ({ children }) => (
+      wrapper: ({ children }: { children?: React.ReactNode }) => (
         <AmplifyProvider theme={customTheme}>{children}</AmplifyProvider>
       ),
     });
@@ -47,7 +47,7 @@ describe('useTheme', () => {
     );
 
     const { result } = renderHook(() => useTheme(), {
-      wrapper: ({ children }) => (
+      wrapper: ({ children }: { children?: React.ReactNode }) => (
         <AmplifyProvider theme={extendedTheme}>{children}</AmplifyProvider>
       ),
     });
@@ -57,7 +57,9 @@ describe('useTheme', () => {
 
   it('should return a default theme if not provided through context', () => {
     const { result } = renderHook(() => useTheme(), {
-      wrapper: ({ children }) => <AmplifyProvider>{children}</AmplifyProvider>,
+      wrapper: ({ children }: { children?: React.ReactNode }) => (
+        <AmplifyProvider>{children}</AmplifyProvider>
+      ),
     });
 
     expect(serializeTheme(result.current)).toBe(serializeTheme(createTheme()));

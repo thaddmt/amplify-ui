@@ -19,9 +19,8 @@ module.exports = {
     },
   },
   globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
+  moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
-  // transformIgnorePatterns: []
-  // moduleNameMapper: { '^react$': '<rootDir>/node_modules/react' },
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
 };

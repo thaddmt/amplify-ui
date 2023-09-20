@@ -199,7 +199,19 @@ Array [
           accessibilityRole="button"
           accessibilityState={
             Object {
+              "busy": undefined,
+              "checked": undefined,
               "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            Object {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
             }
           }
           accessible={true}
@@ -224,9 +236,10 @@ Array [
         >
           <Image
             accessibilityRole="image"
+            accessible={true}
             source={
               Object {
-                "testUri": "../../../src/assets/icons/visibilityOff.png",
+                "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
@@ -265,7 +278,19 @@ Array [
     accessibilityRole="button"
     accessibilityState={
       Object {
+        "busy": undefined,
+        "checked": undefined,
         "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      Object {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -325,6 +350,23 @@ Array [
   >
     <View
       accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -373,6 +415,23 @@ Array [
     </View>
     <View
       accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -622,7 +681,19 @@ Array [
           accessibilityRole="button"
           accessibilityState={
             Object {
+              "busy": undefined,
+              "checked": undefined,
               "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            Object {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
             }
           }
           accessible={true}
@@ -647,9 +718,10 @@ Array [
         >
           <Image
             accessibilityRole="image"
+            accessible={true}
             source={
               Object {
-                "testUri": "../../../src/assets/icons/visibilityOff.png",
+                "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
@@ -688,7 +760,19 @@ Array [
     accessibilityRole="button"
     accessibilityState={
       Object {
+        "busy": undefined,
+        "checked": undefined,
         "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      Object {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -748,6 +832,23 @@ Array [
   >
     <View
       accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -997,7 +1098,19 @@ Array [
           accessibilityRole="button"
           accessibilityState={
             Object {
+              "busy": undefined,
+              "checked": undefined,
               "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            Object {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
             }
           }
           accessible={true}
@@ -1022,9 +1135,10 @@ Array [
         >
           <Image
             accessibilityRole="image"
+            accessible={true}
             source={
               Object {
-                "testUri": "../../../src/assets/icons/visibilityOff.png",
+                "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
@@ -1061,6 +1175,7 @@ Array [
   </View>,
   <View
     accessibilityRole="alert"
+    accessible={true}
     style={
       Array [
         Object {
@@ -1079,9 +1194,10 @@ Array [
   >
     <Image
       accessibilityRole="image"
+      accessible={true}
       source={
         Object {
-          "testUri": "../../../src/assets/icons/error.png",
+          "testUri": "../../../packages/react-native/src/assets/icons/error.png",
         }
       }
       style={
@@ -1122,7 +1238,19 @@ Array [
     accessibilityRole="button"
     accessibilityState={
       Object {
+        "busy": undefined,
+        "checked": undefined,
         "disabled": false,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      Object {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -1182,6 +1310,23 @@ Array [
   >
     <View
       accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -1230,6 +1375,23 @@ Array [
     </View>
     <View
       accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        Object {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}

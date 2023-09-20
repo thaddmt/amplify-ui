@@ -23,7 +23,6 @@ exports[`UploadMessage exists 1`] = `
       </svg>
     </span>
      
-    
   </p>
 </div>
 `;

@@ -107,9 +107,9 @@ describe('Authenticator', () => {
         () => ({ route } as unknown as UseAuthenticator)
       );
 
-      const { container } = render(<Authenticator />);
+      const { root } = render(<Authenticator />);
 
-      expect(container.instance).toBeNull();
+      expect(root.instance).toBeNull();
     }
   );
 

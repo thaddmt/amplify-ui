@@ -66,7 +66,7 @@ interface CollectionChildren<Item> {
    * The component to be repeated
    * Same interface as Array.prototype.map
    */
-  children: (item: Item, index: number) => JSX.Element;
+  children: (item: Item, index: number) => React.ReactNode;
 }
 
 export interface CollectionBaseProps<Item> extends CollectionChildren<Item> {
@@ -77,9 +77,9 @@ export interface CollectionBaseProps<Item> extends CollectionChildren<Item> {
   items: Array<Item>;
 }
 
-export type ListCollectionProps<Item> = BaseFlexProps &
+export type ListCollectionProps<Item> = Omit<BaseFlexProps, 'children'> &
   CollectionBaseProps<Item>;
-export type GridCollectionProps<Item> = BaseGridProps &
+export type GridCollectionProps<Item> = Omit<BaseGridProps, 'children'> &
   CollectionBaseProps<Item>;
 
 /**

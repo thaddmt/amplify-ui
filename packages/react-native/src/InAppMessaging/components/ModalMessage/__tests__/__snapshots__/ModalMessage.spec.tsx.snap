@@ -40,17 +40,27 @@ exports[`ModalMessage correctly handles a primaryButton prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -77,9 +87,10 @@ exports[`ModalMessage correctly handles a primaryButton prop 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -116,6 +127,23 @@ exports[`ModalMessage correctly handles a primaryButton prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -227,17 +255,27 @@ exports[`ModalMessage correctly handles a secondaryButton prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -264,9 +302,10 @@ exports[`ModalMessage correctly handles a secondaryButton prop 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -303,6 +342,23 @@ exports[`ModalMessage correctly handles a secondaryButton prop 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
@@ -414,17 +470,27 @@ exports[`ModalMessage renders a message as expected with an image 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -451,9 +517,10 @@ exports[`ModalMessage renders a message as expected with an image 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -558,17 +625,27 @@ exports[`ModalMessage renders as expected in landscape mode 1`] = `
       />
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -596,9 +673,10 @@ exports[`ModalMessage renders as expected in landscape mode 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
@@ -659,17 +737,27 @@ exports[`ModalMessage renders as expected in portrait mode 1`] = `
     >
       <View
         accessibilityRole="button"
+        accessibilityState={
+          Object {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          Object {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         collapsable={false}
         focusable={true}
-        hitSlop={
-          Object {
-            "bottom": 10,
-            "left": 10,
-            "right": 10,
-            "top": 10,
-          }
-        }
+        hitSlop={10}
         onBlur={[Function]}
         onClick={[Function]}
         onFocus={[Function]}
@@ -696,9 +784,10 @@ exports[`ModalMessage renders as expected in portrait mode 1`] = `
       >
         <Image
           accessibilityRole="image"
+          accessible={true}
           source={
             Object {
-              "testUri": "../../../src/assets/icons/close.png",
+              "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={

@@ -3,6 +3,23 @@
 exports[`Checkbox applies label position prop 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -29,9 +46,10 @@ exports[`Checkbox applies label position prop 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -70,6 +88,23 @@ exports[`Checkbox applies label position prop 1`] = `
 exports[`Checkbox applies theme and style props 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -98,9 +133,10 @@ exports[`Checkbox applies theme and style props 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -141,7 +177,19 @@ exports[`Checkbox renders as expected when disabled 1`] = `
   accessibilityRole="checkbox"
   accessibilityState={
     Object {
+      "busy": undefined,
+      "checked": undefined,
       "disabled": true,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
     }
   }
   accessible={true}
@@ -171,9 +219,10 @@ exports[`Checkbox renders as expected when disabled 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -212,6 +261,23 @@ exports[`Checkbox renders as expected when disabled 1`] = `
 exports[`Checkbox renders as expected when passing a number to the size prop 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -238,9 +304,10 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -279,6 +346,23 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
 exports[`Checkbox renders as expected when selected is false 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -305,9 +389,10 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -346,6 +431,23 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
 exports[`Checkbox renders as expected when selected is true 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -372,9 +474,10 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxFilled.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxFilled.png",
       }
     }
     style={
@@ -413,6 +516,23 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
 exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
 <View
   accessibilityRole="none"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -439,9 +559,10 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
@@ -480,6 +601,23 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
 exports[`Checkbox renders as expected without a label 1`] = `
 <View
   accessibilityRole="checkbox"
+  accessibilityState={
+    Object {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    Object {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   collapsable={false}
   focusable={true}
@@ -506,9 +644,10 @@ exports[`Checkbox renders as expected without a label 1`] = `
 >
   <Image
     accessibilityRole="image"
+    accessible={true}
     source={
       Object {
-        "testUri": "../../../src/assets/icons/checkboxOutline.png",
+        "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={

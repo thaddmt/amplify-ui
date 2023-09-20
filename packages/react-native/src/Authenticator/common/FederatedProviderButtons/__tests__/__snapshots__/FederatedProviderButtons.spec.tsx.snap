@@ -10,6 +10,23 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
 >
   <View
     accessibilityRole="button"
+    accessibilityState={
+      Object {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      Object {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -55,9 +72,10 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
   >
     <Image
       accessibilityRole="image"
+      accessible={true}
       source={
         Object {
-          "testUri": "../../../src/assets/icons/amazonLogo.png",
+          "testUri": "../../../packages/react-native/src/assets/icons/amazonLogo.png",
         }
       }
       style={

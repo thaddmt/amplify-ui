@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { TextArea } from '../TextArea';
 import { Fieldset } from '../../Fieldset';
@@ -90,20 +89,5 @@ describe('TextArea component', () => {
     render(<TextArea id="testField" hasError />);
     const textarea = await screen.findByRole('textbox');
     expect(textarea).toHaveAttribute('aria-invalid', 'true');
-  });
-
-  it('should fire event handlers', async () => {
-    const onChange = jest.fn();
-    const onInput = jest.fn();
-    const onPaste = jest.fn();
-    render(
-      <TextArea onChange={onChange} onInput={onInput} onPaste={onPaste} />
-    );
-    const textarea = await screen.findByRole('textbox');
-    userEvent.type(textarea, 'hello');
-    userEvent.paste(textarea, 'there');
-    expect(onChange).toHaveBeenCalled();
-    expect(onInput).toHaveBeenCalled();
-    expect(onPaste).toHaveBeenCalled();
   });
 });

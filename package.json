@@ -49,12 +49,15 @@
       "packages/configs/eslint"
     ],
     "nohoist": [
-      "**/rollup"
+      "**/rollup",
+      "**/@types/webgl-ext",
+      "**/@types/webgl-ext/**"
     ]
   },
   "resolutions": {
     "@cypress/request": "^3.0.0",
     "@sideway/formula": "^3.0.1",
+    "@types/react": "^18.2.7",
     "**/@angular-devkit/build-angular/minimatch": "3.0.5",
     "**/@angular-devkit/build-angular/webpack": "^5.76.0",
     "**/@cucumber/cucumber/**/semver": "7.5.4",
