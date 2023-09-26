@@ -1,1 +1,0 @@
-export { withPlatform } from './withPlatform';

@@ -67,7 +67,7 @@ export interface ForwardRefPrimitive<
   // overload the JSX constructor to make it accept generics
   <Element extends ElementType = DefaultElement>(
     props: PrimitiveProps<Props, Element>
-  ): React.ReactNode | null;
+  ): React.JSX.Element | null;
 }
 
 /** @deprecated For internal use only */
