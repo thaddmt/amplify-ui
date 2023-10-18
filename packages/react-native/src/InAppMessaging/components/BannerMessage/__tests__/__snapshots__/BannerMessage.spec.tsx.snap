@@ -3,7 +3,7 @@
 exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
 <MessageWrapper
   style={
-    Object {
+    {
       "backgroundColor": "transparent",
       "flex": 1,
       "justifyContent": "flex-start",
@@ -12,28 +12,28 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#fff",
           "elevation": 3,
           "margin": 16,
           "shadowColor": "#000",
-          "shadowOffset": Object {
+          "shadowOffset": {
             "height": 2,
             "width": 2,
           },
           "shadowOpacity": 0.1,
           "shadowRadius": 2,
         },
-        Object {},
-        Object {},
+        {},
+        {},
       ]
     }
     testID="inappmessaging-topbanner-dialog"
   >
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "padding": 12,
         }
@@ -41,7 +41,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "flex": 1,
             "paddingHorizontal": 8,
           }
@@ -50,7 +50,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -59,7 +59,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -80,11 +80,11 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {},
+          [
+            {},
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "flex-start",
                 "marginLeft": "auto",
               },
@@ -98,13 +98,13 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
           accessibilityRole="image"
           accessible={true}
           source={
-            Object {
+            {
               "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "height": 20,
                 "resizeMode": "contain",
                 "tintColor": undefined,
@@ -118,7 +118,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "justifyContent": "center",
           "padding": 4,
@@ -128,7 +128,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -137,7 +137,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -157,8 +157,8 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "borderColor": "hsl(210, 10%, 58%)",
@@ -169,17 +169,17 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
               "paddingVertical": 12,
             },
             undefined,
-            Array [
-              Object {},
-              Object {
+            [
+              {},
+              {
                 "backgroundColor": "#e8e8e8",
                 "borderRadius": 4,
                 "flex": 1,
                 "margin": 8,
                 "padding": 12,
               },
-              Object {},
-              Object {},
+              {},
+              {},
             ],
           ]
         }
@@ -187,22 +187,22 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
       >
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "fontSize": 16,
                 "fontWeight": "700",
                 "textAlign": "center",
               },
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 16,
                   "fontWeight": "400",
                   "lineHeight": 24,
                   "textAlign": "center",
                 },
-                Object {},
-                Object {},
+                {},
+                {},
               ],
             ]
           }
@@ -218,7 +218,7 @@ exports[`BannerMessage correctly handles a primaryButton button prop 1`] = `
 exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
 <MessageWrapper
   style={
-    Object {
+    {
       "backgroundColor": "transparent",
       "flex": 1,
       "justifyContent": "flex-start",
@@ -227,28 +227,28 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#fff",
           "elevation": 3,
           "margin": 16,
           "shadowColor": "#000",
-          "shadowOffset": Object {
+          "shadowOffset": {
             "height": 2,
             "width": 2,
           },
           "shadowOpacity": 0.1,
           "shadowRadius": 2,
         },
-        Object {},
-        Object {},
+        {},
+        {},
       ]
     }
     testID="inappmessaging-topbanner-dialog"
   >
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "padding": 12,
         }
@@ -256,7 +256,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "flex": 1,
             "paddingHorizontal": 8,
           }
@@ -265,7 +265,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -274,7 +274,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -295,11 +295,11 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {},
+          [
+            {},
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "flex-start",
                 "marginLeft": "auto",
               },
@@ -313,13 +313,13 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
           accessibilityRole="image"
           accessible={true}
           source={
-            Object {
+            {
               "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "height": 20,
                 "resizeMode": "contain",
                 "tintColor": undefined,
@@ -333,7 +333,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "justifyContent": "center",
           "padding": 4,
@@ -343,7 +343,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -352,7 +352,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -372,8 +372,8 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {
+          [
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "borderColor": "hsl(210, 10%, 58%)",
@@ -384,17 +384,17 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
               "paddingVertical": 12,
             },
             undefined,
-            Array [
-              Object {},
-              Object {
+            [
+              {},
+              {
                 "backgroundColor": "#e8e8e8",
                 "borderRadius": 4,
                 "flex": 1,
                 "margin": 8,
                 "padding": 12,
               },
-              Object {},
-              Object {},
+              {},
+              {},
             ],
           ]
         }
@@ -402,22 +402,22 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
       >
         <Text
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "fontSize": 16,
                 "fontWeight": "700",
                 "textAlign": "center",
               },
-              Array [
-                Object {
+              [
+                {
                   "fontSize": 16,
                   "fontWeight": "400",
                   "lineHeight": 24,
                   "textAlign": "center",
                 },
-                Object {},
-                Object {},
+                {},
+                {},
               ],
             ]
           }
@@ -433,7 +433,7 @@ exports[`BannerMessage correctly handles a secondaryButton button prop 1`] = `
 exports[`BannerMessage renders a message as expected with an image 1`] = `
 <MessageWrapper
   style={
-    Object {
+    {
       "backgroundColor": "transparent",
       "flex": 1,
       "justifyContent": "flex-start",
@@ -442,28 +442,28 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#fff",
           "elevation": 3,
           "margin": 16,
           "shadowColor": "#000",
-          "shadowOffset": Object {
+          "shadowOffset": {
             "height": 2,
             "width": 2,
           },
           "shadowOpacity": 0.1,
           "shadowRadius": 2,
         },
-        Object {},
-        Object {},
+        {},
+        {},
       ]
     }
     testID="inappmessaging-topbanner-dialog"
   >
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "padding": 12,
         }
@@ -471,20 +471,20 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "justifyContent": "center",
           }
         }
       >
         <Image
           source={
-            Object {
+            {
               "uri": "asset.png",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "height": 100,
                 "width": 100,
               },
@@ -496,7 +496,7 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "flex": 1,
             "paddingHorizontal": 8,
           }
@@ -505,7 +505,7 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -514,7 +514,7 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -535,11 +535,11 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {},
+          [
+            {},
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "flex-start",
                 "marginLeft": "auto",
               },
@@ -553,13 +553,13 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
           accessibilityRole="image"
           accessible={true}
           source={
-            Object {
+            {
               "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "height": 20,
                 "resizeMode": "contain",
                 "tintColor": undefined,
@@ -578,7 +578,7 @@ exports[`BannerMessage renders a message as expected with an image 1`] = `
 exports[`BannerMessage renders a message as expected without an image 1`] = `
 <MessageWrapper
   style={
-    Object {
+    {
       "backgroundColor": "transparent",
       "flex": 1,
       "justifyContent": "flex-start",
@@ -587,28 +587,28 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "backgroundColor": "#fff",
           "elevation": 3,
           "margin": 16,
           "shadowColor": "#000",
-          "shadowOffset": Object {
+          "shadowOffset": {
             "height": 2,
             "width": 2,
           },
           "shadowOpacity": 0.1,
           "shadowRadius": 2,
         },
-        Object {},
-        Object {},
+        {},
+        {},
       ]
     }
     testID="inappmessaging-topbanner-dialog"
   >
     <View
       style={
-        Object {
+        {
           "flexDirection": "row",
           "padding": 12,
         }
@@ -616,7 +616,7 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "flex": 1,
             "paddingHorizontal": 8,
           }
@@ -625,7 +625,7 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
       <View
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "busy": undefined,
             "checked": undefined,
             "disabled": undefined,
@@ -634,7 +634,7 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
           }
         }
         accessibilityValue={
-          Object {
+          {
             "max": undefined,
             "min": undefined,
             "now": undefined,
@@ -655,11 +655,11 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Array [
-            Object {},
+          [
+            {},
             undefined,
-            Array [
-              Object {
+            [
+              {
                 "alignSelf": "flex-start",
                 "marginLeft": "auto",
               },
@@ -673,13 +673,13 @@ exports[`BannerMessage renders a message as expected without an image 1`] = `
           accessibilityRole="image"
           accessible={true}
           source={
-            Object {
+            {
               "testUri": "../../../packages/react-native/src/assets/icons/close.png",
             }
           }
           style={
-            Array [
-              Object {
+            [
+              {
                 "height": 20,
                 "resizeMode": "contain",
                 "tintColor": undefined,

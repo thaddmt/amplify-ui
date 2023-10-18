@@ -4,7 +4,7 @@ exports[`IconButton applies theme and style props 1`] = `
 <View
   accessibilityRole="button"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -13,7 +13,7 @@ exports[`IconButton applies theme and style props 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -33,10 +33,10 @@ exports[`IconButton applies theme and style props 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {},
+    [
+      {},
       undefined,
-      Object {
+      {
         "backgroundColor": "blue",
       },
     ]
@@ -46,13 +46,13 @@ exports[`IconButton applies theme and style props 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "uri": "icon.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -69,7 +69,7 @@ exports[`IconButton handles disabled state 1`] = `
 <View
   accessibilityRole="button"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": true,
@@ -78,7 +78,7 @@ exports[`IconButton handles disabled state 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -98,8 +98,8 @@ exports[`IconButton handles disabled state 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "opacity": 0.6,
       },
       undefined,
@@ -111,13 +111,13 @@ exports[`IconButton handles disabled state 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "uri": "icon.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -134,7 +134,7 @@ exports[`IconButton renders as expected 1`] = `
 <View
   accessibilityRole="button"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -143,7 +143,7 @@ exports[`IconButton renders as expected 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -163,8 +163,8 @@ exports[`IconButton renders as expected 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {},
+    [
+      {},
       undefined,
       undefined,
     ]
@@ -174,13 +174,13 @@ exports[`IconButton renders as expected 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "uri": "icon.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -197,7 +197,7 @@ exports[`IconButton renders as expected with custom icon style 1`] = `
 <View
   accessibilityRole="button"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -206,7 +206,7 @@ exports[`IconButton renders as expected with custom icon style 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -226,8 +226,8 @@ exports[`IconButton renders as expected with custom icon style 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {},
+    [
+      {},
       undefined,
       undefined,
     ]
@@ -237,19 +237,19 @@ exports[`IconButton renders as expected with custom icon style 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "uri": "icon.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
           "width": 24,
         },
-        Object {
+        {
           "backgroundColor": "antiquewhite",
         },
       ]

@@ -16,7 +16,7 @@ module.exports = {
     },
   },
   moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
-  globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
+  // globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
   // moduleNameMapper: {
   //   '^react$': '<rootDir>/node_modules/react',
   // },

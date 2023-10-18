@@ -3,7 +3,7 @@
 exports[`FederatedProviderButtons renders as expected 1`] = `
 <View
   style={
-    Object {
+    {
       "paddingVertical": 4,
     }
   }
@@ -11,7 +11,7 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": undefined,
@@ -20,7 +20,7 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -40,8 +40,8 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "transparent",
           "borderColor": "hsl(210, 10%, 58%)",
@@ -52,8 +52,8 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
           "paddingVertical": 12,
         },
         undefined,
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "borderRadius": 4,
             "borderWidth": 0.5,
@@ -63,7 +63,7 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
             "width": "100%",
           },
           undefined,
-          Object {
+          {
             "marginVertical": 8,
           },
         ],
@@ -74,19 +74,19 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
       accessibilityRole="image"
       accessible={true}
       source={
-        Object {
+        {
           "testUri": "../../../packages/react-native/src/assets/icons/amazonLogo.png",
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "height": 20,
             "resizeMode": "contain",
             "tintColor": undefined,
             "width": 20,
           },
-          Object {
+          {
             "paddingHorizontal": 16,
           },
         ]
@@ -95,17 +95,17 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
     <Text
       accessibilityRole="text"
       style={
-        Array [
-          Object {
+        [
+          {
             "fontSize": 16,
             "fontWeight": "400",
             "lineHeight": 24,
           },
-          Object {
+          {
             "color": "hsl(210, 50%, 10%)",
           },
-          Array [
-            Object {
+          [
+            {
               "fontWeight": "400",
             },
             undefined,
@@ -118,8 +118,8 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "flexDirection": "row",
         },
@@ -129,8 +129,8 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "hsl(0, 0%, 0%)",
             "flex": 1,
             "height": 0.5,
@@ -143,22 +143,22 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
     <Text
       accessibilityRole="text"
       style={
-        Array [
-          Object {
+        [
+          {
             "fontSize": 16,
             "fontWeight": "400",
             "lineHeight": 24,
           },
-          Object {
+          {
             "color": "hsl(210, 50%, 10%)",
           },
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "margin": 16,
               "textAlign": "center",
             },
-            Object {
+            {
               "paddingVertical": 8,
               "textAlign": "center",
             },
@@ -170,8 +170,8 @@ exports[`FederatedProviderButtons renders as expected 1`] = `
     </Text>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "hsl(0, 0%, 0%)",
             "flex": 1,
             "height": 0.5,

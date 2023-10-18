@@ -76,11 +76,8 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.5.1",
-    "@types/jest": "^29.5.5",
     "@types/jest-when": "^3.5.0",
     "blob-polyfill": "^7.0.20220408",
-    "eslint": "^8.44.0",
-    "jest": "^28",
     "jest-canvas-mock": "^2.4.0",
     "jest-websocket-mock": "^2.4.1",
     "jest-when": "^3.5.1",
@@ -90,8 +87,6 @@
     "rollup-plugin-node-externals": "^4.1.1",
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "size-limit": "^8.2.6",
-    "ts-jest": "^28",
     "web-streams-polyfill": "^3.2.1"
   },
   "size-limit": [

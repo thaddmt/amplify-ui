@@ -5,12 +5,12 @@ exports[`Tabs applies theme and custom styling 1`] = `
   accessibilityRole="tablist"
   accessible={true}
   style={
-    Array [
-      Object {
+    [
+      {
         "flexDirection": "row",
         "width": "100%",
       },
-      Object {
+      {
         "backgroundColor": "blue",
       },
     ]
@@ -19,7 +19,7 @@ exports[`Tabs applies theme and custom styling 1`] = `
   <View
     accessibilityRole="tab"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": undefined,
@@ -28,7 +28,7 @@ exports[`Tabs applies theme and custom styling 1`] = `
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -48,8 +48,8 @@ exports[`Tabs applies theme and custom styling 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "transparent",
           "borderColor": "hsl(210, 10%, 58%)",
@@ -60,8 +60,8 @@ exports[`Tabs applies theme and custom styling 1`] = `
           "paddingVertical": 12,
         },
         undefined,
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "hsl(0, 0%, 100%)",
             "borderBottomColor": "hsl(190, 95%, 30%)",
             "borderBottomWidth": 2,
@@ -82,21 +82,21 @@ exports[`Tabs applies theme and custom styling 1`] = `
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(210, 50%, 10%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(210, 25%, 25%)",
               "fontSize": 16,
               "fontWeight": "700",
             },
             undefined,
-            Object {
+            {
               "backgroundColor": "hsl(0, 0%, 100%)",
               "borderBottomColor": "hsl(190, 95%, 30%)",
               "color": "hsl(190, 95%, 30%)",
@@ -111,7 +111,7 @@ exports[`Tabs applies theme and custom styling 1`] = `
   <View
     accessibilityRole="tab"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": undefined,
@@ -120,7 +120,7 @@ exports[`Tabs applies theme and custom styling 1`] = `
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -140,8 +140,8 @@ exports[`Tabs applies theme and custom styling 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "transparent",
           "borderColor": "hsl(210, 10%, 58%)",
@@ -152,8 +152,8 @@ exports[`Tabs applies theme and custom styling 1`] = `
           "paddingVertical": 12,
         },
         undefined,
-        Array [
-          Object {
+        [
+          {
             "backgroundColor": "transparent",
             "borderBottomColor": "hsl(210, 5%, 87%)",
             "borderBottomWidth": 2,
@@ -172,15 +172,15 @@ exports[`Tabs applies theme and custom styling 1`] = `
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(210, 50%, 10%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(210, 25%, 25%)",
               "fontSize": 16,
               "fontWeight": "700",

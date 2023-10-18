@@ -18,7 +18,6 @@ module.exports = {
       statements: 90,
     },
   },
-  globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
   moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'ts-jest',

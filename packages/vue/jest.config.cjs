@@ -22,11 +22,15 @@ module.exports = {
   testEnvironment: 'jsdom',
   verbose: true,
   moduleFileExtensions: ['js', 'ts', 'json', 'vue', 'tsx'],
+  moduleNameMapper: { '^nanoid$': '<rootDir>/../../node_modules/nanoid' },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   setupFilesAfterEnv: ['./jest.setup.ts'],
   transform: {
     '^.+\\.(ts)$': 'ts-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
     '^.+\\.vue$': '@vue/vue3-jest',
+  },
+  testEnvironmentOptions: {
+    customExportConditions: ['node', 'node-addons'],
   },
 };

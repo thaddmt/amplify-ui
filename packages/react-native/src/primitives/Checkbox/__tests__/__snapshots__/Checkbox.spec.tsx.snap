@@ -4,7 +4,7 @@ exports[`Checkbox applies label position prop 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -13,7 +13,7 @@ exports[`Checkbox applies label position prop 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -33,8 +33,8 @@ exports[`Checkbox applies label position prop 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "column",
         "padding": 8,
@@ -48,13 +48,13 @@ exports[`Checkbox applies label position prop 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -67,13 +67,13 @@ exports[`Checkbox applies label position prop 1`] = `
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -89,7 +89,7 @@ exports[`Checkbox applies theme and style props 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -98,7 +98,7 @@ exports[`Checkbox applies theme and style props 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -118,13 +118,13 @@ exports[`Checkbox applies theme and style props 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
       },
-      Object {
+      {
         "padding": 10,
       },
     ]
@@ -135,35 +135,35 @@ exports[`Checkbox applies theme and style props 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
           "width": 24,
         },
-        Object {},
+        {},
       ]
     }
   />
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {},
+        {},
       ]
     }
   >
@@ -176,7 +176,7 @@ exports[`Checkbox renders as expected when disabled 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": true,
@@ -185,7 +185,7 @@ exports[`Checkbox renders as expected when disabled 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -205,8 +205,8 @@ exports[`Checkbox renders as expected when disabled 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "opacity": 0.6,
@@ -221,13 +221,13 @@ exports[`Checkbox renders as expected when disabled 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -240,13 +240,13 @@ exports[`Checkbox renders as expected when disabled 1`] = `
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -262,7 +262,7 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -271,7 +271,7 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -291,8 +291,8 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
@@ -306,13 +306,13 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 42,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -325,13 +325,13 @@ exports[`Checkbox renders as expected when passing a number to the size prop 1`]
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -347,7 +347,7 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -356,7 +356,7 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -376,8 +376,8 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
@@ -391,13 +391,13 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -410,13 +410,13 @@ exports[`Checkbox renders as expected when selected is false 1`] = `
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -432,7 +432,7 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -441,7 +441,7 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -461,8 +461,8 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
@@ -476,13 +476,13 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxFilled.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -495,13 +495,13 @@ exports[`Checkbox renders as expected when selected is true 1`] = `
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -517,7 +517,7 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
 <View
   accessibilityRole="none"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -526,7 +526,7 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -546,8 +546,8 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
@@ -561,13 +561,13 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,
@@ -580,13 +580,13 @@ exports[`Checkbox renders as expected with custom accessibilityRole 1`] = `
   <Text
     accessibilityRole="text"
     style={
-      Array [
-        Object {
+      [
+        {
           "fontSize": 16,
           "fontWeight": "400",
           "lineHeight": 24,
         },
-        Object {
+        {
           "color": "hsl(210, 50%, 10%)",
         },
         undefined,
@@ -602,7 +602,7 @@ exports[`Checkbox renders as expected without a label 1`] = `
 <View
   accessibilityRole="checkbox"
   accessibilityState={
-    Object {
+    {
       "busy": undefined,
       "checked": undefined,
       "disabled": undefined,
@@ -611,7 +611,7 @@ exports[`Checkbox renders as expected without a label 1`] = `
     }
   }
   accessibilityValue={
-    Object {
+    {
       "max": undefined,
       "min": undefined,
       "now": undefined,
@@ -631,8 +631,8 @@ exports[`Checkbox renders as expected without a label 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
+    [
+      {
         "alignItems": "center",
         "flexDirection": "row",
         "padding": 8,
@@ -646,13 +646,13 @@ exports[`Checkbox renders as expected without a label 1`] = `
     accessibilityRole="image"
     accessible={true}
     source={
-      Object {
+      {
         "testUri": "../../../packages/react-native/src/assets/icons/checkboxOutline.png",
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "height": 24,
           "resizeMode": "contain",
           "tintColor": undefined,

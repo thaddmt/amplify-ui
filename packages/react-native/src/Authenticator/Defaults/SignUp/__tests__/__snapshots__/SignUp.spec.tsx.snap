@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignUp renders as expected 1`] = `
-Array [
+[
   <Text
     accessibilityRole="header"
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {
+        {
           "fontSize": 24,
           "fontWeight": "500",
           "lineHeight": 36,
         },
-        Object {
+        {
           "marginVertical": 12,
           "paddingHorizontal": 12,
         },
@@ -25,19 +25,19 @@ Array [
   </Text>,
   <View
     style={
-      Object {
+      {
         "paddingBottom": 8,
       }
     }
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Object {
+          {
             "paddingHorizontal": 12,
           },
         ]
@@ -48,17 +48,17 @@ Array [
         accessibilityLabel="Username"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -72,7 +72,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -85,7 +85,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -97,15 +97,15 @@ Array [
           placeholder="Username"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -113,14 +113,14 @@ Array [
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -132,17 +132,17 @@ Array [
         accessibilityLabel="Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -156,7 +156,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -169,7 +169,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -182,15 +182,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -198,7 +198,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -207,7 +207,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -227,8 +227,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -238,20 +238,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -266,7 +266,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -275,14 +275,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -294,17 +294,17 @@ Array [
         accessibilityLabel="Confirm Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -318,7 +318,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -331,7 +331,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -344,15 +344,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -360,7 +360,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -369,7 +369,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -389,8 +389,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -400,20 +400,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -428,7 +428,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -437,14 +437,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -456,22 +456,22 @@ Array [
         accessibilityLabel="Phone"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
               ],
             ],
@@ -483,7 +483,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -496,7 +496,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -509,17 +509,17 @@ Array [
           placeholder="Phone"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Array [
-                Object {},
-                Object {},
+              [
+                {},
+                {},
               ],
             ]
           }
@@ -530,7 +530,7 @@ Array [
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": false,
@@ -539,7 +539,7 @@ Array [
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -559,8 +559,8 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(190, 95%, 30%)",
           "borderRadius": 4,
@@ -569,7 +569,7 @@ Array [
           "paddingVertical": 12,
         },
         undefined,
-        Object {
+        {
           "margin": 12,
         },
       ]
@@ -578,14 +578,14 @@ Array [
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 0%, 100%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -594,7 +594,7 @@ Array [
   </View>,
   <View
     style={
-      Object {
+      {
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "center",
@@ -604,7 +604,7 @@ Array [
     <View
       accessibilityRole="button"
       accessibilityState={
-        Object {
+        {
           "busy": undefined,
           "checked": undefined,
           "disabled": undefined,
@@ -613,7 +613,7 @@ Array [
         }
       }
       accessibilityValue={
-        Object {
+        {
           "max": undefined,
           "min": undefined,
           "now": undefined,
@@ -633,8 +633,8 @@ Array [
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "transparent",
             "borderRadius": 4,
@@ -643,7 +643,7 @@ Array [
             "paddingVertical": 12,
           },
           undefined,
-          Object {
+          {
             "marginVertical": 8,
             "minWidth": "50%",
           },
@@ -652,8 +652,8 @@ Array [
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(190, 95%, 30%)",
               "fontSize": 16,
               "fontWeight": "700",
@@ -671,20 +671,20 @@ Array [
 `;
 
 exports[`SignUp renders as expected when hideSignIn is true 1`] = `
-Array [
+[
   <Text
     accessibilityRole="header"
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {
+        {
           "fontSize": 24,
           "fontWeight": "500",
           "lineHeight": 36,
         },
-        Object {
+        {
           "marginVertical": 12,
           "paddingHorizontal": 12,
         },
@@ -695,19 +695,19 @@ Array [
   </Text>,
   <View
     style={
-      Object {
+      {
         "paddingBottom": 8,
       }
     }
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Object {
+          {
             "paddingHorizontal": 12,
           },
         ]
@@ -718,17 +718,17 @@ Array [
         accessibilityLabel="Username"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -742,7 +742,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -755,7 +755,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -767,15 +767,15 @@ Array [
           placeholder="Username"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -783,14 +783,14 @@ Array [
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -802,17 +802,17 @@ Array [
         accessibilityLabel="Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -826,7 +826,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -839,7 +839,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -852,15 +852,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -868,7 +868,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -877,7 +877,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -897,8 +897,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -908,20 +908,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -936,7 +936,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -945,14 +945,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -964,17 +964,17 @@ Array [
         accessibilityLabel="Confirm Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -988,7 +988,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1001,7 +1001,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -1014,15 +1014,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -1030,7 +1030,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -1039,7 +1039,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -1059,8 +1059,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -1070,20 +1070,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -1098,7 +1098,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -1107,14 +1107,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -1126,22 +1126,22 @@ Array [
         accessibilityLabel="Phone"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
               ],
             ],
@@ -1153,7 +1153,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1166,7 +1166,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -1179,17 +1179,17 @@ Array [
           placeholder="Phone"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Array [
-                Object {},
-                Object {},
+              [
+                {},
+                {},
               ],
             ]
           }
@@ -1200,7 +1200,7 @@ Array [
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": false,
@@ -1209,7 +1209,7 @@ Array [
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -1229,8 +1229,8 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(190, 95%, 30%)",
           "borderRadius": 4,
@@ -1239,7 +1239,7 @@ Array [
           "paddingVertical": 12,
         },
         undefined,
-        Object {
+        {
           "margin": 12,
         },
       ]
@@ -1248,14 +1248,14 @@ Array [
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 0%, 100%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -1266,20 +1266,20 @@ Array [
 `;
 
 exports[`SignUp renders as expected when isPending is true 1`] = `
-Array [
+[
   <Text
     accessibilityRole="header"
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {
+        {
           "fontSize": 24,
           "fontWeight": "500",
           "lineHeight": 36,
         },
-        Object {
+        {
           "marginVertical": 12,
           "paddingHorizontal": 12,
         },
@@ -1290,19 +1290,19 @@ Array [
   </Text>,
   <View
     style={
-      Object {
+      {
         "paddingBottom": 8,
       }
     }
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Object {
+          {
             "paddingHorizontal": 12,
           },
         ]
@@ -1313,17 +1313,17 @@ Array [
         accessibilityLabel="Username"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -1337,7 +1337,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1351,7 +1351,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -1363,15 +1363,15 @@ Array [
           placeholder="Username"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -1379,14 +1379,14 @@ Array [
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -1398,17 +1398,17 @@ Array [
         accessibilityLabel="Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -1422,7 +1422,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1436,7 +1436,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -1449,15 +1449,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -1465,7 +1465,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": true,
@@ -1474,7 +1474,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -1494,8 +1494,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "opacity": 0.6,
               },
               undefined,
@@ -1507,20 +1507,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -1535,7 +1535,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -1544,14 +1544,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -1563,17 +1563,17 @@ Array [
         accessibilityLabel="Confirm Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -1587,7 +1587,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1601,7 +1601,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -1614,15 +1614,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -1630,7 +1630,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": true,
@@ -1639,7 +1639,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -1659,8 +1659,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "opacity": 0.6,
               },
               undefined,
@@ -1672,20 +1672,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -1700,7 +1700,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -1709,14 +1709,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -1728,22 +1728,22 @@ Array [
         accessibilityLabel="Phone"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
               ],
             ],
@@ -1755,7 +1755,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -1769,7 +1769,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -1782,17 +1782,17 @@ Array [
           placeholder="Phone"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Array [
-                Object {},
-                Object {},
+              [
+                {},
+                {},
               ],
             ]
           }
@@ -1803,7 +1803,7 @@ Array [
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": false,
@@ -1812,7 +1812,7 @@ Array [
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -1832,8 +1832,8 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(190, 95%, 30%)",
           "borderRadius": 4,
@@ -1842,7 +1842,7 @@ Array [
           "paddingVertical": 12,
         },
         undefined,
-        Object {
+        {
           "margin": 12,
         },
       ]
@@ -1851,14 +1851,14 @@ Array [
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 0%, 100%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -1867,7 +1867,7 @@ Array [
   </View>,
   <View
     style={
-      Object {
+      {
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "center",
@@ -1877,7 +1877,7 @@ Array [
     <View
       accessibilityRole="button"
       accessibilityState={
-        Object {
+        {
           "busy": undefined,
           "checked": undefined,
           "disabled": undefined,
@@ -1886,7 +1886,7 @@ Array [
         }
       }
       accessibilityValue={
-        Object {
+        {
           "max": undefined,
           "min": undefined,
           "now": undefined,
@@ -1906,8 +1906,8 @@ Array [
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "transparent",
             "borderRadius": 4,
@@ -1916,7 +1916,7 @@ Array [
             "paddingVertical": 12,
           },
           undefined,
-          Object {
+          {
             "marginVertical": 8,
             "minWidth": "50%",
           },
@@ -1925,8 +1925,8 @@ Array [
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(190, 95%, 30%)",
               "fontSize": 16,
               "fontWeight": "700",
@@ -1944,20 +1944,20 @@ Array [
 `;
 
 exports[`SignUp renders as expected with errors 1`] = `
-Array [
+[
   <Text
     accessibilityRole="header"
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {
+        {
           "fontSize": 24,
           "fontWeight": "500",
           "lineHeight": 36,
         },
-        Object {
+        {
           "marginVertical": 12,
           "paddingHorizontal": 12,
         },
@@ -1968,19 +1968,19 @@ Array [
   </Text>,
   <View
     style={
-      Object {
+      {
         "paddingBottom": 8,
       }
     }
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Object {
+          {
             "paddingHorizontal": 12,
           },
         ]
@@ -1991,17 +1991,17 @@ Array [
         accessibilityLabel="Username"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -2015,7 +2015,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -2028,7 +2028,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -2040,15 +2040,15 @@ Array [
           placeholder="Username"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -2056,14 +2056,14 @@ Array [
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -2075,17 +2075,17 @@ Array [
         accessibilityLabel="Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -2099,7 +2099,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -2112,7 +2112,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -2125,15 +2125,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -2141,7 +2141,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -2150,7 +2150,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -2170,8 +2170,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -2181,20 +2181,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -2209,7 +2209,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -2218,14 +2218,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -2237,17 +2237,17 @@ Array [
         accessibilityLabel="Confirm Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -2261,7 +2261,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -2274,7 +2274,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -2287,15 +2287,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -2303,7 +2303,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": false,
@@ -2312,7 +2312,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -2332,8 +2332,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {},
+            [
+              {},
               undefined,
               undefined,
             ]
@@ -2343,20 +2343,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -2371,7 +2371,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -2380,14 +2380,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -2399,22 +2399,22 @@ Array [
         accessibilityLabel="Phone"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
               ],
             ],
@@ -2426,7 +2426,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -2439,7 +2439,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -2452,17 +2452,17 @@ Array [
           placeholder="Phone"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Array [
-                Object {},
-                Object {},
+              [
+                {},
+                {},
               ],
             ]
           }
@@ -2474,15 +2474,15 @@ Array [
     accessibilityRole="alert"
     accessible={true}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(0, 75%, 95%)",
           "flexDirection": "row",
           "paddingHorizontal": 8,
           "paddingVertical": 12,
         },
-        Object {
+        {
           "marginHorizontal": 12,
         },
       ]
@@ -2493,38 +2493,38 @@ Array [
       accessibilityRole="image"
       accessible={true}
       source={
-        Object {
+        {
           "testUri": "../../../packages/react-native/src/assets/icons/error.png",
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "height": 20,
             "resizeMode": "contain",
             "tintColor": undefined,
             "width": 20,
           },
-          Array [
-            Object {
+          [
+            {
               "margin": 8,
               "tintColor": "hsl(0, 100%, 20%)",
             },
-            Object {},
+            {},
           ],
         ]
       }
     />
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 100%, 20%)",
             "flex": 1,
             "fontSize": 16,
             "paddingHorizontal": 8,
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -2534,7 +2534,7 @@ Array [
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": false,
@@ -2543,7 +2543,7 @@ Array [
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -2563,8 +2563,8 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(190, 95%, 30%)",
           "borderRadius": 4,
@@ -2573,7 +2573,7 @@ Array [
           "paddingVertical": 12,
         },
         undefined,
-        Object {
+        {
           "margin": 12,
         },
       ]
@@ -2582,14 +2582,14 @@ Array [
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 0%, 100%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -2598,7 +2598,7 @@ Array [
   </View>,
   <View
     style={
-      Object {
+      {
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "center",
@@ -2608,7 +2608,7 @@ Array [
     <View
       accessibilityRole="button"
       accessibilityState={
-        Object {
+        {
           "busy": undefined,
           "checked": undefined,
           "disabled": undefined,
@@ -2617,7 +2617,7 @@ Array [
         }
       }
       accessibilityValue={
-        Object {
+        {
           "max": undefined,
           "min": undefined,
           "now": undefined,
@@ -2637,8 +2637,8 @@ Array [
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "transparent",
             "borderRadius": 4,
@@ -2647,7 +2647,7 @@ Array [
             "paddingVertical": 12,
           },
           undefined,
-          Object {
+          {
             "marginVertical": 8,
             "minWidth": "50%",
           },
@@ -2656,8 +2656,8 @@ Array [
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(190, 95%, 30%)",
               "fontSize": 16,
               "fontWeight": "700",
@@ -2675,20 +2675,20 @@ Array [
 `;
 
 exports[`SignUp renders as expected with validationErrors 1`] = `
-Array [
+[
   <Text
     accessibilityRole="header"
     style={
-      Array [
-        Object {
+      [
+        {
           "color": "hsl(210, 50%, 10%)",
         },
-        Object {
+        {
           "fontSize": 24,
           "fontWeight": "500",
           "lineHeight": 36,
         },
-        Object {
+        {
           "marginVertical": 12,
           "paddingHorizontal": 12,
         },
@@ -2699,19 +2699,19 @@ Array [
   </Text>,
   <View
     style={
-      Object {
+      {
         "paddingBottom": 8,
       }
     }
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Object {
+          {
             "paddingHorizontal": 12,
           },
         ]
@@ -2722,17 +2722,17 @@ Array [
         accessibilityLabel="Username"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -2746,7 +2746,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(0, 95%, 30%)",
             "borderRadius": 4,
@@ -2760,7 +2760,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -2772,15 +2772,15 @@ Array [
           placeholder="Username"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -2788,7 +2788,7 @@ Array [
     </View>
     <View
       style={
-        Object {
+        {
           "paddingHorizontal": 16,
           "paddingVertical": 8,
         }
@@ -2796,7 +2796,7 @@ Array [
     >
       <Text
         style={
-          Object {
+          {
             "color": "hsl(0, 100%, 20%)",
             "paddingVertical": 1,
           }
@@ -2806,7 +2806,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "hsl(0, 100%, 20%)",
             "paddingVertical": 1,
           }
@@ -2817,14 +2817,14 @@ Array [
     </View>
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -2836,17 +2836,17 @@ Array [
         accessibilityLabel="Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -2860,7 +2860,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -2874,7 +2874,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -2887,15 +2887,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -2903,7 +2903,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": true,
@@ -2912,7 +2912,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -2932,8 +2932,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "opacity": 0.6,
               },
               undefined,
@@ -2945,20 +2945,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -2973,7 +2973,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -2982,14 +2982,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -3001,17 +3001,17 @@ Array [
         accessibilityLabel="Confirm Password"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
@@ -3025,7 +3025,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -3039,7 +3039,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -3052,15 +3052,15 @@ Array [
           placeholderTextColor="hsl(210, 10%, 40%)"
           secureTextEntry={true}
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Object {},
+              {},
             ]
           }
         />
@@ -3068,7 +3068,7 @@ Array [
           accessibilityLabel="Show password"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "busy": undefined,
               "checked": undefined,
               "disabled": true,
@@ -3077,7 +3077,7 @@ Array [
             }
           }
           accessibilityValue={
-            Object {
+            {
               "max": undefined,
               "min": undefined,
               "now": undefined,
@@ -3097,8 +3097,8 @@ Array [
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            Array [
-              Object {
+            [
+              {
                 "opacity": 0.6,
               },
               undefined,
@@ -3110,20 +3110,20 @@ Array [
             accessibilityRole="image"
             accessible={true}
             source={
-              Object {
+              {
                 "testUri": "../../../packages/react-native/src/assets/icons/visibilityOff.png",
               }
             }
             style={
-              Array [
-                Object {
+              [
+                {
                   "height": 16,
                   "resizeMode": "contain",
                   "tintColor": undefined,
                   "width": 16,
                 },
-                Array [
-                  Object {
+                [
+                  {
                     "tintColor": "hsl(210, 10%, 40%)",
                   },
                   undefined,
@@ -3138,7 +3138,7 @@ Array [
       accessibilityElementsHidden={true}
       pointerEvents="none"
       style={
-        Object {
+        {
           "backgroundColor": "transparent",
           "height": 0.1,
           "width": 0.1,
@@ -3147,14 +3147,14 @@ Array [
     />
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "marginBottom": 8,
           },
-          Array [
-            Object {},
-            Object {
+          [
+            {},
+            {
               "paddingHorizontal": 12,
             },
           ],
@@ -3166,22 +3166,22 @@ Array [
         accessibilityLabel="Phone"
         accessibilityRole="text"
         style={
-          Array [
-            Object {
+          [
+            {
               "fontSize": 16,
               "fontWeight": "400",
               "lineHeight": 24,
             },
-            Object {
+            {
               "color": "hsl(210, 50%, 10%)",
             },
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 25%, 25%)",
                 "paddingVertical": 8,
               },
-              Array [
-                Object {},
+              [
+                {},
                 undefined,
               ],
             ],
@@ -3193,7 +3193,7 @@ Array [
       <View
         accessible={true}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderColor": "hsl(210, 10%, 58%)",
             "borderRadius": 4,
@@ -3207,7 +3207,7 @@ Array [
       >
         <TextInput
           accessibilityState={
-            Object {
+            {
               "disabled": true,
             }
           }
@@ -3220,17 +3220,17 @@ Array [
           placeholder="Phone"
           placeholderTextColor="hsl(210, 10%, 40%)"
           style={
-            Array [
-              Object {
+            [
+              {
                 "color": "hsl(210, 50%, 10%)",
                 "flexGrow": 1,
                 "fontSize": 16,
                 "paddingHorizontal": 4,
                 "paddingVertical": 12,
               },
-              Array [
-                Object {},
-                Object {},
+              [
+                {},
+                {},
               ],
             ]
           }
@@ -3241,7 +3241,7 @@ Array [
   <View
     accessibilityRole="button"
     accessibilityState={
-      Object {
+      {
         "busy": undefined,
         "checked": undefined,
         "disabled": false,
@@ -3250,7 +3250,7 @@ Array [
       }
     }
     accessibilityValue={
-      Object {
+      {
         "max": undefined,
         "min": undefined,
         "now": undefined,
@@ -3270,8 +3270,8 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
+      [
+        {
           "alignItems": "center",
           "backgroundColor": "hsl(190, 95%, 30%)",
           "borderRadius": 4,
@@ -3280,7 +3280,7 @@ Array [
           "paddingVertical": 12,
         },
         undefined,
-        Object {
+        {
           "margin": 12,
         },
       ]
@@ -3289,14 +3289,14 @@ Array [
   >
     <Text
       style={
-        Array [
-          Object {
+        [
+          {
             "color": "hsl(0, 0%, 100%)",
             "fontSize": 16,
             "fontWeight": "700",
             "textAlign": "center",
           },
-          Object {},
+          {},
         ]
       }
     >
@@ -3305,7 +3305,7 @@ Array [
   </View>,
   <View
     style={
-      Object {
+      {
         "flexDirection": "row",
         "flexWrap": "wrap",
         "justifyContent": "center",
@@ -3315,7 +3315,7 @@ Array [
     <View
       accessibilityRole="button"
       accessibilityState={
-        Object {
+        {
           "busy": undefined,
           "checked": undefined,
           "disabled": undefined,
@@ -3324,7 +3324,7 @@ Array [
         }
       }
       accessibilityValue={
-        Object {
+        {
           "max": undefined,
           "min": undefined,
           "now": undefined,
@@ -3344,8 +3344,8 @@ Array [
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "center",
             "backgroundColor": "transparent",
             "borderRadius": 4,
@@ -3354,7 +3354,7 @@ Array [
             "paddingVertical": 12,
           },
           undefined,
-          Object {
+          {
             "marginVertical": 8,
             "minWidth": "50%",
           },
@@ -3363,8 +3363,8 @@ Array [
     >
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "hsl(190, 95%, 30%)",
               "fontSize": 16,
               "fontWeight": "700",

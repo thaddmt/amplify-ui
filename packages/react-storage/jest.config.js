@@ -15,10 +15,7 @@ module.exports = {
       statements: 80,
     },
   },
-  globals: { 'ts-jest': { tsconfig: 'tsconfig.json' } },
-  moduleNameMapper: {
-    '^react$': '<rootDir>/node_modules/react',
-  },
+  moduleNameMapper: { '^uuid$': '<rootDir>/../../node_modules/uuid' },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
   preset: 'ts-jest',
   setupFilesAfterEnv: ['./jest.setup.ts'],

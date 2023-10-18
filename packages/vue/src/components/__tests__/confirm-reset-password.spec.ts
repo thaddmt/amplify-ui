@@ -98,14 +98,15 @@ describe('ConfirmResetPassword', () => {
 
     const codeField = await screen.findByLabelText('Code *');
     const newPasswordField = await screen.findByLabelText('New Password');
-    const confirmPasswordField = await screen.findByLabelText(
-      'Confirm Password'
-    );
+    const confirmPasswordField =
+      await screen.findByLabelText('Confirm Password');
 
     await fireEvent.input(codeField, { target: codeInputPrams });
     expect(updateFormSpy).toHaveBeenCalledWith(codeInputPrams);
 
-    await fireEvent.input(newPasswordField, { target: newPasswordInputParams });
+    await fireEvent.input(newPasswordField, {
+      target: newPasswordInputParams,
+    });
     expect(updateFormSpy).toHaveBeenCalledWith(newPasswordInputParams);
 
     await fireEvent.input(confirmPasswordField, {
@@ -121,9 +122,8 @@ describe('ConfirmResetPassword', () => {
 
     const codeField = await screen.findByLabelText('Code *');
     const newPasswordField = await screen.findByLabelText('New Password');
-    const confirmPasswordField = await screen.findByLabelText(
-      'Confirm Password'
-    );
+    const confirmPasswordField =
+      await screen.findByLabelText('Confirm Password');
 
     await fireEvent.blur(codeField);
     expect(updateBlurSpy).toHaveBeenCalledWith({ name: 'confirmation_code' });
