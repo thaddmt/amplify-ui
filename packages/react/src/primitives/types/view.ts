@@ -55,19 +55,61 @@ export type PrimitiveProps<
   Element
 >;
 
-export type Primitive<
+// export type Primitive<
+//   Props extends BaseViewProps,
+//   Element extends ElementType
+// > = React.ForwardRefRenderFunction<React.ComponentRef<Element>, Props>;
+
+interface ForwardRefRenderFunction<T, P = {}> {
+  (props: P, ref: React.ForwardedRef<T>): JSX.Element | null;
+  displayName?: string | undefined;
+  // explicit rejected with `never` required due to
+  // https://github.com/microsoft/TypeScript/issues/36826
+  /**
+   * defaultProps are not supported on render functions
+   */
+  defaultProps?: never | undefined;
+  /**
+   * propTypes are not supported on render functions
+   */
+  propTypes?: never | undefined;
+}
+
+export interface Primitive<
   Props extends BaseViewProps,
   Element extends ElementType
-> = React.ForwardRefRenderFunction<React.ComponentRef<Element>, Props>;
+> extends ForwardRefRenderFunction<React.ComponentRef<Element>, Props> {
+  // <P extends Props, T extends Element>(
+  //   props: PrimitiveProps<P, T>,
+  //   ref: React.ForwardedRef<React.ComponentRef<T>>
+  // ): React.ReactNode;
+}
+
+interface ExoticComponent<P = {}> {
+  /**
+   * **NOTE**: Exotic components are not callable.
+   */
+  (props: P): JSX.Element | null;
+  readonly $$typeof: symbol;
+}
+
+interface NamedExoticComponent<P = {}> extends ExoticComponent<P> {
+  displayName?: string | undefined;
+}
+
+interface ForwardRefExoticComponent<P> extends NamedExoticComponent<P> {
+  defaultProps?: Partial<P> | undefined;
+  propTypes?: React.WeakValidationMap<P> | undefined;
+}
 
 export interface ForwardRefPrimitive<
   Props extends BaseViewProps,
   DefaultElement extends ElementType
-> extends React.ForwardRefExoticComponent<Props> {
+> extends ForwardRefExoticComponent<PrimitiveProps<Props, DefaultElement>> {
   // overload the JSX constructor to make it accept generics
   <Element extends ElementType = DefaultElement>(
     props: PrimitiveProps<Props, Element>
-  ): React.JSX.Element | null;
+  ): React.ReactElement | null;
 }
 
 /** @deprecated For internal use only */

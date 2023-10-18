@@ -90,6 +90,9 @@ const TextFieldPrimitive: Primitive<TextFieldProps, 'input'> = (props, ref) => {
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/textfield)
  */
 export const TextField: ForwardRefPrimitive<BaseTextFieldProps, 'input'> =
-  React.forwardRef(TextFieldPrimitive);
+  React.forwardRef(TextFieldPrimitive) as ForwardRefPrimitive<
+    BaseTextFieldProps,
+    'input'
+  >;
 
 TextField.displayName = 'TextField';

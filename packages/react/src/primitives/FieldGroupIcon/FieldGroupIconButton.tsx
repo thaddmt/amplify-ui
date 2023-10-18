@@ -28,6 +28,9 @@ const FieldGroupIconButtonPrimitive: Primitive<
 export const FieldGroupIconButton: ForwardRefPrimitive<
   BaseFieldGroupIconButtonProps,
   'button'
-> = React.forwardRef(FieldGroupIconButtonPrimitive);
+> = React.forwardRef(FieldGroupIconButtonPrimitive) as ForwardRefPrimitive<
+  BaseFieldGroupIconButtonProps,
+  'button'
+>;
 
 FieldGroupIconButton.displayName = 'FieldGroupIconButton';

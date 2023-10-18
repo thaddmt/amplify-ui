@@ -40,7 +40,8 @@ const ViewPrimitive: Primitive<ViewProps, 'div'> = (
 /**
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/view)
  */
-export const View: ForwardRefPrimitive<BaseViewProps, 'div'> =
-  React.forwardRef(ViewPrimitive);
+export const View: ForwardRefPrimitive<BaseViewProps, 'div'> = React.forwardRef(
+  ViewPrimitive
+) as ForwardRefPrimitive<BaseViewProps, 'div'>;
 
 View.displayName = 'View';

@@ -80,6 +80,9 @@ const AlertPrimitive: Primitive<AlertProps, 'div'> = (
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/alert)
  */
 export const Alert: ForwardRefPrimitive<BaseAlertProps, 'div'> =
-  React.forwardRef(AlertPrimitive);
+  React.forwardRef(AlertPrimitive) as ForwardRefPrimitive<
+    BaseAlertProps,
+    'div'
+  >;
 
 Alert.displayName = 'Alert';

@@ -35,6 +35,9 @@ const FieldGroupIconPrimitive: Primitive<FieldGroupIconProps, 'div'> = (
 export const FieldGroupIcon: ForwardRefPrimitive<
   BaseFieldGroupIconProps,
   'div'
-> = React.forwardRef(FieldGroupIconPrimitive);
+> = React.forwardRef(FieldGroupIconPrimitive) as ForwardRefPrimitive<
+  BaseFieldGroupIconProps,
+  'div'
+>;
 
 FieldGroupIcon.displayName = 'FieldGroupIcon';

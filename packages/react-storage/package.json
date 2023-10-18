@@ -49,8 +49,10 @@
   },
   "peerDependencies": {
     "aws-amplify": "^5.0.1",
-    "react": ">= 16.14.0",
-    "react-dom": ">= 16.14.0"
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "react": "^16.14.0 || ^17.0 || ^18.0",
+    "react-dom": "^16.14.0 || ^17.0 || ^18.0"
   },
   "peerDependenciesMeta": {
     "aws-amplify": {
@@ -66,11 +68,8 @@
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.5",
-    "@types/react": "^18.2.22",
     "eslint": "^8.44.0",
     "jest": "^28",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.0",
     "rollup-plugin-node-externals": "^4.1.1",

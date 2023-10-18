@@ -30,6 +30,9 @@ const VisuallyHiddenPrimitive: Primitive<VisuallyHiddenProps, 'span'> = (
 export const VisuallyHidden: ForwardRefPrimitive<
   BaseVisuallyHiddenProps,
   'span'
-> = React.forwardRef(VisuallyHiddenPrimitive);
+> = React.forwardRef(VisuallyHiddenPrimitive) as ForwardRefPrimitive<
+  BaseVisuallyHiddenProps,
+  'span'
+>;
 
 VisuallyHidden.displayName = 'VisuallyHidden';

@@ -32,6 +32,9 @@ const BreadcrumbItemPrimitive: Primitive<BreadcrumbsItemProps, 'li'> = (
 export const BreadcrumbItem: ForwardRefPrimitive<
   BaseBreadcrumbItemProps,
   'span'
-> = React.forwardRef(BreadcrumbItemPrimitive);
+> = React.forwardRef(BreadcrumbItemPrimitive) as ForwardRefPrimitive<
+  BaseBreadcrumbItemProps,
+  'span'
+>;
 
 BreadcrumbItem.displayName = 'Breadcrumbs.Item';

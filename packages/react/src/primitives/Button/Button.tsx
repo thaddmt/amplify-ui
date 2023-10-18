@@ -4,7 +4,9 @@ import * as React from 'react';
 import { classNameModifier, classNameModifierByFlag } from '../shared/utils';
 import {
   BaseButtonProps,
+  BaseViewProps,
   ButtonProps,
+  ElementType,
   ForwardRefPrimitive,
   Primitive,
 } from '../types';
@@ -92,10 +94,21 @@ const ButtonPrimitive: Primitive<ButtonProps, 'button'> = (
   );
 };
 
+const primitiveWithForwardRef = <
+  P extends BaseViewProps,
+  E extends ElementType
+>(
+  primitive: Primitive<P, E>
+): ForwardRefPrimitive<P, E> =>
+  React.forwardRef(primitive) as ForwardRefPrimitive<P, E>;
+
 /**
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/button)
  */
 export const Button: ForwardRefPrimitive<BaseButtonProps, 'button'> =
-  React.forwardRef(ButtonPrimitive);
+  primitiveWithForwardRef(ButtonPrimitive);
+
+export const NewButton: ForwardRefPrimitive<BaseButtonProps, 'button'> =
+  primitiveWithForwardRef(ButtonPrimitive);
 
 Button.displayName = 'Button';
