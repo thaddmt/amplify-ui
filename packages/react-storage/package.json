@@ -76,8 +76,7 @@
     "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "size-limit": "^8.2.6",
-    "ts-jest": "^28",
-    "ts-morph": "^12.0.0"
+    "ts-jest": "^28"
   },
   "sideEffects": [
     "dist/**/*.css"

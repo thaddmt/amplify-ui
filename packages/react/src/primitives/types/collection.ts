@@ -66,7 +66,7 @@ interface CollectionChildren<Item> {
    * The component to be repeated
    * Same interface as Array.prototype.map
    */
-  children: (item: Item, index: number) => React.ReactNode;
+  children: (item: Item, index: number) => JSX.Element;
 }
 
 export interface CollectionBaseProps<Item> extends CollectionChildren<Item> {

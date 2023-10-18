@@ -4,6 +4,7 @@ import { isFunction } from '@aws-amplify/ui';
 
 import { ComponentClassNames, ComponentText } from '../shared/constants';
 import { classNameModifier } from '../shared/utils';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import {
   AlertProps,
   BaseAlertProps,
@@ -80,9 +81,6 @@ const AlertPrimitive: Primitive<AlertProps, 'div'> = (
  * [📖 Docs](https://ui.docs.amplify.aws/react/components/alert)
  */
 export const Alert: ForwardRefPrimitive<BaseAlertProps, 'div'> =
-  React.forwardRef(AlertPrimitive) as ForwardRefPrimitive<
-    BaseAlertProps,
-    'div'
-  >;
+  primitiveWithForwardRef(AlertPrimitive);
 
 Alert.displayName = 'Alert';

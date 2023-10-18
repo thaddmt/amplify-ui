@@ -9,6 +9,7 @@ import {
   ForwardRefPrimitive,
   Primitive,
 } from '../types';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import { View } from '../View';
 
 const DividerPrimitive: Primitive<DividerProps, 'hr'> = (

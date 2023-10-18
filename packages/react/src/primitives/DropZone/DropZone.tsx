@@ -5,6 +5,7 @@ import { ForwardRefPrimitive, Primitive } from '../types';
 import { DropZoneProps, BaseDropZoneProps } from './types';
 import { DropZoneProvider } from './DropZoneProvider';
 import { DropZoneContainer } from './DropZoneContainer';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import { Accepted, Default, Rejected } from './DropZoneChildren';
 
 const DropZonePrimitive: Primitive<DropZoneProps, 'div'> = (

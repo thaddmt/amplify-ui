@@ -8,6 +8,7 @@ import { useDeprecationWarning } from '../../hooks/useDeprecationWarning';
 import { ComponentClassNames } from '../shared/constants';
 import { BaseExpanderProps, ExpanderProps } from '../types/expander';
 import { ForwardRefPrimitive, Primitive } from '../types/view';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import { splitPrimitiveProps } from '../utils/splitPrimitiveProps';
 
 // Radix packages don't support ESM in Node, in some scenarios(e.g. SSR)

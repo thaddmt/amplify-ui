@@ -10,6 +10,7 @@ import type {
   AutocompleteOptionProps,
   BaseAutocompleteOptionProps,
 } from '../types';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 
 const AutocompleteOptionPrimitive: Primitive<AutocompleteOptionProps, 'li'> = (
   { children, className, isActive, ...rest },

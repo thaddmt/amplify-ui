@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Loader } from '../Loader';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 
 import { ScrollView } from '../ScrollView';
 import { View } from '../View';

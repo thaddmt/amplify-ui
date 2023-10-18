@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import * as React from 'react';
 import { isFunction } from '@aws-amplify/ui';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 
 import { AutocompleteOption } from './AutocompleteOption';
 import { AutocompleteMenu } from './AutocompleteMenu';

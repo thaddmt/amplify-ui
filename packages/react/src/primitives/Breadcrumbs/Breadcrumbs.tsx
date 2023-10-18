@@ -6,6 +6,7 @@ import {
   Primitive,
   ForwardRefPrimitive,
 } from '../types';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 
 import { BreadcrumbItem } from './BreadcrumbItem';
 import { BreadcrumbLink } from './BreadcrumbLink';

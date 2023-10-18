@@ -8,6 +8,7 @@ import {
   Primitive,
   BaseBreadcrumbLinkProps,
 } from '../types';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import { ComponentClassNames } from '../shared/constants';
 import { Link } from '../Link';
 import { Text } from '../Text';

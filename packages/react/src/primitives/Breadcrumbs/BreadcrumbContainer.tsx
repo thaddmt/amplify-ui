@@ -8,6 +8,8 @@ import {
   BaseBreadcrumbContainerProps,
 } from '../types';
 import { ComponentClassNames } from '../shared/constants';
+
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import { View } from '../View';
 
 const BreadcrumbContainerPrimitive: Primitive<

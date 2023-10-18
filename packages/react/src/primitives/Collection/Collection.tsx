@@ -9,6 +9,7 @@ import { Pagination, usePagination } from '../Pagination';
 import { SearchField } from '../SearchField';
 import { ComponentClassNames, ComponentText } from '../shared/constants';
 import { strHasLength } from '../shared/utils';
+import { primitiveWithForwardRef } from '../utils/primitiveWithForwardRef';
 import {
   BaseCollectionProps,
   ElementType,
